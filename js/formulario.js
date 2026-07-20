@@ -1,6 +1,6 @@
 // 1) Cuando conectemos Google Sheets, pegaremos la dirección aquí.
     //    Mientras esté vacío (""), el formulario funciona en modo prueba.
-    const SCRIPT_URL = "";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVMHUvLCnoQ8jiQR03529SpXmNdX3Xn9RyB5HswJvylLQaxOzt4tR9XuRd1NK6y8gR/exec";
 
     // 2) Captura de dónde vino la persona (etiqueta del QR).
     //    Lee la URL: si trae ?origen=... o ?utm_term=... lo guarda en el campo oculto.
