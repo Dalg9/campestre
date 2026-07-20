@@ -1,0 +1,3 @@
+Carpeta para las imagenes de la landing.
+Pon aqui las fotos de portada y de los proyectos (ejemplo: portada.jpg).
+Luego, en css/estilos.css, descomenta la linea de la foto en la seccion HERO.
