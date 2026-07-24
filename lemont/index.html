@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Le Mont Reserve — Lotes campestres con escritura individual | Restrepo, Meta</title>
+<meta name="description" content="116 lotes campestres con escritura individual en Restrepo–Medina. Tres ciudades a tus pies, un mundo para ti." />
+
+<!-- Tipografías: Cinzel (títulos grabados, como el logo) + Montserrat (texto) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Galería y zoom hechos con CSS + JS propio: sin librerías externas, funciona 100% offline -->
+
+<style>
+/* ============================================================
+   1) VARIABLES DE MARCA  ·  aquí cambias TODA la paleta
+   ============================================================ */
+:root{
+  --negro:      #0d0d0f;
+  --negro-2:    #16161a;
+  --carbon:     #1e1e24;
+  --crema:      #f4efe4;
+  --crema-2:    #cfc7b6;
+  --tenue:      #8f897c;
+  --oro:        #d9b24c;
+  --oro-claro:  #ecd28a;
+  --oro-oscuro: #a97f2c;
+  --grad-oro:   linear-gradient(135deg, #f6e3a6 0%, #d9b24c 45%, #a97f2c 100%);
+  --linea:      rgba(217,178,76,.28);
+  --serif:      'Cinzel', serif;
+  --sans:       'Montserrat', system-ui, sans-serif;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--sans);
+  background:var(--negro);
+  color:var(--crema);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+
+/* utilidades tipográficas */
+.eyebrow{
+  font-family:var(--sans);
+  font-size:.72rem; letter-spacing:.42em; text-transform:uppercase;
+  color:var(--oro); font-weight:600;
+}
+.titulo{
+  font-family:var(--serif); font-weight:600; line-height:1.05;
+  letter-spacing:.02em;
+  font-size:clamp(2rem, 5.5vw, 4rem);
+}
+.oro-text{
+  background:var(--grad-oro);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* ============================================================
+   2) BARRA DE PROGRESO + NAV FLOTANTE
+   ============================================================ */
+#progreso{
+  position:fixed; top:0; left:0; height:3px; width:0%;
+  background:var(--grad-oro); z-index:120; transition:width .1s linear;
+  box-shadow:0 0 12px rgba(217,178,76,.6);
+}
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px clamp(18px,4vw,54px);
+  background:linear-gradient(to bottom, rgba(13,13,15,.82), rgba(13,13,15,0));
+  backdrop-filter:blur(2px);
+  transition:background .4s ease, padding .4s ease;
+}
+nav.solido{ background:rgba(13,13,15,.92); backdrop-filter:blur(10px); padding-top:10px; padding-bottom:10px; }
+nav .logo img{ height:42px; width:auto; }
+nav .btn-nav{
+  font-family:var(--sans); font-size:.74rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase;
+  padding:11px 22px; border-radius:100px;
+  border:1px solid var(--linea); color:var(--crema);
+  transition:all .3s ease; white-space:nowrap;
+}
+nav .btn-nav:hover{ background:var(--grad-oro); color:var(--negro); border-color:transparent; }
+
+/* ============================================================
+   3) HERO / PORTADA
+   ============================================================ */
+.hero{
+  position:relative; height:100svh; min-height:600px;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  overflow:hidden;
+}
+.hero__bg{
+  position:absolute; inset:-8% 0 0 0; height:116%;
+  background:url('img/hero.jpg') center 40%/cover no-repeat;
+  will-change:transform; z-index:0;
+}
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:
+    radial-gradient(120% 90% at 50% 20%, rgba(13,13,15,.15), rgba(13,13,15,.55) 55%, rgba(13,13,15,.92) 100%),
+    linear-gradient(to bottom, rgba(13,13,15,.5), rgba(13,13,15,.1) 30%, rgba(13,13,15,.9));
+}
+.hero__inner{ position:relative; z-index:2; padding:0 22px; max-width:900px; }
+.hero__logo{
+  width:min(74vw,430px); margin:0 auto 10px;
+  filter:drop-shadow(0 8px 30px rgba(0,0,0,.55));
+  opacity:0; transform:translateY(26px) scale(.96);
+  animation:heroLogo 1.4s cubic-bezier(.2,.7,.2,1) .2s forwards;
+}
+.hero__slogan{
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(1.05rem,2.6vw,1.7rem); color:var(--crema);
+  letter-spacing:.03em; margin-top:6px;
+  opacity:0; animation:fadeUp 1.2s ease .9s forwards;
+}
+.hero__line{
+  width:0; height:1px; margin:26px auto 24px; background:var(--grad-oro);
+  animation:growLine 1.1s ease 1.2s forwards;
+}
+.hero__meta{
+  display:flex; gap:clamp(20px,5vw,54px); justify-content:center; flex-wrap:wrap;
+  opacity:0; animation:fadeUp 1.2s ease 1.5s forwards;
+}
+.hero__meta span{ font-size:.76rem; letter-spacing:.26em; text-transform:uppercase; color:var(--crema-2); }
+.hero__meta b{ color:var(--oro); }
+.hero__cta{
+  display:inline-block; margin-top:34px;
+  font-weight:600; letter-spacing:.16em; text-transform:uppercase; font-size:.78rem;
+  padding:16px 40px; border-radius:100px; color:var(--negro);
+  background:var(--grad-oro);
+  box-shadow:0 10px 30px rgba(217,178,76,.28);
+  opacity:0; animation:fadeUp 1.2s ease 1.8s forwards;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.hero__cta:hover{ transform:translateY(-3px); box-shadow:0 16px 40px rgba(217,178,76,.42); }
+.scroll-cue{
+  position:absolute; left:50%; bottom:26px; transform:translateX(-50%); z-index:2;
+  width:26px; height:42px; border:1.5px solid var(--linea); border-radius:16px;
+  opacity:0; animation:fadeUp 1s ease 2.1s forwards;
+}
+.scroll-cue::before{
+  content:""; position:absolute; left:50%; top:8px; width:4px; height:8px; border-radius:4px;
+  background:var(--oro); transform:translateX(-50%); animation:cue 1.6s ease-in-out infinite;
+}
+@keyframes heroLogo{ to{ opacity:1; transform:translateY(0) scale(1);} }
+@keyframes fadeUp{ from{opacity:0; transform:translateY(22px);} to{opacity:1; transform:translateY(0);} }
+@keyframes growLine{ to{ width:min(60vw,260px);} }
+@keyframes cue{ 0%,100%{transform:translateX(-50%) translateY(0); opacity:1;} 50%{transform:translateX(-50%) translateY(12px); opacity:.2;} }
+
+/* ============================================================
+   4) SECCIONES GENERALES + REVELADO AL HACER SCROLL
+   ============================================================ */
+section{ position:relative; }
+.wrap{ max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,48px); }
+.pad{ padding:clamp(70px,11vw,140px) 0; }
+.reveal{ opacity:0; transform:translateY(40px); transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in{ opacity:1; transform:translateY(0); }
+.reveal.d1{ transition-delay:.12s; } .reveal.d2{ transition-delay:.24s; } .reveal.d3{ transition-delay:.36s; }
+
+/* pico de montaña como separador (motivo del logo) */
+.peak{ display:block; width:54px; height:auto; margin:0 auto 20px; }
+.peak path{ fill:var(--oro); }
+
+/* ============================================================
+   5) INTRO  ·  ¡VIVIR BIEN ES VIVIR AQUÍ!  + contador 116
+   ============================================================ */
+.intro{ background:var(--negro-2); }
+.intro__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(30px,5vw,64px); align-items:center; }
+.intro h2{ margin:14px 0 18px; }
+.intro p{ color:var(--crema-2); max-width:46ch; }
+.stats{ display:flex; gap:34px; margin-top:34px; flex-wrap:wrap; }
+.stat .num{ font-family:var(--serif); font-size:clamp(2.6rem,7vw,4.4rem); font-weight:700; line-height:1; }
+.stat .lab{ font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tenue); margin-top:8px; }
+.intro__img{ position:relative; border-radius:14px; overflow:hidden; box-shadow:0 30px 70px rgba(0,0,0,.5); }
+.intro__img img{ width:100%; height:100%; object-fit:cover; aspect-ratio:4/3.1; transform:scale(1.02); }
+.intro__img::after{ content:""; position:absolute; inset:0; border:1px solid var(--linea); border-radius:14px; }
+
+/* ============================================================
+   6) AMENIDADES  ·  TARJETAS INTERACTIVAS (la estrella)
+   ============================================================ */
+.amen{ background:var(--negro); }
+.amen__head{ text-align:center; margin-bottom:clamp(38px,6vw,64px); }
+.amen__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.card{
+  position:relative; border-radius:14px; overflow:hidden;
+  aspect-ratio:3/4; cursor:pointer; background:var(--carbon);
+  border:1px solid rgba(255,255,255,.05);
+}
+.card__img{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  filter:grayscale(.7) brightness(.5); transform:scale(1.06);
+  transition:filter .7s ease, transform 1.1s cubic-bezier(.2,.7,.2,1);
+}
+.card::after{ /* velo oscuro */
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(8,8,10,.92) 6%, rgba(8,8,10,.35) 55%, rgba(8,8,10,.15));
+  transition:opacity .6s ease; z-index:1;
+}
+.card__body{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:22px 22px 24px; }
+.card__icon{ width:30px; height:30px; margin-bottom:12px; }
+.card__icon svg{ width:100%; height:100%; stroke:var(--oro); fill:none; stroke-width:1.6; }
+.card__k{ font-size:.66rem; letter-spacing:.24em; text-transform:uppercase; color:var(--oro); font-weight:600; }
+.card__t{ font-family:var(--serif); font-size:1.32rem; font-weight:600; margin-top:3px; line-height:1.1; }
+.card__line{ width:0; height:2px; background:var(--grad-oro); margin:12px 0; transition:width .6s ease .05s; }
+.card__d{
+  color:var(--crema-2); font-size:.86rem; line-height:1.55;
+  max-height:0; opacity:0; overflow:hidden;
+  transition:max-height .6s ease, opacity .5s ease;
+}
+/* estado activo: hover en escritorio, .open al tocar en móvil */
+.card:hover .card__img, .card.open .card__img{ filter:grayscale(0) brightness(1); transform:scale(1); }
+.card:hover::after, .card.open::after{ opacity:.9; }
+.card:hover .card__line, .card.open .card__line{ width:52px; }
+.card:hover .card__d, .card.open .card__d{ max-height:130px; opacity:1; }
+.card__hint{ position:absolute; top:16px; right:16px; z-index:2; font-size:.62rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--crema-2); opacity:.55; transition:opacity .4s; }
+.card:hover .card__hint, .card.open .card__hint{ opacity:0; }
+
+/* ============================================================
+   7) GALERÍA  ·  CUADRÍCULA CSS (responsive, sin librerías)
+   ============================================================ */
+.gal{ background:var(--negro-2); }
+.gal__head{ text-align:center; margin-bottom:44px; }
+.gal__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.gal-item{
+  position:relative; border-radius:14px; overflow:hidden; cursor:pointer;
+  aspect-ratio:4/3; background:var(--carbon); box-shadow:0 18px 44px rgba(0,0,0,.4);
+}
+.gal-item img{ width:100%; height:100%; object-fit:cover; transition:transform .8s ease; }
+.gal-item:hover img{ transform:scale(1.06); }
+.gal-item .zoom{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:rgba(13,13,15,.34); opacity:0; transition:opacity .4s; }
+.gal-item:hover .zoom{ opacity:1; }
+.gal-item .zoom span{ border:1px solid var(--crema); color:var(--crema); border-radius:100px;
+  padding:9px 18px; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; background:rgba(13,13,15,.4); }
+
+/* ---- Lightbox propio (zoom al hacer clic) ---- */
+.lb{ position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center;
+  background:rgba(6,6,8,.94); backdrop-filter:blur(4px); }
+.lb.open{ display:flex; }
+.lb img{ max-width:92vw; max-height:86vh; border-radius:10px; box-shadow:0 30px 80px rgba(0,0,0,.6); animation:lbIn .4s ease; }
+@keyframes lbIn{ from{opacity:0; transform:scale(.96);} to{opacity:1; transform:none;} }
+.lb__btn{ position:absolute; background:rgba(255,255,255,.08); border:1px solid var(--linea); color:var(--crema);
+  width:52px; height:52px; border-radius:50%; font-size:1.5rem; cursor:pointer; line-height:1;
+  display:flex; align-items:center; justify-content:center; transition:background .3s, color .3s; }
+.lb__btn:hover{ background:var(--grad-oro); color:var(--negro); border-color:transparent; }
+.lb__close{ top:22px; right:22px; }
+.lb__prev{ left:22px; top:50%; transform:translateY(-50%); }
+.lb__next{ right:22px; top:50%; transform:translateY(-50%); }
+
+/* ============================================================
+   8) EL LUGAR HOY + UBICACIÓN
+   ============================================================ */
+.lugar{ background:var(--negro); }
+.lugar__head{ text-align:center; margin-bottom:clamp(36px,6vw,60px); }
+.mosaico{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:160px; gap:12px; grid-auto-flow:dense; }
+.mosaico figure{ position:relative; overflow:hidden; border-radius:10px; cursor:pointer; }
+.mosaico img{ width:100%; height:100%; object-fit:cover; transition:transform .9s ease; }
+.mosaico figure:hover img{ transform:scale(1.07); }
+.mosaico figcaption{ position:absolute; left:12px; bottom:10px; font-size:.66rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--crema); background:rgba(13,13,15,.5); padding:5px 10px; border-radius:100px;
+  backdrop-filter:blur(3px); }
+.m-wide{ grid-column:span 2; } .m-big{ grid-column:span 2; grid-row:span 2; }
+.ubic{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,48px); align-items:center; margin-top:56px; }
+.ubic__map{ border-radius:14px; overflow:hidden; border:1px solid var(--linea); min-height:340px; }
+.ubic__map iframe{ width:100%; height:100%; min-height:340px; border:0; filter:grayscale(.2) contrast(1.05); }
+.ubic h3{ font-family:var(--serif); font-size:clamp(1.8rem,4vw,2.8rem); margin:12px 0 16px; }
+.ubic p{ color:var(--crema-2); max-width:44ch; }
+.ubic ul{ list-style:none; margin-top:22px; display:grid; gap:12px; }
+.ubic li{ display:flex; gap:12px; align-items:flex-start; color:var(--crema-2); font-size:.94rem; }
+.ubic li b{ color:var(--oro); font-weight:600; }
+
+/* ============================================================
+   9) CTA "¿QUÉ ESPERAS?"
+   ============================================================ */
+.cta{ position:relative; text-align:center; padding:clamp(80px,13vw,150px) 0; overflow:hidden; }
+.cta__bg{ position:absolute; inset:0; background:url('img/g5.jpg') center/cover; filter:brightness(.32) grayscale(.3); z-index:0; }
+.cta::before{ content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(169,127,44,.35), rgba(13,13,15,.6)); z-index:1; }
+.cta__inner{ position:relative; z-index:2; }
+.cta h2{ font-family:var(--serif); font-size:clamp(2.4rem,8vw,5rem); font-weight:700; line-height:1; }
+.cta p{ color:var(--crema-2); margin:18px auto 32px; max-width:40ch; }
+
+/* ============================================================
+   10) FORMULARIO
+   ============================================================ */
+.form{ background:var(--negro-2); }
+.form__grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,5vw,70px); align-items:center; }
+.form h2{ margin:14px 0 16px; }
+.form p{ color:var(--crema-2); max-width:42ch; }
+.form__box{ background:var(--carbon); border:1px solid var(--linea); border-radius:16px; padding:clamp(24px,4vw,40px); }
+.campo{ margin-bottom:18px; }
+.campo label{ display:block; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--tenue); margin-bottom:8px; }
+.campo input, .campo select{
+  width:100%; background:var(--negro); border:1px solid rgba(255,255,255,.09); border-radius:10px;
+  padding:14px 16px; color:var(--crema); font-family:var(--sans); font-size:.96rem; transition:border-color .3s, box-shadow .3s;
+}
+.campo input:focus, .campo select:focus{ outline:none; border-color:var(--oro); box-shadow:0 0 0 3px rgba(217,178,76,.15); }
+.btn-enviar{
+  width:100%; margin-top:6px; padding:16px; border:0; border-radius:100px; cursor:pointer;
+  font-family:var(--sans); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:.8rem;
+  color:var(--negro); background:var(--grad-oro); box-shadow:0 10px 28px rgba(217,178,76,.28);
+  transition:transform .25s, box-shadow .25s;
+}
+.btn-enviar:hover{ transform:translateY(-2px); box-shadow:0 16px 36px rgba(217,178,76,.4); }
+.btn-enviar:disabled{ opacity:.6; cursor:wait; transform:none; }
+.form__msg{ margin-top:16px; text-align:center; font-size:.9rem; min-height:22px; }
+.form__msg.ok{ color:#7fd18f; } .form__msg.err{ color:#e69a8a; }
+.priv{ font-size:.72rem; color:var(--tenue); margin-top:14px; text-align:center; }
+
+/* ============================================================
+   11) FOOTER
+   ============================================================ */
+footer{ background:var(--negro); border-top:1px solid rgba(255,255,255,.06); padding:56px 0 40px; text-align:center; }
+.foot__logo{ width:min(60vw,230px); margin:0 auto 26px; }
+.foot__aliados{ display:inline-flex; align-items:center; gap:14px; background:var(--crema); border-radius:14px; padding:14px 20px; }
+.foot__aliados img{ height:52px; width:auto; }
+.foot__k{ font-size:.66rem; letter-spacing:.22em; text-transform:uppercase; color:var(--tenue); margin-bottom:14px; }
+.foot__slogan{ font-family:var(--serif); font-style:italic; color:var(--crema-2); margin:28px 0 10px; font-size:1.05rem; }
+.foot__copy{ font-size:.72rem; color:var(--tenue); letter-spacing:.04em; }
+
+/* ============================================================
+   12) RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .intro__grid{ grid-template-columns:1fr; }
+  .amen__grid{ grid-template-columns:repeat(2,1fr); gap:14px; }
+  .gal__grid{ grid-template-columns:repeat(2,1fr); }
+  .mosaico{ grid-template-columns:repeat(2,1fr); grid-auto-rows:150px; }
+  .m-big{ grid-column:span 2; grid-row:span 2; }
+  .m-wide{ grid-column:span 2; }
+  .ubic{ grid-template-columns:1fr; }
+  .form__grid{ grid-template-columns:1fr; }
+}
+@media (max-width:560px){
+  .amen__grid{ grid-template-columns:1fr; }
+  .card{ aspect-ratio:16/10; }
+  .card.open .card__d{ max-height:160px; }
+  .gal__grid{ grid-template-columns:1fr; }
+  .gal-item{ aspect-ratio:16/10; }
+  .mosaico{ grid-template-columns:repeat(2,1fr); grid-auto-rows:130px; }
+  nav .btn-nav{ display:none; }
+  nav .btn-volver{ display:inline-block; font-size:.68rem; padding:9px 16px; }
+  .hero__meta{ gap:16px; }
+  .lb__prev{ left:12px; } .lb__next{ right:12px; } .lb__btn{ width:44px; height:44px; font-size:1.3rem; }
+}
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  .reveal{ opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<div id="progreso"></div>
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <a class="logo" href="#top" aria-label="Le Mont Reserve"><img src="img/logo-dark.png" alt="Le Mont Reserve" /></a>
+  <div style="display:flex; align-items:center; gap:12px">
+    <!-- Regreso a la página principal de proyectos. Si Le Mont va en OTRO repositorio,
+         cambia href por: https://dalg9.github.io/campestre/ -->
+    <a class="btn-nav btn-volver" href="../">← Todos los proyectos</a>
+    <a class="btn-nav" href="#contacto">Quiero información</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero__bg" id="heroBg"></div>
+  <div class="hero__inner">
+    <img class="hero__logo" src="img/logo-dark.png" alt="Le Mont Reserve" />
+    <p class="hero__slogan">“Tres ciudades a tus pies, un mundo para ti.”</p>
+    <div class="hero__line"></div>
+    <div class="hero__meta">
+      <span><b>116</b> Lotes campestres</span>
+      <span>Escritura <b>individual</b></span>
+      <span>Restrepo · <b>Meta</b></span>
+    </div>
+    <a class="hero__cta" href="#contacto">Reserva tu lugar</a>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</header>
+
+<!-- ================= INTRO / 116 ================= -->
+<section class="intro pad">
+  <div class="wrap intro__grid">
+    <div>
+      <span class="eyebrow reveal">Bienvenido a la reserva</span>
+      <h2 class="titulo reveal d1">¡Vivir bien <br><span class="oro-text">es vivir aquí!</span></h2>
+      <p class="reveal d2">Un proyecto campestre pensado para respirar, desconectar y vivir en medio de la naturaleza — a pocos minutos de la ciudad, con la tranquilidad que tu familia merece.</p>
+      <div class="stats">
+        <div class="stat reveal d1"><div class="num oro-text" data-count="116">0</div><div class="lab">Lotes campestres</div></div>
+        <div class="stat reveal d2"><div class="num oro-text">100%</div><div class="lab">Escritura individual</div></div>
+        <div class="stat reveal d3"><div class="num oro-text">1</div><div class="lab">Mirador panorámico</div></div>
+      </div>
+    </div>
+    <div class="intro__img reveal d1">
+      <img src="img/g5.jpg" alt="Vista aérea del proyecto Le Mont" />
+    </div>
+  </div>
+</section>
+
+<!-- ================= AMENIDADES ================= -->
+<section class="amen pad" id="amenidades">
+  <div class="wrap">
+    <div class="amen__head reveal">
+      <svg class="peak" viewBox="0 0 100 60"><path d="M50 4 L74 40 L64 40 L82 56 L18 56 L36 40 L26 40 Z"/></svg>
+      <span class="eyebrow">Amenidades</span>
+      <h2 class="titulo" style="margin-top:12px">Todo un mundo <span class="oro-text">para ti</span></h2>
+      <p style="color:var(--crema-2); max-width:52ch; margin:16px auto 0">Pasa el cursor sobre cada espacio <span style="color:var(--oro)">— o tócalo en tu celular —</span> para descubrirlo.</p>
+    </div>
+    <div class="amen__grid" id="amenGrid"></div>
+  </div>
+</section>
+
+<!-- ================= GALERÍA ================= -->
+<section class="gal pad">
+  <div class="wrap gal__head reveal">
+    <span class="eyebrow">Galería</span>
+    <h2 class="titulo" style="margin-top:12px">Así se <span class="oro-text">vive Le Mont</span></h2>
+  </div>
+  <div class="wrap"><div class="gal__grid" id="galGrid"></div></div>
+</section>
+
+<!-- ================= EL LUGAR HOY + UBICACIÓN ================= -->
+<section class="lugar pad" id="ubicacion">
+  <div class="wrap">
+    <div class="lugar__head reveal">
+      <span class="eyebrow">El lugar, hoy</span>
+      <h2 class="titulo" style="margin-top:12px">Un paisaje <span class="oro-text">real</span></h2>
+      <p style="color:var(--crema-2); max-width:52ch; margin:16px auto 0">Fotografías reales del terreno: las mismas vistas que tendrás desde tu lote.</p>
+    </div>
+
+    <div class="mosaico reveal d1" id="mosaico"></div>
+
+    <div class="ubic">
+      <div class="ubic__map reveal">
+        <iframe title="Ubicación Restrepo, Meta" loading="lazy" src="https://www.google.com/maps?q=Restrepo,+Meta,+Colombia&z=11&output=embed"></iframe>
+      </div>
+      <div class="reveal d1">
+        <span class="eyebrow">Ubicación</span>
+        <h3>Restrepo <span class="oro-text">— Medina</span></h3>
+        <p>Enclavado en las montañas del Meta, con vista al valle y a las luces de tres ciudades al caer la tarde.</p>
+        <ul>
+          <li><b>◆</b> A pocos minutos del casco urbano de Restrepo.</li>
+          <li><b>◆</b> Clima de montaña, aire limpio y silencio real.</li>
+          <li><b>◆</b> Lotes demarcados en terreno, listos para conocer.</li>
+          <li><b>◆</b> Escritura individual: el lote queda a tu nombre.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta">
+  <div class="cta__bg"></div>
+  <div class="cta__inner wrap reveal">
+    <h2>¿Qué esperas?</h2>
+    <p>Los mejores lotes se reservan primero. Déjanos tus datos y un asesor te contacta.</p>
+    <a class="hero__cta" href="#contacto" style="animation:none; opacity:1">Quiero mi lote</a>
+  </div>
+</section>
+
+<!-- ================= FORMULARIO ================= -->
+<section class="form pad" id="contacto">
+  <div class="wrap form__grid">
+    <div class="reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2 class="titulo" style="margin-top:12px">Da el <span class="oro-text">primer paso</span></h2>
+      <p>Completa el formulario y recibe la información de precios, disponibilidad y formas de pago de Le Mont Reserve. Sin compromiso.</p>
+    </div>
+    <div class="form__box reveal d1">
+      <form id="leadForm" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre completo *</label>
+          <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" />
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono / WhatsApp *</label>
+          <input id="telefono" name="telefono" type="tel" required placeholder="Ej: 320 000 0000" />
+        </div>
+        <div class="campo">
+          <label for="correo">Correo electrónico *</label>
+          <input id="correo" name="correo" type="email" required placeholder="tucorreo@ejemplo.com" />
+        </div>
+        <div class="campo">
+          <label for="empresa">Empresa donde trabajas (opcional)</label>
+          <input id="empresa" name="empresa" type="text" placeholder="Opcional" />
+        </div>
+        <button class="btn-enviar" type="submit" id="btnEnviar">Enviar mis datos</button>
+        <div class="form__msg" id="formMsg" role="status"></div>
+        <p class="priv">Al enviar aceptas ser contactado por un asesor de Le Mont Reserve.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <img class="foot__logo" src="img/logo-dark.png" alt="Le Mont Reserve" />
+    <p class="foot__k">Un proyecto de</p>
+    <div class="foot__aliados"><img src="img/aliados.jpg" alt="DCH Grupo Empresarial · Alianza Empresarial" /></div>
+    <p class="foot__slogan">“Tres ciudades a tus pies, un mundo para ti.”</p>
+    <p class="foot__copy">© 2026 Le Mont Reserve · Restrepo, Meta · DCH Grupo Empresarial S.A.S. · Alianza Empresarial</p>
+  </div>
+</footer>
+
+<!-- Lightbox propio (zoom de imágenes) -->
+<div class="lb" id="lightbox" aria-hidden="true">
+  <button class="lb__btn lb__close" id="lbClose" aria-label="Cerrar">&#10005;</button>
+  <button class="lb__btn lb__prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+  <img id="lbImg" src="" alt="Imagen de Le Mont Reserve" />
+  <button class="lb__btn lb__next" id="lbNext" aria-label="Siguiente">&#8250;</button>
+</div>
+
+<script>
+/* ============================================================
+   DATOS  ·  amenidades, galería y fotos reales
+   (así el HTML queda limpio y es fácil editar el contenido)
+   ============================================================ */
+const AMENIDADES = [
+  { img:'img/am-gimnasios.jpg', k:'Salud', t:'Gimnasios biosaludables',
+    d:'Máquinas al aire libre integradas al paisaje para ejercitarte con vista a la montaña.',
+    icon:'<path d="M4 12h16M7 8v8M17 8v8"/>' },
+  { img:'img/am-infantil.jpg', k:'Familia', t:'Parque infantil',
+    d:'Juegos seguros y coloridos donde los niños crecen jugando en plena naturaleza.',
+    icon:'<path d="M12 4v16M5 20l7-8 7 8M9 8h6"/>' },
+  { img:'img/am-hamacas.jpg', k:'Descanso', t:'Zona de hamacas',
+    d:'Un rincón de sombra entre árboles para desconectarte del ruido y no hacer nada.',
+    icon:'<path d="M3 9c6 6 12 6 18 0M4 9v3M20 9v3"/>' },
+  { img:'img/am-fogata.jpg', k:'Encuentro', t:'Zona de fogata',
+    d:'Reúnete alrededor del fuego, bajo un cielo lleno de estrellas.',
+    icon:'<path d="M12 3c3 3 4 6 1 9 2 0 3-1 3-3 2 3 1 8-4 9-5-1-6-6-3-9 0 2 1 3 2 3-2-3-1-6 2-9z"/>' },
+  { img:'img/am-mirador.jpg', k:'Panorámica', t:'Mirador',
+    d:'Un punto para contemplar el valle y los atardeceres que definen a Le Mont.',
+    icon:'<path d="M3 18l6-9 4 5 3-4 5 8zM8 7a1 1 0 100-.01"/>' },
+  { img:'img/am-senderos.jpg', k:'Naturaleza', t:'Zonas con senderos',
+    d:'Senderos ecológicos rodeados de verde que conectan cada zona del proyecto.',
+    icon:'<path d="M7 20c0-8 10-8 10-16M7 8h.01M15 16h.01"/>' },
+];
+const GALERIA = ['img/g1.jpg','img/g2.jpg','img/g3.jpg','img/g4.jpg','img/g5.jpg','img/hero.jpg'];
+const MOSAICO = [
+  { img:'img/real-05-land.jpg', cap:'Vista al valle',  cls:'m-big'  },
+  { img:'img/real-01-port.jpg', cap:'El terreno',      cls:''       },
+  { img:'img/real-03-port.jpg', cap:'Lotes demarcados',cls:''       },
+  { img:'img/real-06-land.jpg', cap:'Montañas',        cls:'m-wide' },
+  { img:'img/real-08-land.jpg', cap:'Ingreso',         cls:'m-wide' },
+  { img:'img/real-02-port.jpg', cap:'Naturaleza',      cls:'m-wide' },
+];
+
+/* ---- Construir amenidades ---- */
+const grid = document.getElementById('amenGrid');
+AMENIDADES.forEach((a,i)=>{
+  const c = document.createElement('div');
+  c.className = 'card reveal ' + (i%3===1?'d1':i%3===2?'d2':'');
+  c.innerHTML = `
+    <div class="card__img" style="background-image:url('${a.img}')"></div>
+    <span class="card__hint">Ver más</span>
+    <div class="card__body">
+      <div class="card__icon"><svg viewBox="0 0 24 24">${a.icon}</svg></div>
+      <div class="card__k">${a.k}</div>
+      <div class="card__t">${a.t}</div>
+      <div class="card__line"></div>
+      <div class="card__d">${a.d}</div>
+    </div>`;
+  // En celular: tocar abre/cierra (en escritorio manda el hover)
+  c.addEventListener('click', ()=>{
+    document.querySelectorAll('.card.open').forEach(o=>{ if(o!==c) o.classList.remove('open'); });
+    c.classList.toggle('open');
+  });
+  grid.appendChild(c);
+});
+
+/* ---- Construir galería (cuadrícula) ---- */
+const galGrid = document.getElementById('galGrid');
+GALERIA.forEach(src=>{
+  galGrid.insertAdjacentHTML('beforeend', `
+    <div class="gal-item zoomable" data-full="${src}">
+      <img src="${src}" alt="Render de Le Mont Reserve" loading="lazy" />
+      <div class="zoom"><span>Ver en grande</span></div>
+    </div>`);
+});
+
+/* ---- Construir mosaico de fotos reales ---- */
+const mos = document.getElementById('mosaico');
+MOSAICO.forEach(m=>{
+  mos.insertAdjacentHTML('beforeend', `
+    <figure class="${m.cls} zoomable" data-full="${m.img}"><img src="${m.img}" alt="${m.cap}" loading="lazy" /><figcaption>${m.cap}</figcaption></figure>`);
+});
+
+/* ============================================================
+   INTERACCIONES
+   ============================================================ */
+/* 1) Barra de progreso + nav sólido */
+const nav = document.getElementById('nav');
+const prog = document.getElementById('progreso');
+window.addEventListener('scroll', ()=>{
+  const h = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (scrollY/h*100) + '%';
+  nav.classList.toggle('solido', scrollY > 60);
+  // parallax del hero
+  const bg = document.getElementById('heroBg');
+  if(bg && scrollY < innerHeight) bg.style.transform = `translateY(${scrollY*0.35}px)`;
+}, {passive:true});
+
+/* 2) Revelado al hacer scroll (IntersectionObserver propio, sin librerías) */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:0.15 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* 3) Contador animado del 116 */
+const counters = document.querySelectorAll('[data-count]');
+const io2 = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el = e.target, end = +el.dataset.count; let n=0;
+    const step = ()=>{ n += Math.ceil(end/45); if(n>=end){ el.textContent=end; } else { el.textContent=n; requestAnimationFrame(step); } };
+    step(); io2.unobserve(el);
+  });
+}, { threshold:0.6 });
+counters.forEach(c=>io2.observe(c));
+
+/* 4) Lightbox propio: clic en cualquier imagen ".zoomable" la abre en grande */
+(function(){
+  const lb=document.getElementById('lightbox'), img=document.getElementById('lbImg');
+  let list=[], idx=0;
+  const open=()=>{ lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); };
+  const close=()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); };
+  const show=i=>{ idx=(i+list.length)%list.length; img.src=list[idx]; };
+  document.addEventListener('click', e=>{
+    const z=e.target.closest('.zoomable'); if(!z) return;
+    list=[...document.querySelectorAll('.zoomable')].map(el=>el.dataset.full);
+    show(list.indexOf(z.dataset.full)); open();
+  });
+  document.getElementById('lbClose').onclick=close;
+  document.getElementById('lbNext').onclick=()=>show(idx+1);
+  document.getElementById('lbPrev').onclick=()=>show(idx-1);
+  lb.addEventListener('click', e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown', e=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowRight') show(idx+1);
+    if(e.key==='ArrowLeft') show(idx-1);
+  });
+})();
+
+/* ============================================================
+   5) FORMULARIO → GOOGLE SHEETS
+   Mismo endpoint y mismo formato (JSON) que las demás páginas.
+   ============================================================ */
+const URL_SHEETS = "https://script.google.com/macros/s/AKfycbzVMHUvLCnoQ8jiQR03529SpXmNdX3Xn9RyB5HswJvylLQaxOzt4tR9XuRd1NK6y8gR/exec";
+
+const form = document.getElementById('leadForm');
+const msg  = document.getElementById('formMsg');
+const btn  = document.getElementById('btnEnviar');
+
+/* detecta de qué volante/QR viene la persona */
+const origenQR = (()=>{ const p=new URLSearchParams(location.search);
+  return p.get('origen')||p.get('utm_term')||p.get('utm_campaign')||'directo'; })();
+
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  msg.className='form__msg'; msg.textContent='';
+  const nombre=nombre_(), tel=val('telefono'), correo=val('correo');
+  if(!nombre || !tel || !correo){ return fail('Por favor completa nombre, teléfono y correo.'); }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)){ return fail('Revisa tu correo, no parece válido.'); }
+
+  btn.disabled=true; btn.textContent='Enviando…';
+  const datos = {
+    nombre: nombre, telefono: tel, correo: correo,
+    empresa: val('empresa'),
+    proyecto: 'Le Mont Reserve',
+    origen: origenQR,
+    fecha: new Date().toLocaleString('es-CO')
+  };
+
+  try{
+    await fetch(URL_SHEETS, { method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'}, body: JSON.stringify(datos) });
+    form.reset();
+    msg.className='form__msg ok';
+    msg.textContent='¡Gracias! Recibimos tus datos. Un asesor te contactará muy pronto.';
+  }catch(err){
+    fail('No pudimos enviar. Revisa tu conexión e intenta de nuevo.');
+  }finally{
+    btn.disabled=false; btn.textContent='Enviar mis datos';
+  }
+  function val(id){ const el=document.getElementById(id); return el ? el.value.trim() : ''; }
+  function nombre_(){ return document.getElementById('nombre').value.trim(); }
+  function fail(t){ msg.className='form__msg err'; msg.textContent=t; btn.disabled=false; btn.textContent='Enviar mis datos'; }
+});
+</script>
+</body>
+</html>
