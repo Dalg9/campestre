@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lotes campestres con escritura individual | Tu Inmueble 360</title>
+<meta name="description" content="Invierte en un lote campestre cerca de Villavicencio con escritura individual a tu nombre. Explora los proyectos de Alianza Empresarial." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   VARIABLES DE MARCA  ·  paleta natural-premium del Llano
+   ============================================================ */
+:root{
+  --verde:      #1e5c40;
+  --verde-2:    #2f7d55;
+  --verde-3:    #43a06b;
+  --lima:       #9ac262;
+  --crema:      #f7f4ec;
+  --crema-2:    #ede7d7;
+  --tinta:      #16281d;
+  --tinta-2:    #38493f;
+  --sol:        #f2a03d;
+  --sol-2:      #e8792f;
+  --cielo:      #cfe7e4;
+  --linea:      rgba(30,92,64,.14);
+  --sombra:     0 24px 60px rgba(22,40,29,.16);
+  --serif:      'Fraunces', Georgia, serif;
+  --sans:       'Inter', system-ui, sans-serif;
+  --grad-verde: linear-gradient(135deg, #2f7d55, #1e5c40);
+  --grad-sol:   linear-gradient(135deg, #f6b45a, #e8792f);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ font-family:var(--sans); background:var(--crema); color:var(--tinta); line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+.wrap{ max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,44px); }
+.pad{ padding:clamp(64px,10vw,120px) 0; }
+
+.eyebrow{ font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--verde-2); font-weight:700; }
+.titulo{ font-family:var(--serif); font-weight:600; line-height:1.06; font-size:clamp(1.9rem,5vw,3.4rem); letter-spacing:-.01em; }
+.verde-text{ color:var(--verde-2); }
+.sol-text{ background:var(--grad-sol); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+/* barra de progreso */
+#progreso{ position:fixed; top:0; left:0; height:3px; width:0%; background:var(--grad-sol); z-index:120; transition:width .1s linear; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{ position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between;
+  padding:14px clamp(18px,4vw,44px); transition:all .35s ease; }
+nav.solido{ background:rgba(247,244,236,.92); backdrop-filter:blur(10px); box-shadow:0 6px 24px rgba(22,40,29,.08); }
+nav .marca{ display:flex; align-items:center; gap:12px; font-family:var(--serif); font-weight:600; font-size:1.05rem; color:var(--verde); }
+nav .marca img{ height:34px; width:auto; }
+nav .marca .sep{ width:1px; height:26px; background:var(--linea); }
+nav .btn-nav{ font-size:.74rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:11px 22px; border-radius:100px;
+  background:var(--grad-verde); color:#fff; box-shadow:0 8px 22px rgba(30,92,64,.28); transition:transform .25s, box-shadow .25s; }
+nav .btn-nav:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(30,92,64,.4); }
+
+/* ============================================================
+   HERO  ·  paisaje llanero animado en SVG
+   ============================================================ */
+.hero{ position:relative; min-height:100svh; display:flex; align-items:center; overflow:hidden;
+  background:linear-gradient(180deg, #d8eef0 0%, #e9f2e4 46%, var(--crema) 100%); }
+.escena{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
+.escena svg{ width:100%; height:100%; }
+.sol{ transform-origin:center; animation:girar 60s linear infinite; }
+@keyframes girar{ to{ transform:rotate(360deg);} }
+.nube{ animation:flotar 26s linear infinite; }
+.nube.b{ animation-duration:38s; animation-delay:-10s; }
+.nube.c{ animation-duration:46s; animation-delay:-22s; }
+@keyframes flotar{ from{ transform:translateX(-140px);} to{ transform:translateX(1720px);} }
+.ave{ animation:aletear 9s ease-in-out infinite; transform-origin:center; }
+.ave.b{ animation-delay:-3s; } .ave.c{ animation-delay:-6s; }
+@keyframes aletear{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(24px,-14px);} }
+.capa{ transition:transform .25s ease-out; will-change:transform; }
+
+.hero__inner{ position:relative; z-index:3; padding-top:80px; max-width:640px; }
+.hero h1{ font-family:var(--serif); font-weight:600; font-size:clamp(2.3rem,6.2vw,4.2rem); line-height:1.02; letter-spacing:-.02em;
+  color:var(--tinta); opacity:0; transform:translateY(24px); animation:subir 1s ease .15s forwards; }
+.hero h1 em{ font-style:italic; color:var(--verde-2); }
+.hero p{ margin:22px 0 30px; font-size:clamp(1rem,2.2vw,1.2rem); color:var(--tinta-2); max-width:34em;
+  opacity:0; transform:translateY(24px); animation:subir 1s ease .35s forwards; }
+.hero__cta{ display:inline-flex; align-items:center; gap:10px; padding:16px 34px; border-radius:100px; font-weight:700;
+  letter-spacing:.04em; background:var(--grad-sol); color:#fff; box-shadow:0 14px 34px rgba(232,121,47,.32);
+  opacity:0; transform:translateY(24px); animation:subir 1s ease .55s forwards; transition:transform .25s, box-shadow .25s; }
+.hero__cta:hover{ transform:translateY(-3px); box-shadow:0 18px 42px rgba(232,121,47,.45); }
+.hero__chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; opacity:0; animation:subir 1s ease .75s forwards; }
+.hero__chips span{ background:rgba(255,255,255,.7); border:1px solid var(--linea); backdrop-filter:blur(6px);
+  padding:9px 16px; border-radius:100px; font-size:.82rem; font-weight:600; color:var(--verde); display:inline-flex; gap:7px; }
+@keyframes subir{ to{ opacity:1; transform:translateY(0);} }
+
+/* ============================================================
+   VENTAJAS + CONTADORES
+   ============================================================ */
+.stats{ background:var(--verde); color:var(--crema); }
+.stats__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center; }
+.stat .num{ font-family:var(--serif); font-size:clamp(2.2rem,5vw,3.4rem); font-weight:700; line-height:1; color:#fff; }
+.stat .num small{ font-size:.5em; }
+.stat .lab{ font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(247,244,236,.7); margin-top:10px; }
+
+.benef{ background:var(--crema); }
+.benef__head{ text-align:center; margin-bottom:clamp(38px,6vw,60px); }
+.benef__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.bcard{ background:#fff; border:1px solid var(--linea); border-radius:18px; padding:30px 24px; transition:transform .35s, box-shadow .35s; }
+.bcard:hover{ transform:translateY(-8px); box-shadow:var(--sombra); }
+.bcard__ic{ width:56px; height:56px; border-radius:14px; display:grid; place-items:center; background:var(--crema-2); margin-bottom:18px; }
+.bcard:hover .bcard__ic{ background:var(--grad-verde); }
+.bcard__ic svg{ width:28px; height:28px; stroke:var(--verde-2); fill:none; stroke-width:1.7; transition:stroke .35s; }
+.bcard:hover .bcard__ic svg{ stroke:#fff; }
+.bcard h3{ font-family:var(--serif); font-size:1.2rem; font-weight:600; margin-bottom:8px; }
+.bcard p{ font-size:.9rem; color:var(--tinta-2); }
+
+/* ============================================================
+   EXPLORADOR DE PROYECTOS  (la estrella interactiva)
+   ============================================================ */
+.proy{ background:var(--crema-2); }
+.proy__head{ text-align:center; margin-bottom:34px; }
+.filtros{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:38px; }
+.filtro{ padding:10px 20px; border-radius:100px; border:1px solid var(--linea); background:#fff; color:var(--tinta-2);
+  font-family:var(--sans); font-weight:600; font-size:.84rem; cursor:pointer; transition:all .25s; }
+.filtro:hover{ border-color:var(--verde-3); color:var(--verde); }
+.filtro.activo{ background:var(--grad-verde); color:#fff; border-color:transparent; box-shadow:0 8px 20px rgba(30,92,64,.28); }
+
+.grid-proy{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; max-width:940px; margin:0 auto; }
+.pcard{ position:relative; border-radius:18px; overflow:hidden; background:#fff; box-shadow:0 10px 30px rgba(22,40,29,.08);
+  transition:transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s, opacity .4s; cursor:pointer; display:flex; flex-direction:column; }
+.pcard:hover{ transform:translateY(-10px); box-shadow:var(--sombra); }
+.pcard.oculto{ display:none; }
+/* cabecera gráfica generada (sin foto): degradado + colinas SVG + inicial */
+.pcard__top{ position:relative; height:150px; overflow:hidden; }
+.pcard__grad{ position:absolute; inset:0; }
+.pcard__hills{ position:absolute; left:0; right:0; bottom:-1px; }
+.pcard__sol{ position:absolute; top:22px; right:26px; width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,.85); box-shadow:0 0 0 10px rgba(255,255,255,.18); }
+.pcard__ini{ position:absolute; left:22px; top:18px; font-family:var(--serif); font-weight:700; font-size:1.9rem; color:rgba(255,255,255,.95); }
+.pcard__badge{ position:absolute; left:22px; bottom:16px; z-index:2; background:rgba(255,255,255,.9); color:var(--verde);
+  font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 12px; border-radius:100px; }
+.pcard__body{ padding:22px; display:flex; flex-direction:column; flex:1; }
+.pcard__nom{ font-family:var(--serif); font-size:1.28rem; font-weight:600; line-height:1.15; }
+.pcard__lug{ font-size:.82rem; color:var(--verde-2); font-weight:600; margin:6px 0 14px; display:flex; gap:6px; }
+.pcard__datos{ list-style:none; display:grid; gap:8px; margin-bottom:16px; }
+.pcard__datos li{ font-size:.86rem; color:var(--tinta-2); display:flex; gap:9px; align-items:flex-start; }
+.pcard__datos li::before{ content:""; width:7px; height:7px; margin-top:7px; border-radius:2px; background:var(--lima); flex:none; transform:rotate(45deg); }
+.pcard__amen{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:6px; }
+.pcard__amen span{ font-size:.72rem; background:var(--crema); color:var(--tinta-2); padding:5px 10px; border-radius:8px; }
+.pcard__foot{ display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:16px; border-top:1px solid var(--linea); }
+.pcard__entrega{ font-size:.74rem; color:var(--tinta-2); }
+.pcard__entrega b{ color:var(--verde); }
+.pcard__link{ font-size:.82rem; font-weight:700; color:var(--sol-2); display:inline-flex; gap:6px; transition:gap .25s; }
+.pcard:hover .pcard__link{ gap:12px; }
+.pcard__info{ font-family:var(--sans); font-size:.78rem; font-weight:700; color:var(--verde); background:var(--crema);
+  border:1px solid var(--linea); border-radius:100px; padding:8px 16px; cursor:pointer; transition:background .25s, color .25s; }
+.pcard__info:hover{ background:var(--verde); color:#fff; border-color:transparent; }
+.destacado-tag{ position:absolute; top:0; right:0; z-index:3; background:var(--grad-sol); color:#fff; font-size:.64rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; padding:6px 14px; border-bottom-left-radius:12px; }
+
+/* ============================================================
+   AMENIDADES
+   ============================================================ */
+.amen{ background:var(--crema); }
+.amen__head{ text-align:center; margin-bottom:clamp(38px,6vw,56px); }
+.amen__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.acard{ background:#fff; border:1px solid var(--linea); border-radius:16px; padding:26px 18px; text-align:center; transition:transform .3s, background .3s; }
+.acard:hover{ transform:translateY(-6px); background:var(--verde); }
+.acard svg{ width:34px; height:34px; stroke:var(--verde-2); fill:none; stroke-width:1.6; margin:0 auto 12px; transition:stroke .3s; }
+.acard:hover svg{ stroke:#fff; }
+.acard span{ font-size:.86rem; font-weight:600; color:var(--tinta); transition:color .3s; }
+.acard:hover span{ color:#fff; }
+
+/* ============================================================
+   PROCESO
+   ============================================================ */
+.proc{ background:var(--verde); color:var(--crema); }
+.proc__head{ text-align:center; margin-bottom:clamp(40px,6vw,60px); }
+.proc__head .titulo{ color:#fff; }
+.pasos{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.paso{ position:relative; padding:24px; }
+.paso__n{ font-family:var(--serif); font-size:2.6rem; font-weight:700; color:rgba(154,194,98,.55); line-height:1; }
+.paso h3{ font-family:var(--serif); font-size:1.15rem; font-weight:600; margin:10px 0 8px; color:#fff; }
+.paso p{ font-size:.88rem; color:rgba(247,244,236,.78); }
+
+/* ============================================================
+   FORMULARIO
+   ============================================================ */
+.form-seccion{ background:var(--crema-2); }
+.form-grid{ display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(30px,5vw,64px); align-items:center; }
+.form-intro .titulo{ margin:12px 0 16px; }
+.form-intro p{ color:var(--tinta-2); max-width:40ch; }
+.form-intro .puntos{ list-style:none; margin-top:24px; display:grid; gap:12px; }
+.form-intro .puntos li{ display:flex; gap:12px; font-weight:500; color:var(--tinta); }
+.form-intro .puntos svg{ width:22px; height:22px; stroke:var(--verde-2); fill:none; stroke-width:2; flex:none; }
+.form-caja{ background:#fff; border-radius:22px; padding:clamp(24px,4vw,40px); box-shadow:var(--sombra); }
+.campo{ margin-bottom:16px; }
+.campo label{ display:block; font-size:.74rem; font-weight:600; letter-spacing:.04em; color:var(--tinta-2); margin-bottom:7px; }
+.campo input, .campo select{ width:100%; background:var(--crema); border:1px solid var(--linea); border-radius:12px;
+  padding:14px 16px; font-family:var(--sans); font-size:.96rem; color:var(--tinta); transition:border-color .25s, box-shadow .25s; }
+.campo input:focus, .campo select:focus{ outline:none; border-color:var(--verde-3); box-shadow:0 0 0 3px rgba(67,160,107,.16); }
+.campo-check{ display:flex; gap:10px; align-items:flex-start; margin:6px 0 18px; font-size:.82rem; color:var(--tinta-2); }
+.campo-check input{ margin-top:3px; accent-color:var(--verde-2); }
+.campo-check a{ color:var(--verde-2); text-decoration:underline; }
+.boton-enviar{ width:100%; padding:16px; border:0; border-radius:100px; cursor:pointer; font-family:var(--sans); font-weight:700;
+  letter-spacing:.04em; font-size:.98rem; color:#fff; background:var(--grad-sol); box-shadow:0 12px 30px rgba(232,121,47,.3);
+  transition:transform .25s, box-shadow .25s; }
+.boton-enviar:hover{ transform:translateY(-2px); box-shadow:0 16px 38px rgba(232,121,47,.42); }
+.boton-enviar:disabled{ opacity:.6; cursor:wait; transform:none; }
+.whatsapp{ display:flex; align-items:center; justify-content:center; gap:8px; margin-top:14px; padding:14px; border-radius:100px;
+  border:1px solid var(--linea); font-weight:600; color:var(--verde); transition:background .25s; }
+.whatsapp:hover{ background:var(--crema); }
+.mensaje{ margin-top:14px; text-align:center; font-size:.92rem; min-height:20px; }
+.mensaje--ok{ color:var(--verde-2); font-weight:600; } .mensaje--error{ color:#c0533c; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ background:var(--tinta); color:var(--crema-2); padding:56px 0 34px; }
+.foot-grid{ display:flex; flex-wrap:wrap; gap:26px; justify-content:space-between; align-items:center; }
+.foot-marca{ display:flex; align-items:center; gap:14px; }
+.foot-marca img{ height:44px; width:auto; filter:brightness(0) invert(1); opacity:.9; }
+.foot-marca b{ font-family:var(--serif); font-size:1.2rem; color:#fff; }
+.foot-cont{ text-align:right; font-size:.9rem; line-height:1.9; }
+.foot-cont a{ color:var(--lima); }
+.foot-copy{ text-align:center; font-size:.76rem; color:rgba(247,244,236,.45); margin-top:34px; padding-top:22px; border-top:1px solid rgba(255,255,255,.08); }
+
+/* ============================================================
+   REVELADO AL SCROLL
+   ============================================================ */
+/* Visible POR DEFECTO: si el JS o el navegador fallan, nada queda oculto */
+.reveal{ opacity:1; transform:none; }
+body.anim .reveal{ opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+body.anim .reveal.in{ opacity:1; transform:none; }
+.reveal.d1{ transition-delay:.1s; } .reveal.d2{ transition-delay:.2s; } .reveal.d3{ transition-delay:.3s; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:980px){
+  .stats__grid{ grid-template-columns:repeat(2,1fr); gap:34px 20px; }
+  .benef__grid{ grid-template-columns:repeat(2,1fr); }
+  .grid-proy{ grid-template-columns:repeat(2,1fr); }
+  .amen__grid{ grid-template-columns:repeat(2,1fr); }
+  .pasos{ grid-template-columns:repeat(2,1fr); }
+  .form-grid{ grid-template-columns:1fr; }
+}
+@media (max-width:620px){
+  .grid-proy{ grid-template-columns:1fr; }
+  nav .marca span.txt{ display:none; }
+  .hero__inner{ padding-top:96px; }
+}
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; }
+  .reveal{ opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<div id="progreso"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav id="nav">
+  <a class="marca" href="#top">
+    <img src="img/logo-alianza.png" alt="Alianza Empresarial" />
+    <span class="sep"></span>
+    <span class="txt">Tu Inmueble 360</span>
+  </a>
+  <a class="btn-nav" href="#formulario">Quiero información</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <!-- Paisaje llanero animado (100% SVG, sin fotos) -->
+  <div class="escena" id="escena">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- sol -->
+      <g class="capa" data-depth="6">
+        <circle cx="1240" cy="230" r="70" fill="#f6b45a"/>
+        <g class="sol" style="transform-box:fill-box; transform-origin:1240px 230px">
+          <g stroke="#f6b45a" stroke-width="4" stroke-linecap="round" opacity=".55">
+            <line x1="1240" y1="120" x2="1240" y2="150"/><line x1="1240" y1="310" x2="1240" y2="340"/>
+            <line x1="1130" y1="230" x2="1160" y2="230"/><line x1="1320" y1="230" x2="1350" y2="230"/>
+            <line x1="1163" y1="153" x2="1184" y2="174"/><line x1="1296" y1="286" x2="1317" y2="307"/>
+            <line x1="1317" y1="153" x2="1296" y2="174"/><line x1="1184" y1="286" x2="1163" y2="307"/>
+          </g>
+        </g>
+      </g>
+      <!-- nubes -->
+      <g fill="#ffffff" opacity=".85">
+        <g class="nube"><ellipse cx="200" cy="170" rx="70" ry="26"/><ellipse cx="250" cy="155" rx="52" ry="24"/><ellipse cx="150" cy="158" rx="44" ry="20"/></g>
+        <g class="nube b"><ellipse cx="600" cy="120" rx="58" ry="22"/><ellipse cx="645" cy="108" rx="42" ry="20"/></g>
+        <g class="nube c" opacity=".7"><ellipse cx="950" cy="200" rx="66" ry="24"/><ellipse cx="1000" cy="186" rx="48" ry="22"/></g>
+      </g>
+      <!-- aves -->
+      <g stroke="#38493f" stroke-width="3" fill="none" stroke-linecap="round" opacity=".5">
+        <path class="ave" d="M420 250 q12 -12 24 0 q12 -12 24 0"/>
+        <path class="ave b" d="M500 290 q9 -9 18 0 q9 -9 18 0"/>
+        <path class="ave c" d="M360 300 q9 -9 18 0 q9 -9 18 0"/>
+      </g>
+      <!-- colinas (parallax por capas) -->
+      <path class="capa" data-depth="4" d="M0 560 Q300 470 620 545 T1240 540 T1600 560 V900 H0 Z" fill="#bcd9b0"/>
+      <path class="capa" data-depth="8" d="M0 640 Q360 560 760 630 T1600 620 V900 H0 Z" fill="#8fbf72"/>
+      <path class="capa" data-depth="14" d="M0 730 Q420 650 900 720 T1600 710 V900 H0 Z" fill="#4f9c63"/>
+      <path class="capa" data-depth="22" d="M0 820 Q500 760 1040 810 T1600 800 V900 H0 Z" fill="#2f7d55"/>
+      <!-- palmas moriche -->
+      <g class="capa" data-depth="18" stroke="#1e5c40" stroke-width="7" fill="none" stroke-linecap="round">
+        <g transform="translate(180 760)"><path d="M0 0 Q6 -60 4 -120"/>
+          <g stroke="#2f7d55" stroke-width="6"><path d="M4 -120 Q-30 -150 -66 -140"/><path d="M4 -120 Q38 -150 74 -140"/><path d="M4 -120 Q-20 -168 -44 -186"/><path d="M4 -120 Q30 -168 54 -186"/><path d="M4 -120 Q2 -180 0 -206"/></g>
+        </g>
+        <g transform="translate(1400 780) scale(.85)"><path d="M0 0 Q6 -60 4 -120"/>
+          <g stroke="#2f7d55" stroke-width="6"><path d="M4 -120 Q-30 -150 -66 -140"/><path d="M4 -120 Q38 -150 74 -140"/><path d="M4 -120 Q-20 -168 -44 -186"/><path d="M4 -120 Q30 -168 54 -186"/><path d="M4 -120 Q2 -180 0 -206"/></g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="wrap hero__inner">
+    <h1>Tu pedazo de Llano,<br><em>con escritura propia.</em></h1>
+    <p>Invierte en un lote campestre cerca de Villavicencio, rodeado de naturaleza y con la tranquilidad de una escritura individual a tu nombre.</p>
+    <a class="hero__cta" href="#proyectos">Ver proyectos disponibles →</a>
+    <div class="hero__chips">
+      <span>✔ Escritura individual</span>
+      <span>📈 Alta valorización</span>
+      <span>🏦 Financiación directa</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== CONTADORES ===================== -->
+<section class="stats pad">
+  <div class="wrap stats__grid">
+    <div class="stat reveal"><div class="num"><span data-count="4">0</span></div><div class="lab">Proyectos con escritura individual</div></div>
+    <div class="stat reveal d1"><div class="num"><span data-count="450">0</span><small>+</small></div><div class="lab">Lotes y parcelas</div></div>
+    <div class="stat reveal d2"><div class="num">100<small>%</small></div><div class="lab">Escritura individual</div></div>
+    <div class="stat reveal d3"><div class="num"><span data-count="2">0</span></div><div class="lab">Municipios: Restrepo y Villavicencio</div></div>
+  </div>
+</section>
+
+<!-- ===================== VENTAJAS ===================== -->
+<section class="benef pad">
+  <div class="wrap">
+    <div class="benef__head reveal">
+      <span class="eyebrow">¿Por qué un lote campestre?</span>
+      <h2 class="titulo" style="margin-top:12px">Una inversión que <span class="verde-text">crece contigo</span></h2>
+    </div>
+    <div class="benef__grid">
+      <div class="bcard reveal">
+        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M4 8l8-5 8 5v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3>Escritura individual</h3><p>El lote queda legalmente a tu nombre, con título propio y seguridad jurídica.</p>
+      </div>
+      <div class="bcard reveal d1">
+        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+        <h3>Alta valorización</h3><p>Zonas en desarrollo con obras de infraestructura que hacen crecer tu inversión.</p>
+      </div>
+      <div class="bcard reveal d2">
+        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M3 10h18M6 6h12l3 4H3z"/><path d="M4 10v8h16v-8M9 18v-4h6v4"/></svg></div>
+        <h3>Financiación directa</h3><p>Cuotas cómodas con la constructora, sin trámites bancarios complicados.</p>
+      </div>
+      <div class="bcard reveal d3">
+        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M12 22c5-4 8-8 8-12a8 8 0 10-16 0c0 4 3 8 8 12z"/><path d="M12 3c-2 4-2 8 0 15 2-7 2-11 0-15z"/></svg></div>
+        <h3>Rodeado de naturaleza</h3><p>Aire limpio, verde y tranquilidad a pocos minutos de la ciudad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPLORADOR DE PROYECTOS ===================== -->
+<section class="proy pad" id="proyectos">
+  <div class="wrap">
+    <div class="proy__head reveal">
+      <span class="eyebrow">Nuestros proyectos</span>
+      <h2 class="titulo" style="margin-top:12px">Encuentra tu <span class="sol-text">lugar ideal</span></h2>
+      <p style="color:var(--tinta-2); max-width:52ch; margin:14px auto 0">Filtra por zona y descubre el proyecto que más se ajusta a ti. Todos con escritura individual.</p>
+    </div>
+    <div class="filtros" id="filtros"></div>
+    <div class="grid-proy" id="gridProy"></div>
+  </div>
+</section>
+
+<!-- ===================== AMENIDADES ===================== -->
+<section class="amen pad">
+  <div class="wrap">
+    <div class="amen__head reveal">
+      <span class="eyebrow">Amenidades</span>
+      <h2 class="titulo" style="margin-top:12px">Vive con todas las <span class="verde-text">comodidades</span></h2>
+    </div>
+    <div class="amen__grid" id="amenGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== PROCESO ===================== -->
+<section class="proc pad">
+  <div class="wrap">
+    <div class="proc__head reveal">
+      <span class="eyebrow" style="color:var(--lima)">Es muy fácil</span>
+      <h2 class="titulo" style="margin-top:12px">Tu lote en 4 pasos</h2>
+    </div>
+    <div class="pasos">
+      <div class="paso reveal"><div class="paso__n">01</div><h3>Déjanos tus datos</h3><p>Completa el formulario o escríbenos por WhatsApp.</p></div>
+      <div class="paso reveal d1"><div class="paso__n">02</div><h3>Recibe asesoría</h3><p>Un asesor te muestra las opciones y resuelve tus dudas.</p></div>
+      <div class="paso reveal d2"><div class="paso__n">03</div><h3>Elige y aparta</h3><p>Escoges tu lote y lo separas con una cuota inicial cómoda.</p></div>
+      <div class="paso reveal d3"><div class="paso__n">04</div><h3>Firma tu escritura</h3><p>El lote queda a tu nombre. ¡Bienvenido al Llano!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMULARIO ===================== -->
+<section class="form-seccion pad" id="formulario">
+  <div class="wrap form-grid">
+    <div class="form-intro reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2 class="titulo">Da el <span class="sol-text">primer paso</span></h2>
+      <p>Déjanos tus datos y un asesor te contactará con precios, disponibilidad y formas de pago. Sin compromiso.</p>
+      <ul class="puntos">
+        <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Respuesta el mismo día</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Atención personalizada</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Información clara y sin letra pequeña</li>
+      </ul>
+    </div>
+
+    <div class="form-caja reveal d1">
+      <form id="lead-form" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej: Ana María Ríos" />
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 300 123 4567" />
+        </div>
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required placeholder="Ej: nombre@correo.com" />
+        </div>
+        <div class="campo">
+          <label for="proyecto">Proyecto de interés (opcional)</label>
+          <select id="proyecto" name="proyecto">
+            <option value="">Aún no lo sé / muéstrenme opciones</option>
+          </select>
+        </div>
+        <input type="hidden" id="origen" name="origen" value="" />
+        <div class="campo-check">
+          <input type="checkbox" id="autorizo" required />
+          <label for="autorizo">Autorizo el tratamiento de mis datos personales según la <a href="#" target="_blank">política de privacidad</a>.</label>
+        </div>
+        <button type="submit" class="boton-enviar" id="btn-enviar">Enviar mis datos</button>
+      </form>
+      <a class="whatsapp" href="https://wa.me/57XXXXXXXXXX" target="_blank">💬 Prefiero escribir por WhatsApp</a>
+      <div id="mensaje" class="mensaje"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-marca">
+        <img src="img/logo-alianza.png" alt="Alianza Empresarial" />
+        <b>Tu Inmueble 360</b>
+      </div>
+      <div class="foot-cont">
+        Villavicencio, Meta<br>
+        <a href="https://wa.me/57XXXXXXXXXX">Escríbenos por WhatsApp →</a>
+      </div>
+    </div>
+    <div class="foot-copy">© 2026 Alianza Empresarial · Tu Inmueble 360 · Lotes campestres con escritura individual</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   DATOS DE PROYECTOS  (tomados de la ficha técnica)
+   zona = se usa para los filtros · hue = color de la cabecera
+   Edita, agrega o quita libremente aquí.
+   ============================================================ */
+const PROYECTOS = [
+  { nom:'Le Mont Reserve', zona:'Restrepo', lugar:'Restrepo – Medina, Meta', tipo:'Parcelación', hue:42, destacado:true,
+    url:'lemont/',   /* <-- página propia de Le Mont. Si la subes a OTRO repositorio,
+                            cambia esta línea por: url:'https://dalg9.github.io/lemont/' */
+    datos:['116 lotes campestres','Mirador panorámico y senderos','Zonas de hamacas y fogata'],
+    amen:['Mirador','Senderos','Gimnasio','Parque infantil'], entrega:'Escritura individual' },
+  { nom:'Condominio Santorini Reservado', zona:'Restrepo', lugar:'Restrepo, Meta · Vereda Los Medios', tipo:'Condominio', hue:200,
+    url:'santorini/',   /* página propia. En OTRO repositorio: 'https://dalg9.github.io/santorini/' */
+    datos:['59 parcelas de 515, 1.100 y 2.200 m²','Ingreso por vía pavimentada','Salón social de 90 m²'],
+    amen:['Salón social','Fútbol 5','Parques infantiles','Fuente hídrica'], entrega:'Escritura individual' },
+  { nom:'Los Chíguiros Club Campestre', zona:'Villavicencio', lugar:'Villavicencio · Vía Puerto López', tipo:'Club campestre', hue:22,
+    url:'chiguiros/',   /* página propia. En OTRO repositorio: 'https://dalg9.github.io/chiguiros/' */
+    datos:['Etapa Flor Morado con escritura individual','Club con piscina de 100 m² y laguna','6 zonas sociales y sendero ecológico'],
+    amen:['Laguna','Tenis','Piscina','Squash'], entrega:'Escritura individual' },
+  { nom:'Hacienda Inglesa', zona:'Villavicencio', lugar:'Vía Villavicencio – Puerto López km 24', tipo:'Club campestre', hue:155,
+    url:'hacienda-inglesa/',   /* página propia. En OTRO repositorio: 'https://dalg9.github.io/hacienda-inglesa/' */
+    datos:['86 lotes campestres + 4 comerciales','A solo 15 minutos de Villavicencio','Club con piscina y salón de eventos'],
+    amen:['Piscina','Cancha múltiple','Cabañas','Sendero'], entrega:'Escritura individual' },
+];
+
+const AMENIDADES = [
+  { t:'Piscina', ic:'<path d="M3 18c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M7 14V5a2 2 0 014 0M13 14V5a2 2 0 014 0"/>' },
+  { t:'Gimnasio biosaludable', ic:'<path d="M4 12h16M7 8v8M17 8v8M3 10v4M21 10v4"/>' },
+  { t:'Parque infantil', ic:'<path d="M5 20l3-9 3 9M6 14h4M15 20V8M13 8h6l-3 5z"/>' },
+  { t:'Cancha de fútbol', ic:'<circle cx="12" cy="12" r="9"/><path d="M12 8l3 2-1 4h-4l-1-4z"/>' },
+  { t:'Senderos ecológicos', ic:'<path d="M8 21c0-8 8-8 8-16M8 9h.01M14 15h.01"/>' },
+  { t:'Portería 24/7', ic:'<path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6"/>' },
+  { t:'Avistamiento de aves', ic:'<path d="M3 8q6-6 12 0M9 8v6a3 3 0 006 0M17 6l4-2-2 4"/>' },
+  { t:'Bahías de parqueo', ic:'<path d="M6 20V8h6a3 3 0 010 6H6M4 20h4M16 20h4"/>' },
+];
+
+/* ---- construir amenidades ---- */
+const ag = document.getElementById('amenGrid');
+AMENIDADES.forEach((a,i)=>{
+  ag.insertAdjacentHTML('beforeend',
+    `<div class="acard reveal ${i%4===1?'d1':i%4===2?'d2':i%4===3?'d3':''}">
+       <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">${a.ic}</svg>
+       <span>${a.t}</span></div>`);
+});
+
+/* ---- cabecera gráfica generada por proyecto (sin foto) ---- */
+function cabecera(hue){
+  const g = `linear-gradient(135deg, hsl(${hue}, 45%, 52%), hsl(${(hue+34)%360}, 52%, 38%))`;
+  return `
+    <div class="pcard__grad" style="background:${g}"></div>
+    <svg class="pcard__hills" viewBox="0 0 400 90" preserveAspectRatio="none" width="100%" height="90">
+      <path d="M0 60 Q100 35 200 55 T400 50 V90 H0Z" fill="rgba(255,255,255,.16)"/>
+      <path d="M0 74 Q120 52 250 70 T400 66 V90 H0Z" fill="rgba(255,255,255,.28)"/>
+    </svg>
+    <div class="pcard__sol"></div>`;
+}
+
+/* ---- construir tarjetas de proyectos ---- */
+const grid = document.getElementById('gridProy');
+function pintar(lista){
+  grid.innerHTML='';
+  lista.forEach((p,i)=>{
+    const amen = p.amen.map(a=>`<span>${a}</span>`).join('');
+    const datos = p.datos.map(d=>`<li>${d}</li>`).join('');
+    const dtag = p.destacado ? '<div class="destacado-tag">Destacado</div>' : '';
+    grid.insertAdjacentHTML('beforeend', `
+      <article class="pcard reveal ${i%3===1?'d1':i%3===2?'d2':''}" data-proyecto="${p.nom}" data-url="${p.url||''}">
+        ${dtag}
+        <div class="pcard__top">
+          ${cabecera(p.hue)}
+          <span class="pcard__ini">${p.nom[0]}</span>
+          <span class="pcard__badge">${p.tipo}</span>
+        </div>
+        <div class="pcard__body">
+          <h3 class="pcard__nom">${p.nom}</h3>
+          <div class="pcard__lug">📍 ${p.lugar}</div>
+          <ul class="pcard__datos">${datos}</ul>
+          <div class="pcard__amen">${amen}</div>
+          <div class="pcard__foot">
+            ${ p.url
+                ? `<button class="pcard__info" data-form="${p.nom}">Me interesa</button>
+                   <span class="pcard__link">Ver proyecto →</span>`
+                : `<span class="pcard__entrega">Entrega · <b>${p.entrega}</b></span>
+                   <span class="pcard__link">Más información →</span>` }
+          </div>
+        </div>
+      </article>`);
+  });
+  // revelar las tarjetas de forma escalonada (garantiza que SIEMPRE se vean)
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.grid-proy .reveal').forEach((e,i)=> setTimeout(()=>e.classList.add('in'), 55*i));
+  });
+  document.querySelectorAll('.pcard').forEach(c=>{
+    c.addEventListener('click', e=>{
+      // el botón "Me interesa" lleva al formulario, aunque el proyecto tenga página propia
+      const btn = e.target.closest('.pcard__info');
+      const destino = c.dataset.url;
+      if(destino && !btn){ location.href = destino; return; }   // → página propia del proyecto
+      const sel=document.getElementById('proyecto');
+      const nom=c.dataset.proyecto;
+      if([...sel.options].some(o=>o.value===nom)) sel.value=nom;
+      document.getElementById('formulario').scrollIntoView({behavior:'smooth'});
+    });
+  });
+}
+
+/* ---- filtros por zona ---- */
+const zonas = ['Todos', ...new Set(PROYECTOS.map(p=>p.zona))];
+const cf = document.getElementById('filtros');
+zonas.forEach((z,i)=>{
+  cf.insertAdjacentHTML('beforeend', `<button class="filtro ${i===0?'activo':''}" data-zona="${z}">${z}</button>`);
+});
+cf.addEventListener('click', e=>{
+  const b=e.target.closest('.filtro'); if(!b) return;
+  document.querySelectorAll('.filtro').forEach(f=>f.classList.remove('activo'));
+  b.classList.add('activo');
+  const z=b.dataset.zona;
+  pintar(z==='Todos'?PROYECTOS:PROYECTOS.filter(p=>p.zona===z));
+});
+
+/* ---- llenar el select del formulario con los proyectos ---- */
+const sel=document.getElementById('proyecto');
+PROYECTOS.forEach(p=> sel.insertAdjacentHTML('beforeend', `<option>${p.nom}</option>`));
+sel.insertAdjacentHTML('beforeend', '<option>Otro</option>');
+
+pintar(PROYECTOS);
+
+/* ============================================================
+   INTERACCIONES GENERALES
+   ============================================================ */
+/* nav sólido + barra de progreso */
+const nav=document.getElementById('nav'), prog=document.getElementById('progreso');
+addEventListener('scroll', ()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(scrollY/h*100)+'%';
+  nav.classList.toggle('solido', scrollY>50);
+}, {passive:true});
+
+/* parallax del paisaje con el mouse */
+const escena=document.getElementById('escena');
+addEventListener('mousemove', e=>{
+  const x=(e.clientX/innerWidth-.5), y=(e.clientY/innerHeight-.5);
+  escena.querySelectorAll('.capa').forEach(c=>{
+    const d=+c.dataset.depth||6;
+    c.style.transform=`translate(${x*d}px, ${y*d*.5}px)`;
+  });
+}, {passive:true});
+
+/* revelado al hacer scroll — a prueba de fallos */
+let io, ioFired=false;
+function mostrarTodo(){ document.querySelectorAll('.reveal').forEach(e=>e.classList.add('in')); }
+function observarReveals(){
+  if(!('IntersectionObserver' in window)){ mostrarTodo(); return; }
+  if(!io) io=new IntersectionObserver(es=>{
+    ioFired=true;
+    es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+}
+document.body.classList.add('anim');   // activa las animaciones SOLO si el JS corre
+observarReveals();
+/* red de seguridad: si el observador nunca respondió, mostrar todo */
+setTimeout(()=>{ if(!ioFired) mostrarTodo(); }, 1600);
+addEventListener('load', ()=> setTimeout(()=>{ if(!ioFired) mostrarTodo(); }, 400));
+
+/* contadores animados */
+const io2=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(!en.isIntersecting) return;
+    const el=en.target, end=+el.dataset.count; let n=0;
+    const paso=Math.max(1, Math.ceil(end/50));
+    const t=()=>{ n+=paso; if(n>=end){ el.textContent=end.toLocaleString('es-CO'); } else { el.textContent=n.toLocaleString('es-CO'); requestAnimationFrame(t); } };
+    t(); io2.unobserve(el);
+  });
+}, {threshold:.6});
+document.querySelectorAll('[data-count]').forEach(c=>io2.observe(c));
+
+/* ============================================================
+   FORMULARIO → GOOGLE SHEETS  (misma conexión que ya funcionaba)
+   ============================================================ */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVMHUvLCnoQ8jiQR03529SpXmNdX3Xn9RyB5HswJvylLQaxOzt4tR9XuRd1NK6y8gR/exec";
+
+(function detectarOrigen(){
+  const p=new URLSearchParams(location.search);
+  document.getElementById('origen').value = p.get('origen')||p.get('utm_term')||p.get('utm_campaign')||'directo';
+})();
+
+const form=document.getElementById('lead-form'), mensaje=document.getElementById('mensaje'), boton=document.getElementById('btn-enviar');
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  if(!form.nombre.value.trim()||!form.telefono.value.trim()||!form.correo.value.trim()){
+    return msg('Por favor completa nombre, teléfono y correo.','error');
+  }
+  if(!document.getElementById('autorizo').checked){ return msg('Debes autorizar el tratamiento de datos.','error'); }
+  const datos={ nombre:form.nombre.value.trim(), telefono:form.telefono.value.trim(), correo:form.correo.value.trim(),
+    proyecto:form.proyecto.value, origen:form.origen.value, fecha:new Date().toLocaleString('es-CO') };
+  boton.disabled=true; boton.textContent='Enviando...';
+  try{
+    if(SCRIPT_URL){
+      await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
+    } else { await new Promise(r=>setTimeout(r,600)); }
+    form.reset(); msg('¡Gracias! Recibimos tus datos y te contactaremos pronto.','ok');
+  }catch(err){ msg('Hubo un problema al enviar. Intenta de nuevo.','error'); }
+  finally{ boton.disabled=false; boton.textContent='Enviar mis datos'; }
+});
+function msg(t,tipo){ mensaje.className='mensaje mensaje--'+(tipo==='ok'?'ok':'error'); mensaje.textContent=t; }
+</script>
+</body>
+</html>
