@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Condominio Santorini Reservado — Restrepo, Meta</title>
+<meta name="description" content="Condominio campestre en Restrepo, Meta. 59 parcelas desde 515 m². Ya construido: vías, portería, zona social y parques entregados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ PALETA — medida del logo real del proyecto ============ */
+:root{
+  --crema:#faf9f6;      /* blanco encalado, fondo dominante */
+  --blanco:#ffffff;
+  --negro:#151515;      /* cajas del logo */
+  --verde:#5c8a2e;      /* hoja del árbol */
+  --verde-osc:#3d5c1f;  /* rombo verde */
+  --amarillo:#e8d92c;   /* rombo amarillo — uso muy restringido */
+  --terracota:#b5563a;  /* techos de barro de las casas reales */
+  --gris:#6f6f68;
+  --linea:#e3e1d9;
+  --sombra:0 18px 50px rgba(21,21,21,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  background:var(--crema); color:var(--negro);
+  line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Newsreader',Georgia,serif; font-weight:400; line-height:1.12; letter-spacing:-.015em}
+img{max-width:100%; display:block}
+.envoltura{width:min(1180px,92vw); margin:0 auto}
+
+/* ============ ANIMACIÓN DE APARICIÓN ============
+   Regla del proyecto: visible por defecto. La animación SOLO existe
+   si el JavaScript corrió (body.anim). Si algo falla, se ve todo. */
+.reveal{opacity:1; transform:none}
+body.anim .reveal{opacity:0; transform:translateY(34px);
+  transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)}
+body.anim .reveal.in{opacity:1; transform:none}
+
+/* ============ BARRA DE PROGRESO DE LECTURA ============ */
+#progreso{position:fixed; top:0; left:0; height:3px; width:0%; z-index:999;
+  background:linear-gradient(90deg,var(--verde-osc),var(--verde),var(--amarillo))}
+
+/* ============ NAV ============ */
+#nav{position:fixed; top:0; left:0; right:0; z-index:900; padding:16px 0;
+  transition:background .35s, box-shadow .35s, padding .35s}
+#nav.solido{background:rgba(250,249,246,.96); backdrop-filter:blur(12px);
+  box-shadow:0 1px 0 var(--linea); padding:9px 0}
+.nav-fila{display:flex; align-items:center; justify-content:space-between; gap:16px}
+.nav-fila img{height:46px; width:auto; transition:height .35s, filter .35s;
+  filter:drop-shadow(0 0 12px rgba(255,255,255,.6))}
+#nav.solido .nav-fila img{height:38px; filter:none}
+.nav-liga{display:flex; align-items:center; gap:10px}
+.volver{font-size:.8rem; letter-spacing:.04em; text-decoration:none; color:var(--blanco);
+  padding:8px 12px; border-radius:100px; background:rgba(21,21,21,.42); transition:.3s; white-space:nowrap}
+#nav.solido .volver{color:var(--negro); background:transparent; border:1px solid var(--linea)}
+.volver:hover{background:var(--verde); color:var(--blanco); border-color:var(--verde)}
+.btn-nav{font-size:.8rem; font-weight:600; letter-spacing:.03em; text-decoration:none;
+  color:var(--blanco); background:var(--verde); padding:10px 18px; border-radius:100px;
+  transition:.3s; white-space:nowrap}
+.btn-nav:hover{background:var(--verde-osc); transform:translateY(-2px)}
+
+/* ============ PORTADA ============ */
+#portada{position:relative; min-height:100svh; display:grid; place-items:center;
+  overflow:hidden; text-align:center; padding:110px 0 70px}
+#portada-fondo{position:absolute; inset:-8% 0; background:url('img/portada.jpg') center 42%/cover no-repeat;
+  will-change:transform; z-index:0}
+#portada::after{content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg,rgba(21,21,21,.55) 0%,rgba(21,21,21,.30) 42%,rgba(21,21,21,.72) 100%)}
+.portada-cont{position:relative; z-index:2; color:var(--blanco); width:min(860px,90vw)}
+.portada-cont img.marca{width:min(268px,60vw); margin:0 auto 26px;
+  filter:drop-shadow(0 0 22px rgba(255,255,255,.55)) drop-shadow(0 6px 18px rgba(0,0,0,.45))}
+.portada-cont h1{font-size:clamp(2.4rem,6.6vw,4.5rem); color:var(--blanco); text-shadow:0 3px 26px rgba(0,0,0,.5)}
+.portada-cont h1 em{font-style:italic; color:#eef3e4}
+.linea-oro{width:120px; height:2px; margin:24px auto;
+  background:linear-gradient(90deg,transparent,var(--amarillo),var(--verde),transparent)}
+.portada-sub{font-size:clamp(.95rem,2.1vw,1.12rem); font-weight:300; letter-spacing:.02em;
+  color:#f2f1ec; text-shadow:0 2px 14px rgba(0,0,0,.6); max-width:600px; margin:0 auto}
+.datos-clave{display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin:34px 0 32px}
+.dato{background:rgba(250,249,246,.13); border:1px solid rgba(250,249,246,.28);
+  backdrop-filter:blur(6px); border-radius:12px; padding:13px 20px; min-width:128px}
+.dato b{display:block; font-family:'Newsreader',serif; font-size:1.5rem; color:var(--blanco); line-height:1}
+.dato span{font-size:.68rem; text-transform:uppercase; letter-spacing:.13em; color:#dfe3d6}
+.btn-portada{display:inline-block; text-decoration:none; font-weight:700; font-size:.92rem;
+  letter-spacing:.04em; color:var(--negro); background:var(--amarillo); padding:16px 40px;
+  border-radius:100px; box-shadow:0 12px 34px rgba(0,0,0,.3); transition:.3s}
+.btn-portada:hover{background:var(--blanco); transform:translateY(-3px)}
+.flecha-scroll{position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:2;
+  color:rgba(255,255,255,.8); font-size:1.5rem; animation:flota 2.1s ease-in-out infinite}
+@keyframes flota{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,11px)}}
+
+/* ============ SECCIONES ============ */
+.seccion{padding:clamp(64px,9vw,116px) 0}
+.eyebrow{font-size:.7rem; text-transform:uppercase; letter-spacing:.24em; color:var(--verde);
+  font-weight:700; margin-bottom:14px; display:block}
+.titulo{font-size:clamp(1.9rem,4.4vw,3.05rem); margin-bottom:18px}
+.titulo em{font-style:italic; color:var(--verde-osc)}
+.parrafo{color:var(--gris); font-size:1.03rem; font-weight:300; max-width:62ch}
+
+/* --- Bienvenida --- */
+.bienvenida{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(34px,5vw,70px); align-items:center}
+.contadores{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:34px}
+.cont-caja{background:var(--blanco); border:1px solid var(--linea); border-radius:14px;
+  padding:20px 18px; transition:.35s}
+.cont-caja:hover{border-color:var(--verde); transform:translateY(-4px); box-shadow:var(--sombra)}
+.cont-caja b{font-family:'Newsreader',serif; font-size:2.2rem; color:var(--verde-osc); display:block; line-height:1}
+.cont-caja span{font-size:.74rem; text-transform:uppercase; letter-spacing:.1em; color:var(--gris)}
+.bienvenida-foto{border-radius:16px; overflow:hidden; box-shadow:var(--sombra)}
+.bienvenida-foto img{width:100%; height:100%; object-fit:cover; aspect-ratio:4/5}
+
+/* --- ELEMENTO ESTRELLA: comparador Render → Realidad --- */
+#realidad{background:var(--negro); color:var(--crema)}
+#realidad .titulo{color:var(--crema)}
+#realidad .titulo em{color:var(--amarillo)}
+#realidad .parrafo{color:#b6b6ae}
+#realidad .eyebrow{color:var(--amarillo)}
+.comparador{position:relative; margin-top:40px; border-radius:16px; overflow:hidden;
+  aspect-ratio:16/9; background:#222; box-shadow:0 26px 70px rgba(0,0,0,.5); touch-action:pan-y}
+.comparador img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.cmp-frente{clip-path:inset(0 50% 0 0)}
+.cmp-etiqueta{position:absolute; top:14px; z-index:4; font-size:.66rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.15em; padding:7px 13px; border-radius:100px}
+.cmp-izq{left:14px; background:rgba(21,21,21,.72); color:#dcdcd4}
+.cmp-der{right:14px; background:var(--verde); color:var(--blanco)}
+.cmp-barra{position:absolute; top:0; bottom:0; width:3px; background:var(--blanco); z-index:5;
+  left:50%; transform:translateX(-50%); pointer-events:none; box-shadow:0 0 18px rgba(0,0,0,.5)}
+.cmp-tirador{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:52px; height:52px; border-radius:50%; background:var(--blanco); z-index:6;
+  display:grid; place-items:center; pointer-events:none; box-shadow:0 6px 20px rgba(0,0,0,.4);
+  font-size:1rem; color:var(--negro); letter-spacing:-2px}
+.comparador input[type=range]{position:absolute; inset:0; width:100%; height:100%; z-index:7;
+  opacity:0; cursor:ew-resize; margin:0}
+.cmp-tabs{display:flex; gap:9px; flex-wrap:wrap; margin-top:20px; justify-content:center}
+.cmp-tab{background:transparent; border:1px solid #40403a; color:#b6b6ae; font-family:inherit;
+  font-size:.8rem; padding:9px 18px; border-radius:100px; cursor:pointer; transition:.3s}
+.cmp-tab:hover{border-color:var(--verde); color:var(--crema)}
+.cmp-tab.activa{background:var(--verde); border-color:var(--verde); color:var(--blanco); font-weight:600}
+
+/* --- Amenidades --- */
+.rejilla-amenidades{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px}
+.tarjeta-am{position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4;
+  cursor:pointer; background:var(--negro)}
+.tarjeta-am img{width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.04);
+  transition:filter .55s ease, transform .55s ease}
+.tarjeta-am::after{content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 34%,rgba(21,21,21,.88) 100%)}
+.am-texto{position:absolute; left:0; right:0; bottom:0; padding:20px 18px; z-index:2; color:var(--blanco)}
+.am-texto h3{font-size:1.16rem; margin-bottom:0}
+.am-texto p{font-size:.83rem; font-weight:300; color:#d9d9d1; max-height:0; opacity:0; overflow:hidden;
+  transition:max-height .5s ease, opacity .4s ease, margin .5s ease}
+.tarjeta-am:hover img, .tarjeta-am.activa img{filter:grayscale(0) contrast(1); transform:scale(1.07)}
+.tarjeta-am:hover .am-texto p, .tarjeta-am.activa .am-texto p{max-height:130px; opacity:1; margin-top:7px}
+.tarjeta-am:focus-visible{outline:3px solid var(--amarillo); outline-offset:3px}
+.fichas{display:flex; flex-wrap:wrap; gap:9px; margin-top:26px}
+.ficha{background:var(--blanco); border:1px solid var(--linea); border-radius:100px;
+  padding:8px 16px; font-size:.83rem; color:var(--gris); transition:.3s}
+.ficha:hover{border-color:var(--verde); color:var(--verde-osc)}
+
+/* --- Nota del lote grande (el gancho) --- */
+.nota-lote{margin-top:46px; background:var(--blanco); border:1px solid var(--linea);
+  border-left:4px solid var(--verde); border-radius:12px; padding:26px 28px}
+.nota-lote h3{font-size:1.35rem; margin-bottom:8px}
+.nota-lote p{color:var(--gris); font-size:.97rem; font-weight:300; max-width:64ch}
+
+/* --- Galería --- */
+.rejilla-galeria{display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-top:42px}
+.ampliable{position:relative; border-radius:12px; overflow:hidden; cursor:pointer; aspect-ratio:16/9}
+.ampliable img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease}
+.ampliable:hover img{transform:scale(1.06)}
+.ampliable::after{content:'⤢'; position:absolute; right:11px; bottom:9px; color:var(--blanco);
+  font-size:1rem; opacity:0; transition:.35s; text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.ampliable:hover::after{opacity:1}
+.legal{font-size:.76rem; color:var(--gris); font-style:italic; margin-top:20px; font-weight:300}
+
+/* --- El lugar hoy: mosaico --- */
+#lugar{background:var(--blanco)}
+.mosaico{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:150px;
+  grid-auto-flow:dense; gap:11px; margin-top:40px}
+.mosaico .ampliable{aspect-ratio:auto; height:100%}
+.m-big{grid-column:span 2; grid-row:span 2}
+.m-wide{grid-column:span 2}
+.mapa{margin-top:36px; border-radius:14px; overflow:hidden; box-shadow:var(--sombra); border:1px solid var(--linea)}
+.mapa iframe{width:100%; height:400px; border:0; display:block}
+
+/* --- CTA --- */
+#gancho{background:linear-gradient(135deg,var(--verde-osc),var(--verde)); color:var(--blanco); text-align:center}
+#gancho .titulo{color:var(--blanco)}
+#gancho .titulo em{color:var(--amarillo)}
+#gancho p{color:#e8f0dd; font-weight:300; max-width:56ch; margin:0 auto 30px}
+
+/* --- Formulario --- */
+.caja-form{background:var(--blanco); border:1px solid var(--linea); border-radius:18px;
+  padding:clamp(28px,4vw,48px); box-shadow:var(--sombra); max-width:660px; margin:40px auto 0}
+.campo{margin-bottom:17px}
+.campo label{display:block; font-size:.78rem; font-weight:600; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--gris); margin-bottom:6px}
+.campo input,.campo select,.campo textarea{width:100%; padding:13px 15px; border:1px solid var(--linea);
+  border-radius:10px; font-family:inherit; font-size:.97rem; background:var(--crema);
+  color:var(--negro); transition:.25s}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none; border-color:var(--verde);
+  background:var(--blanco); box-shadow:0 0 0 3px rgba(92,138,46,.14)}
+.campo textarea{resize:vertical; min-height:82px}
+.check{display:flex; align-items:flex-start; gap:10px; margin:4px 0 20px}
+.check input{width:19px; height:19px; margin-top:2px; accent-color:var(--verde); flex-shrink:0; cursor:pointer}
+.check label{font-size:.85rem; font-weight:300; color:var(--gris); line-height:1.5; cursor:pointer}
+.btn-enviar{width:100%; padding:16px; border:none; border-radius:100px; background:var(--verde);
+  color:var(--blanco); font-family:inherit; font-size:1rem; font-weight:700; letter-spacing:.03em;
+  cursor:pointer; transition:.3s}
+.btn-enviar:hover{background:var(--verde-osc); transform:translateY(-2px)}
+.btn-enviar:disabled{opacity:.55; cursor:wait; transform:none}
+.aviso{margin-top:15px; padding:13px 16px; border-radius:10px; font-size:.9rem; display:none}
+.aviso.ok{display:block; background:#eef5e5; color:var(--verde-osc); border:1px solid #cfe3b8}
+.aviso.error{display:block; background:#fbeceb; color:#a33; border:1px solid #f0cfcc}
+.wa{display:flex; align-items:center; justify-content:center; gap:9px; margin-top:18px;
+  text-decoration:none; color:var(--gris); font-size:.9rem; transition:.3s}
+.wa:hover{color:var(--verde)}
+
+/* --- Pie --- */
+footer{background:var(--negro); color:#a8a8a0; padding:54px 0 34px; text-align:center}
+footer img{width:152px; margin:0 auto 20px; filter:drop-shadow(0 0 16px rgba(255,255,255,.5))}
+footer p{font-size:.83rem; font-weight:300; margin-bottom:6px}
+footer .fino{font-size:.73rem; color:#6d6d66; margin-top:18px; font-style:italic; max-width:60ch;
+  margin-left:auto; margin-right:auto}
+
+/* --- Lightbox propio (sin librerías) --- */
+#lightbox{position:fixed; inset:0; z-index:1000; background:rgba(12,12,12,.95);
+  display:none; place-items:center; padding:56px 18px}
+#lightbox.abierto{display:grid}
+#lightbox img{max-width:94vw; max-height:84vh; border-radius:8px; object-fit:contain}
+.lb-btn{position:absolute; background:rgba(255,255,255,.11); border:none; color:var(--blanco);
+  width:50px; height:50px; border-radius:50%; font-size:1.5rem; cursor:pointer; transition:.3s;
+  display:grid; place-items:center; font-family:inherit}
+.lb-btn:hover{background:var(--verde)}
+#lb-cerrar{top:18px; right:18px; font-size:1.3rem}
+#lb-ant{left:16px; top:50%; transform:translateY(-50%)}
+#lb-sig{right:16px; top:50%; transform:translateY(-50%)}
+#lb-pie{position:absolute; bottom:18px; left:0; right:0; text-align:center; color:#c9c9c1; font-size:.83rem}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:900px){
+  .bienvenida{grid-template-columns:1fr}
+  .rejilla-amenidades{grid-template-columns:repeat(2,1fr)}
+  .rejilla-galeria{grid-template-columns:repeat(2,1fr)}
+  .mosaico{grid-template-columns:repeat(2,1fr); grid-auto-rows:132px}
+  #portada-fondo{background-attachment:scroll}
+}
+@media(max-width:620px){
+  .nav-fila img{height:36px}
+  .volver{display:none}
+  .rejilla-amenidades{grid-template-columns:1fr 1fr; gap:11px}
+  .am-texto{padding:14px 12px}
+  .am-texto h3{font-size:.95rem}
+  .rejilla-galeria{grid-template-columns:1fr}
+  .mosaico{grid-template-columns:repeat(2,1fr); grid-auto-rows:112px}
+  .contadores{grid-template-columns:1fr 1fr}
+  .datos-clave{gap:9px}
+  .dato{padding:10px 14px; min-width:104px}
+  .dato b{font-size:1.22rem}
+  .mapa iframe{height:300px}
+  .lb-btn{width:42px; height:42px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important}
+  html{scroll-behavior:auto}
+  body.anim .reveal{opacity:1!important; transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progreso"></div>
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <div class="envoltura nav-fila">
+    <a href="../"><img src="img/logo-santorini.png" alt="Santorini Reservado Condominio"></a>
+    <div class="nav-liga">
+      <a href="../" class="volver">← Todos los proyectos</a>
+      <a href="#contacto" class="btn-nav">Quiero información</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= PORTADA ================= -->
+<header id="portada">
+  <div id="portada-fondo"></div>
+  <div class="portada-cont">
+    <img src="img/logo-santorini.png" alt="Santorini Reservado" class="marca">
+    <h1>Ya no es un plano.<br><em>Es un lugar.</em></h1>
+    <div class="linea-oro"></div>
+    <p class="portada-sub">Condominio campestre en la Vereda Los Medios, Restrepo.
+       Vías, portería, zona social y parques: construidos y funcionando.</p>
+    <div class="datos-clave">
+      <div class="dato"><b>59</b><span>Parcelas</span></div>
+      <div class="dato"><b>515 m²</b><span>Desde</span></div>
+      <div class="dato"><b>3 km</b><span>De Villa Reina</span></div>
+    </div>
+    <a href="#contacto" class="btn-portada">Quiero conocerlo</a>
+  </div>
+  <div class="flecha-scroll">↓</div>
+</header>
+
+<!-- ================= BIENVENIDA ================= -->
+<section class="seccion">
+  <div class="envoltura bienvenida">
+    <div class="reveal">
+      <span class="eyebrow">Vereda Los Medios · Restrepo, Meta</span>
+      <h2 class="titulo">Un condominio <em>cerrado</em>, no una promesa de uno.</h2>
+      <p class="parrafo">Santorini Reservado son 59 parcelas en propiedad horizontal, a tres kilómetros
+      del barrio Villa Reina por vía pavimentada. Las vías internas están compactadas y con sardineles,
+      la red de acueducto y la eléctrica están tendidas, y la portería lleva tiempo operando con
+      administración propia. Usted no compra sobre planos: entra, camina y ve.</p>
+      <div class="contadores">
+        <div class="cont-caja"><b data-hasta="59">0</b><span>Parcelas residenciales</span></div>
+        <div class="cont-caja"><b data-hasta="2200" data-sufijo=" m²">0</b><span>Parcela más grande</span></div>
+        <div class="cont-caja"><b data-hasta="90" data-sufijo=" m²">0</b><span>Salón social</span></div>
+        <div class="cont-caja"><b data-hasta="3" data-sufijo=" km">0</b><span>Desde Villa Reina</span></div>
+      </div>
+    </div>
+    <div class="bienvenida-foto reveal">
+      <img src="img/f-bienvenida.jpg" alt="Vista aérea de la glorieta con la cordillera al fondo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ ELEMENTO ESTRELLA: RENDER → REALIDAD ============ -->
+<section class="seccion" id="realidad">
+  <div class="envoltura">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow">Lo prometido / lo construido</span>
+      <h2 class="titulo">Arrastre y <em>compruébelo</em>.</h2>
+      <p class="parrafo" style="margin:0 auto">A la izquierda, el render con el que se vendió el proyecto.
+      A la derecha, la fotografía del mismo punto, hoy. Mueva la barra.</p>
+    </div>
+
+    <div class="comparador reveal" id="comparador">
+      <img id="cmp-fondo" src="img/cmp-porteria-real.jpg" alt="Portería construida, fotografía actual">
+      <img id="cmp-frente" class="cmp-frente" src="img/cmp-porteria-render.jpg" alt="Render original de la portería">
+      <span class="cmp-etiqueta cmp-izq">Render</span>
+      <span class="cmp-etiqueta cmp-der">Hoy</span>
+      <div class="cmp-barra" id="cmp-barra"></div>
+      <div class="cmp-tirador" id="cmp-tirador">‹ ›</div>
+      <input type="range" id="cmp-rango" min="0" max="100" value="50" aria-label="Comparar render con fotografía actual">
+    </div>
+
+    <div class="cmp-tabs reveal">
+      <button class="cmp-tab activa" data-render="img/cmp-porteria-render.jpg" data-real="img/cmp-porteria-real.jpg">Portería</button>
+      <button class="cmp-tab" data-render="img/cmp-parque-render.jpg" data-real="img/cmp-parque-real.jpg">Parque infantil</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AMENIDADES ================= -->
+<section class="seccion">
+  <div class="envoltura">
+    <div class="reveal">
+      <span class="eyebrow">Zona social y comunal</span>
+      <h2 class="titulo">Lo que ya está <em>entregado</em>.</h2>
+      <p class="parrafo">Toque o pase el cursor sobre cada espacio para ver el detalle.</p>
+    </div>
+
+    <div class="rejilla-amenidades reveal">
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/am-canchas.jpg" alt="Cancha de fútbol 5 y voleibol en grama" loading="lazy">
+        <div class="am-texto"><h3>Fútbol 5 y voleibol</h3>
+          <p>Cancha de fútbol 5 y cancha de voleibol, ambas en grama natural, con basketball infantil.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/am-parque.jpg" alt="Parque infantil del condominio" loading="lazy">
+        <div class="am-texto"><h3>Dos parques infantiles</h3>
+          <p>Módulos de juego instalados, columpios y pista de carros a control remoto.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/am-salon.jpg" alt="Salón social del condominio" loading="lazy">
+        <div class="am-texto"><h3>Salón social de 90 m²</h3>
+          <p>Espacio cubierto para reuniones y celebraciones, con dos mesas de ping pong.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/am-porteria.jpg" alt="Portería con administración" loading="lazy">
+        <div class="am-texto"><h3>Portería con administración</h3>
+          <p>Oficina de administración y apartaestudio para el encargado, con bahías de parqueo.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/am-quebrada.jpg" alt="Fuente hídrica dentro del condominio" loading="lazy">
+        <div class="am-texto"><h3>Fuente hídrica</h3>
+          <p>Quebrada interna canalizada, rodeada de zonas verdes y paisajismo.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/am-descanso.jpg" alt="Zona de lectura y descanso" loading="lazy">
+        <div class="am-texto"><h3>Lectura y descanso</h3>
+          <p>Mobiliario en concreto, zonas de sombra y gimnasio biosaludable de cuatro máquinas.</p></div>
+      </article>
+    </div>
+
+    <div class="fichas reveal">
+      <span class="ficha">Red de acueducto</span>
+      <span class="ficha">Red eléctrica con encauchetado ecológico</span>
+      <span class="ficha">Vías V-10 compactadas con sardineles</span>
+      <span class="ficha">Parqueadero de visitantes</span>
+      <span class="ficha">Altar espiritual: gruta y Virgen</span>
+      <span class="ficha">Parcelas divididas en swinglea</span>
+      <span class="ficha">Paisajismo y jardinería</span>
+      <span class="ficha">Vía de acceso pavimentada</span>
+    </div>
+
+    <div class="nota-lote reveal">
+      <h3>¿Y la piscina?</h3>
+      <p>En Santorini no hay piscina comunal, y es a propósito. Con parcelas de 515, 1.100 y hasta
+      2.200 m², cada casa tiene espacio de sobra para su propia piscina, su propio jardín y su propia
+      zona social. No comparta lo que puede tener para usted.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALERÍA ================= -->
+<section class="seccion" style="background:var(--blanco)">
+  <div class="envoltura">
+    <div class="reveal">
+      <span class="eyebrow">Proyecto</span>
+      <h2 class="titulo">Modelos y <em>espacios</em>.</h2>
+      <p class="parrafo">Los modelos de casa son sugeridos: una planta de 160,75 m² y dos plantas de
+      262,75 m². El reglamento de propiedad horizontal permite libertad de diseño arquitectónico.</p>
+    </div>
+    <div class="rejilla-galeria reveal" id="galeria">
+      <div class="ampliable"><img src="img/r-casa-a.jpg" alt="Modelo de casa de una planta" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-casa-b.jpg" alt="Fachada de vivienda campestre" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-casa-c.jpg" alt="Vivienda con piscina privada" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-casa-d.jpg" alt="Zona de piscina privada de vivienda" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-social.jpg" alt="Zona social del condominio" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-salon.jpg" alt="Salón social" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-parque.jpg" alt="Parque infantil" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-garajes.jpg" alt="Garajes" loading="lazy"></div>
+      <div class="ampliable"><img src="img/r-parqueo.jpg" alt="Parqueadero de visitantes" loading="lazy"></div>
+    </div>
+    <p class="legal">Las imágenes de esta sección son una interpretación gráfica del artista, pueden tener
+    variaciones en diseño y acabados y no comprometen a la empresa constructora. Las piscinas que aparecen
+    corresponden a construcciones privadas dentro de cada parcela, no a zonas comunes del condominio.</p>
+  </div>
+</section>
+
+<!-- ================= EL LUGAR HOY ================= -->
+<section class="seccion" id="lugar">
+  <div class="envoltura">
+    <div class="reveal">
+      <span class="eyebrow">Fotografías reales · sin retoque</span>
+      <h2 class="titulo">El lugar, <em>hoy</em>.</h2>
+      <p class="parrafo">Vías trazadas, glorieta ajardinada, parcelas delimitadas con cerco vivo
+      y la cordillera de fondo. Así se ve Santorini Reservado ahora mismo.</p>
+    </div>
+    <div class="mosaico reveal" id="mosaico">
+      <div class="ampliable m-big"><img src="img/f-aerea-social.jpg" alt="Vista aérea de la zona social" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-glorieta-montana.jpg" alt="Glorieta con la cordillera al fondo" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-porton-montana.jpg" alt="Portón de acceso con vista a la montaña" loading="lazy"></div>
+      <div class="ampliable m-wide"><img src="img/f-aerea-lotes.jpg" alt="Parcelas delimitadas y vía central" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-porteria-jardin.jpg" alt="Portería con jardín ornamental" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-quebrada.jpg" alt="Quebrada interna del condominio" loading="lazy"></div>
+      <div class="ampliable m-wide"><img src="img/f-aerea-canchas.jpg" alt="Canchas deportivas vistas desde el aire" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-glorieta-cerca.jpg" alt="Glorieta ajardinada" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-bancas.jpg" alt="Zona de descanso con mobiliario" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-parque-b.jpg" alt="Parque infantil rodeado de jardines" loading="lazy"></div>
+      <div class="ampliable"><img src="img/f-aerea-glorieta.jpg" alt="Vista aérea de la glorieta" loading="lazy"></div>
+    </div>
+    <div class="mapa reveal">
+      <iframe src="https://www.google.com/maps?q=Vereda+Los+Medios,+Restrepo,+Meta,+Colombia&output=embed"
+              loading="lazy" title="Ubicación de Santorini Reservado" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GANCHO ================= -->
+<section class="seccion" id="gancho">
+  <div class="envoltura reveal">
+    <h2 class="titulo">Son 59 parcelas. <em>No habrá una más.</em></h2>
+    <p>Un condominio cerrado tiene un número fijo de lotes desde el día uno. Cuando se venda el
+    último, la única forma de entrar será comprarle a un propietario, al precio que él decida.
+    Pregunte cuáles siguen disponibles hoy.</p>
+    <a href="#contacto" class="btn-portada">Consultar disponibilidad</a>
+  </div>
+</section>
+
+<!-- ================= FORMULARIO ================= -->
+<section class="seccion" id="contacto">
+  <div class="envoltura">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow">Sin compromiso</span>
+      <h2 class="titulo">Déjenos sus <em>datos</em>.</h2>
+      <p class="parrafo" style="margin:0 auto">Un asesor le comparte disponibilidad, áreas y formas de pago.</p>
+    </div>
+
+    <div class="caja-form reveal">
+      <form id="formulario" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre completo *</label>
+          <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Su nombre">
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono / WhatsApp *</label>
+          <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="300 000 0000">
+        </div>
+        <div class="campo">
+          <label for="correo">Correo electrónico *</label>
+          <input type="email" id="correo" name="correo" required autocomplete="email" placeholder="nombre@correo.com">
+        </div>
+        <div class="campo">
+          <label for="interes">Área de interés</label>
+          <select id="interes" name="interes">
+            <option value="">Sin definir aún</option>
+            <option value="515 m2">515 m²</option>
+            <option value="1100 m2">1.100 m²</option>
+            <option value="2200 m2">2.200 m²</option>
+            <option value="Asesoria general">Quiero asesoría</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="mensaje">Mensaje (opcional)</label>
+          <textarea id="mensaje" name="mensaje" placeholder="¿Algo que debamos saber?"></textarea>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="autorizo" required>
+          <label for="autorizo">Autorizo el tratamiento de mis datos personales para ser contactado por un asesor.</label>
+        </div>
+        <button type="submit" class="btn-enviar" id="btn-enviar">Enviar mis datos</button>
+        <div class="aviso" id="aviso"></div>
+      </form>
+      <!-- PENDIENTE: reemplazar 57XXXXXXXXXX por el número real (formato 573001234567) -->
+      <a class="wa" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20información%20de%20Santorini%20Reservado"
+         target="_blank" rel="noopener">Prefiero escribir por WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PIE ================= -->
+<footer>
+  <div class="envoltura">
+    <img src="img/logo-santorini.png" alt="Santorini Reservado Condominio">
+    <p><strong>Condominio Santorini Reservado</strong></p>
+    <p>Vereda Los Medios · Restrepo, Meta</p>
+    <p>Constructora Montefiori S.A.S. — NIT 901.511.464-5</p>
+    <p class="fino">Las imágenes de renders son una interpretación gráfica del artista, pueden tener
+    variaciones en diseño y acabados y no comprometen a la empresa constructora.</p>
+  </div>
+</footer>
+
+<!-- ================= LIGHTBOX ================= -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lb-btn" id="lb-cerrar" aria-label="Cerrar">✕</button>
+  <button class="lb-btn" id="lb-ant" aria-label="Anterior">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-btn" id="lb-sig" aria-label="Siguiente">›</button>
+  <div id="lb-pie"></div>
+</div>
+
+<script>
+/* ============================================================
+   1. APARICIÓN AL HACER SCROLL — con red de seguridad
+   El contenido es visible por defecto. Solo si el JS corre se
+   activa la animación, y si el observador no responde en 1,6 s
+   se muestra todo igual. Nunca puede quedar la página en blanco.
+   ============================================================ */
+(function(){
+  var respondio = false;
+  var piezas = document.querySelectorAll('.reveal');
+  function mostrarTodo(){ piezas.forEach(function(p){ p.classList.add('in'); }); }
+
+  if('IntersectionObserver' in window){
+    document.body.classList.add('anim');
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if(e.isIntersecting){ respondio = true; e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    },{threshold:.08, rootMargin:'0px 0px -40px 0px'});
+    piezas.forEach(function(p){ obs.observe(p); });
+    setTimeout(function(){ if(!respondio) mostrarTodo(); }, 1600);
+    addEventListener('load', function(){ setTimeout(function(){ if(!respondio) mostrarTodo(); }, 400); });
+  } else { mostrarTodo(); }
+})();
+
+/* ============================================================
+   2. NAV SÓLIDO + BARRA DE PROGRESO + PARALLAX DE PORTADA
+   ============================================================ */
+(function(){
+  var nav = document.getElementById('nav');
+  var barra = document.getElementById('progreso');
+  var fondo = document.getElementById('portada-fondo');
+  var tic = false;
+  function pintar(){
+    var y = window.scrollY;
+    nav.classList.toggle('solido', y > 60);
+    var alto = document.documentElement.scrollHeight - innerHeight;
+    barra.style.width = (alto > 0 ? (y/alto)*100 : 0) + '%';
+    if(fondo && y < innerHeight) fondo.style.transform = 'translateY(' + (y*0.32) + 'px)';
+    tic = false;
+  }
+  addEventListener('scroll', function(){ if(!tic){ requestAnimationFrame(pintar); tic = true; } }, {passive:true});
+  pintar();
+})();
+
+/* ============================================================
+   3. CONTADORES ANIMADOS — solo cifras confirmadas de la ficha
+   ============================================================ */
+(function(){
+  var nums = document.querySelectorAll('[data-hasta]');
+  function correr(el){
+    var fin = parseFloat(el.dataset.hasta), suf = el.dataset.sufijo || '', ini = null, dur = 1500;
+    function paso(t){
+      if(!ini) ini = t;
+      var p = Math.min((t-ini)/dur, 1);
+      var v = Math.floor(fin * (1 - Math.pow(1-p,3)));
+      el.textContent = (fin >= 1000 ? v.toLocaleString('es-CO') : v) + suf;
+      if(p < 1) requestAnimationFrame(paso);
+      else el.textContent = (fin >= 1000 ? fin.toLocaleString('es-CO') : fin) + suf;
+    }
+    requestAnimationFrame(paso);
+  }
+  if('IntersectionObserver' in window){
+    var o = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ correr(e.target); o.unobserve(e.target); } });
+    },{threshold:.5});
+    nums.forEach(function(n){ o.observe(n); });
+  } else {
+    nums.forEach(function(n){ n.textContent = n.dataset.hasta + (n.dataset.sufijo||''); });
+  }
+})();
+
+/* ============================================================
+   4. COMPARADOR RENDER → REALIDAD
+   Un input range invisible encima controla el recorte de la
+   imagen del frente. Funciona con mouse, dedo y teclado.
+   ============================================================ */
+(function(){
+  var rango = document.getElementById('cmp-rango');
+  var frente = document.getElementById('cmp-frente');
+  var fondo = document.getElementById('cmp-fondo');
+  var barra = document.getElementById('cmp-barra');
+  var tirador = document.getElementById('cmp-tirador');
+  if(!rango) return;
+
+  function mover(){
+    var v = rango.value;
+    frente.style.clipPath = 'inset(0 ' + (100-v) + '% 0 0)';
+    barra.style.left = v + '%';
+    tirador.style.left = v + '%';
+  }
+  rango.addEventListener('input', mover);
+  mover();
+
+  document.querySelectorAll('.cmp-tab').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.cmp-tab').forEach(function(x){ x.classList.remove('activa'); });
+      b.classList.add('activa');
+      frente.src = b.dataset.render;
+      fondo.src = b.dataset.real;
+      rango.value = 50; mover();
+    });
+  });
+})();
+
+/* ============================================================
+   5. AMENIDADES — en celular no hay "pasar el mouse", así que
+   el toque alterna la tarjeta abierta.
+   ============================================================ */
+(function(){
+  document.querySelectorAll('.tarjeta-am').forEach(function(t){
+    function alternar(){
+      var abierta = t.classList.contains('activa');
+      document.querySelectorAll('.tarjeta-am').forEach(function(x){ x.classList.remove('activa'); });
+      if(!abierta) t.classList.add('activa');
+    }
+    t.addEventListener('click', alternar);
+    t.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); alternar(); }
+    });
+  });
+})();
+
+/* ============================================================
+   6. LIGHTBOX PROPIO — sin librerías externas
+   ============================================================ */
+(function(){
+  var cajas = Array.prototype.slice.call(document.querySelectorAll('.ampliable'));
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lb-img');
+  var pie = document.getElementById('lb-pie');
+  var i = 0;
+
+  function abrir(n){
+    i = (n + cajas.length) % cajas.length;
+    var fuente = cajas[i].querySelector('img');
+    img.src = fuente.src; img.alt = fuente.alt;
+    pie.textContent = fuente.alt + '  ·  ' + (i+1) + ' / ' + cajas.length;
+    lb.classList.add('abierto');
+    document.body.style.overflow = 'hidden';
+  }
+  function cerrar(){ lb.classList.remove('abierto'); document.body.style.overflow = ''; }
+
+  cajas.forEach(function(c,n){ c.addEventListener('click', function(){ abrir(n); }); });
+  document.getElementById('lb-cerrar').addEventListener('click', cerrar);
+  document.getElementById('lb-ant').addEventListener('click', function(e){ e.stopPropagation(); abrir(i-1); });
+  document.getElementById('lb-sig').addEventListener('click', function(e){ e.stopPropagation(); abrir(i+1); });
+  lb.addEventListener('click', function(e){ if(e.target === lb) cerrar(); });
+  addEventListener('keydown', function(e){
+    if(!lb.classList.contains('abierto')) return;
+    if(e.key === 'Escape') cerrar();
+    if(e.key === 'ArrowLeft') abrir(i-1);
+    if(e.key === 'ArrowRight') abrir(i+1);
+  });
+})();
+
+/* ============================================================
+   7. FORMULARIO → GOOGLE SHEETS
+   Mismo endpoint de Apps Script de las otras páginas.
+   'no-cors' significa que el navegador no nos deja leer la
+   respuesta: por eso asumimos éxito si el envío no lanzó error.
+   ============================================================ */
+(function(){
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVMHUvLCnoQ8jiQR03529SpXmNdX3Xn9RyB5HswJvylLQaxOzt4tR9XuRd1NK6y8gR/exec";
+
+  // De dónde llegó la persona: ?origen= en el QR, o los parámetros UTM
+  function detectarOrigen(){
+    var p = new URLSearchParams(location.search);
+    return p.get('origen') || p.get('utm_term') || p.get('utm_campaign') || 'directo';
+  }
+
+  var form = document.getElementById('formulario');
+  var btn = document.getElementById('btn-enviar');
+  var aviso = document.getElementById('aviso');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nombre = form.nombre.value.trim();
+    var telefono = form.telefono.value.trim();
+    var correo = form.correo.value.trim();
+
+    if(!nombre || !telefono || !correo){
+      aviso.className = 'aviso error';
+      aviso.textContent = 'Faltan datos: nombre, teléfono y correo son obligatorios.';
+      return;
+    }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)){
+      aviso.className = 'aviso error';
+      aviso.textContent = 'Revise el correo: parece incompleto.';
+      return;
+    }
+    if(!document.getElementById('autorizo').checked){
+      aviso.className = 'aviso error';
+      aviso.textContent = 'Marque la autorización de tratamiento de datos para continuar.';
+      return;
+    }
+
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    aviso.className = 'aviso'; aviso.textContent = '';
+
+    var datos = {
+      nombre: nombre,
+      telefono: telefono,
+      correo: correo,
+      proyecto: 'Condominio Santorini Reservado',
+      interes: form.interes.value || 'Sin definir',
+      mensaje: form.mensaje.value.trim(),
+      autorizacion: 'Sí',
+      origen: detectarOrigen(),
+      fecha: new Date().toLocaleString('es-CO')
+    };
+
+    fetch(SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(datos)
+    }).then(function(){
+      aviso.className = 'aviso ok';
+      aviso.textContent = '¡Listo! Recibimos sus datos. Un asesor lo contacta muy pronto.';
+      form.reset();
+      btn.disabled = false; btn.textContent = 'Enviar mis datos';
+    }).catch(function(){
+      aviso.className = 'aviso error';
+      aviso.textContent = 'No pudimos enviar el formulario. Escríbanos por WhatsApp, por favor.';
+      btn.disabled = false; btn.textContent = 'Enviar mis datos';
+    });
+  });
+})();
+</script>
+</body>
+</html>
