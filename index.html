@@ -256,9 +256,107 @@ body.anim .reveal.in{ opacity:1; transform:none; }
   *{ animation:none !important; }
   .reveal{ opacity:1; transform:none; }
 }
+
+/* ============================================================
+   PUERTA DE DATOS  ·  registro obligatorio antes de ver el sitio
+   ============================================================ */
+#puerta{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center;
+  padding:20px; overflow-y:auto; background:rgba(22,40,29,.52);
+  -webkit-backdrop-filter:blur(12px) saturate(1.06); backdrop-filter:blur(12px) saturate(1.06);
+  opacity:1; transition:opacity .55s ease; }
+#puerta.oculta{ opacity:0; pointer-events:none; }
+body.bloqueado{ overflow:hidden; }
+
+.puerta-caja{ width:100%; max-width:430px; margin:auto; border-radius:20px;
+  padding:clamp(24px,5vw,34px) clamp(20px,4.5vw,30px);
+  background:rgba(255,255,255,.10);
+  -webkit-backdrop-filter:blur(20px) saturate(1.2); backdrop-filter:blur(20px) saturate(1.2);
+  border:1px solid rgba(255,255,255,.26);
+  box-shadow:0 24px 60px rgba(0,0,0,.28); color:#fff; }
+.puerta-marca{ display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.puerta-marca img{ height:34px; width:auto; }
+.puerta-caja .ojo{ display:block; font-size:.68rem; letter-spacing:.26em; text-transform:uppercase;
+  color:rgba(255,255,255,.72); font-weight:700; margin-bottom:10px; }
+.puerta-caja h2{ font-family:var(--serif); font-weight:500; line-height:1.14;
+  font-size:clamp(1.5rem,5.2vw,2.05rem); margin-bottom:10px; color:#fff; }
+.puerta-caja .sub{ font-size:.92rem; line-height:1.55; color:rgba(255,255,255,.8); margin-bottom:20px; }
+
+.puerta-campos{ display:flex; flex-direction:column; gap:10px; }
+.puerta-campos input{ width:100%; font-family:var(--sans); font-size:.95rem; color:#fff;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.24); border-radius:12px;
+  padding:14px 16px; outline:none; transition:border-color .2s, background .2s, box-shadow .2s; }
+.puerta-campos input::placeholder{ color:rgba(255,255,255,.58); }
+.puerta-campos input:focus{ border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.14);
+  box-shadow:0 0 0 3px rgba(255,255,255,.10); }
+
+.puerta-check{ display:flex; gap:10px; align-items:flex-start; margin:16px 0 18px; }
+.puerta-check input{ margin-top:3px; flex:none; width:16px; height:16px; accent-color:var(--sol-2); }
+.puerta-check label{ font-size:.75rem; line-height:1.55; color:rgba(255,255,255,.78); }
+.puerta-check a{ color:#fff; text-decoration:underline; }
+
+#puerta-btn{ width:100%; border:none; cursor:pointer; font-family:var(--sans); font-size:.98rem; font-weight:700;
+  letter-spacing:.02em; color:#fff; background:var(--grad-sol); border-radius:100px; padding:16px;
+  box-shadow:0 12px 30px rgba(232,121,47,.38); transition:transform .25s, box-shadow .25s; }
+#puerta-btn:hover{ transform:translateY(-2px); box-shadow:0 16px 36px rgba(232,121,47,.5); }
+#puerta-btn:disabled{ opacity:.6; cursor:wait; transform:none; }
+
+.puerta-pie{ display:flex; align-items:center; justify-content:center; gap:7px; margin-top:16px;
+  font-size:.73rem; color:rgba(255,255,255,.7); }
+.puerta-pie svg{ width:14px; height:14px; fill:none; stroke:rgba(255,255,255,.8); stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round; }
+#puerta-msg{ font-size:.82rem; margin-top:12px; text-align:center; min-height:18px; }
+#puerta-msg.error{ color:#ffcdc0; }
+#puerta-msg.ok{ color:#d8f2c9; }
+@media (max-width:420px){ .puerta-caja{ border-radius:16px; } }
 </style>
 </head>
 <body>
+<!-- ===================== PUERTA DE DATOS ===================== -->
+<div id="puerta">
+  <div class="puerta-caja">
+    <div class="puerta-marca">
+      <img src="img/logo-alianza.png" alt="Alianza Empresarial" />
+    </div>
+
+    <span class="ojo">Acceso al portafolio</span>
+    <h2>Antes de entrar,<br>cuéntanos quién eres</h2>
+    <p class="sub">Déjanos tus datos y verás todos los proyectos, amenidades y condiciones de pago. Toma 20 segundos.</p>
+
+    <div class="puerta-campos">
+      <input type="text"  id="p-nombre"   placeholder="Nombre completo" autocomplete="name" />
+      <input type="tel"   id="p-telefono" placeholder="Teléfono / WhatsApp" autocomplete="tel" inputmode="numeric" />
+      <input type="email" id="p-correo"   placeholder="nombre@correo.com" autocomplete="email" inputmode="email" />
+    </div>
+
+    <div class="puerta-check">
+      <input type="checkbox" id="p-autorizo" />
+      <label for="p-autorizo">Autorizo a Alianza Empresarial a contactarme y a tratar mis datos personales conforme a la <a href="#" target="_blank">política de privacidad</a> (Ley 1581 de 2012).</label>
+    </div>
+
+    <button type="button" id="puerta-btn">Ver los proyectos &nbsp;&rarr;</button>
+
+    <div id="puerta-msg"></div>
+
+    <div class="puerta-pie">
+      <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      Tus datos no se comparten con terceros
+    </div>
+  </div>
+</div>
+
+<script>
+/* Si ya se registró antes, quitamos la puerta antes de que se vea */
+(function(){
+  try{
+    if(localStorage.getItem('ae_registro')==='ok'){
+      var p=document.getElementById('puerta'); if(p) p.remove();
+    } else {
+      document.body.classList.add('bloqueado');
+    }
+  }catch(e){ document.body.classList.add('bloqueado'); }
+})();
+</script>
+
 
 <div id="progreso"></div>
 
@@ -679,6 +777,70 @@ form.addEventListener('submit', async e=>{
   finally{ boton.disabled=false; boton.textContent='Enviar mis datos'; }
 });
 function msg(t,tipo){ mensaje.className='mensaje mensaje--'+(tipo==='ok'?'ok':'error'); mensaje.textContent=t; }
+
+/* ============================================================
+   PUERTA DE DATOS  ·  envía a la misma hoja y abre el sitio
+   ============================================================ */
+(function(){
+  const puerta = document.getElementById('puerta');
+  if(!puerta) return;                       // ya estaba registrado
+
+  const bp   = document.getElementById('puerta-btn');
+  const pmsg = document.getElementById('puerta-msg');
+  const val  = id => document.getElementById(id).value.trim();
+
+  function pm(t, tipo){ pmsg.className = tipo; pmsg.textContent = t; }
+
+  function abrir(){
+    puerta.classList.add('oculta');
+    document.body.classList.remove('bloqueado');
+    setTimeout(()=>puerta.remove(), 600);
+  }
+
+  bp.addEventListener('click', async ()=>{
+    const nombre = val('p-nombre'), telefono = val('p-telefono'), correo = val('p-correo');
+    const soloDigitos = telefono.replace(/\D/g,'');
+
+    if(nombre.length < 3)              return pm('Escribe tu nombre completo.','error');
+    if(soloDigitos.length < 7)         return pm('Escribe un teléfono válido.','error');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo)) return pm('Escribe un correo válido.','error');
+    if(!document.getElementById('p-autorizo').checked) return pm('Debes autorizar el tratamiento de datos.','error');
+
+    const origen = document.getElementById('origen') ? document.getElementById('origen').value : 'directo';
+    const datos = { nombre, telefono, correo, proyecto:'Registro de entrada', origen,
+                    fecha:new Date().toLocaleString('es-CO') };
+
+    bp.disabled = true; bp.textContent = 'Enviando...';
+    try{
+      await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
+    }catch(e){ /* si falla el envío igual lo dejamos entrar: no perdemos al cliente */ }
+
+    try{
+      localStorage.setItem('ae_registro','ok');
+      localStorage.setItem('ae_datos', JSON.stringify({nombre, telefono, correo}));
+    }catch(e){}
+
+    pm('¡Listo! Bienvenido.','ok');
+    setTimeout(abrir, 500);
+  });
+
+  /* Enter en cualquier campo = mismo botón */
+  puerta.querySelectorAll('.puerta-campos input').forEach(i=>{
+    i.addEventListener('keydown', e=>{ if(e.key === 'Enter') bp.click(); });
+  });
+})();
+
+/* Prellenar el formulario del final con los datos ya entregados */
+(function(){
+  try{
+    const d = JSON.parse(localStorage.getItem('ae_datos') || 'null');
+    if(!d) return;
+    if(form.nombre)   form.nombre.value   = d.nombre   || '';
+    if(form.telefono) form.telefono.value = d.telefono || '';
+    if(form.correo)   form.correo.value   = d.correo   || '';
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
