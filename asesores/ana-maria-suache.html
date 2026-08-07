@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ana María Suache · Asesora inmobiliaria | Alianza Empresarial</title>
+<meta name="description" content="Ana María Suache Sabogal, profesional en bienes raíces y líder de negocios en Alianza Empresarial. Escríbeme para comprar o vender tu lote, casa, quinta o finca." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   VARIABLES DE MARCA  ·  misma paleta del sitio principal
+   ============================================================ */
+:root{
+  --verde:      #1e5c40;
+  --verde-2:    #2f7d55;
+  --verde-3:    #43a06b;
+  --lima:       #9ac262;
+  --crema:      #f7f4ec;
+  --crema-2:    #ede7d7;
+  --tinta:      #16281d;
+  --tinta-2:    #38493f;
+  --sol:        #f2a03d;
+  --linea:      rgba(30,92,64,.14);
+  --sombra:     0 24px 60px rgba(22,40,29,.16);
+  --serif:      'Fraunces', Georgia, serif;
+  --sans:       'Inter', system-ui, sans-serif;
+  --grad-verde: linear-gradient(135deg, #2f7d55, #1e5c40);
+  --wa:         #25D366;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{ font-family:var(--sans); background:var(--crema); color:var(--tinta); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a{ color:inherit; text-decoration:none; }
+svg{ width:100%; height:100%; }
+
+/* Columna central estrecha, tipo tarjeta de presentación */
+.ficha{ max-width:600px; margin:0 auto; min-height:100vh; display:flex; flex-direction:column; background:var(--crema); }
+
+/* ---------- Barra superior ---------- */
+.topbar{ display:flex; align-items:center; justify-content:space-between; padding:16px 22px; }
+.topbar .volver{ display:inline-flex; align-items:center; gap:6px; font-size:.9rem; color:var(--verde); font-weight:500; }
+.topbar .volver svg{ width:18px; height:18px; }
+.topbar .marca{ font-family:var(--serif); font-weight:600; font-size:1rem; color:var(--verde); letter-spacing:.01em; }
+
+/* ---------- Cabecera verde con la foto ---------- */
+.hero{ background:var(--grad-verde); color:var(--crema); text-align:center; padding:34px 22px 40px;
+  border-radius:0 0 30px 30px; box-shadow:var(--sombra); }
+.hero .foto{ width:150px; height:150px; border-radius:50%; margin:0 auto 18px; overflow:hidden;
+  border:3px solid var(--lima); box-shadow:0 10px 30px rgba(0,0,0,.25); background:var(--verde); }
+.hero .foto img{ width:100%; height:100%; object-fit:cover; display:block; }
+.hero h1{ font-family:var(--serif); font-weight:600; font-size:1.7rem; line-height:1.15; color:#fff; }
+.hero .cargo{ margin-top:8px; font-size:.92rem; color:var(--lima); font-weight:500; }
+.hero .div{ width:46px; height:2px; background:var(--lima); margin:16px auto; border-radius:2px; }
+.hero .lugar{ display:inline-flex; align-items:center; gap:6px; font-size:.86rem; color:rgba(247,244,236,.85); }
+.hero .lugar svg{ width:16px; height:16px; }
+
+/* ---------- Botones de contacto ---------- */
+.contacto{ display:flex; gap:10px; padding:22px; }
+.btn{ flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 6px;
+  border-radius:14px; font-size:.82rem; font-weight:600; border:1.5px solid var(--linea);
+  background:#fff; color:var(--verde); transition:transform .15s ease, box-shadow .15s ease; }
+.btn svg{ width:24px; height:24px; }
+.btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(22,40,29,.12); }
+.btn--wa{ background:var(--wa); border-color:var(--wa); color:#fff; }
+
+/* ---------- Sobre mí ---------- */
+.bloque{ padding:6px 22px 22px; }
+.bloque h2{ font-family:var(--serif); font-size:1.15rem; font-weight:600; color:var(--verde); margin-bottom:10px; }
+.sobre{ background:#fff; border:1px solid var(--linea); border-radius:16px; padding:18px 20px;
+  font-size:.95rem; color:var(--tinta-2); line-height:1.7; }
+
+/* ---------- Redes sociales ---------- */
+.redes{ text-align:center; padding:6px 22px 30px; }
+.redes h2{ font-family:var(--serif); font-size:1.05rem; font-weight:600; color:var(--verde); margin-bottom:14px; }
+.redes .iconos{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+.red{ width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:#fff; border:1.5px solid var(--linea); color:var(--verde); transition:all .15s ease; }
+.red svg{ width:24px; height:24px; }
+.red:hover{ background:var(--verde); color:#fff; border-color:var(--verde); transform:translateY(-2px); }
+
+/* ---------- Pie ---------- */
+footer{ margin-top:auto; background:var(--tinta); color:var(--crema-2); text-align:center; padding:26px 22px; }
+footer b{ font-family:var(--serif); font-size:1.05rem; color:#fff; }
+footer .sub{ font-size:.82rem; color:rgba(247,244,236,.6); margin-top:4px; }
+footer .copy{ font-size:.72rem; color:rgba(247,244,236,.4); margin-top:14px; }
+</style>
+</head>
+
+<body>
+<div class="ficha">
+
+  <!-- ===================== BARRA SUPERIOR ===================== -->
+  <div class="topbar">
+    <a class="volver" href="../index.html" aria-label="Volver a los proyectos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      Proyectos
+    </a>
+    <span class="marca">Alianza Empresarial</span>
+  </div>
+
+  <!-- ===================== CABECERA CON FOTO ===================== -->
+  <section class="hero">
+    <div class="foto">
+      <img src="img/ana-maria-suache.jpg" alt="Ana María Suache Sabogal, asesora inmobiliaria" />
+    </div>
+    <h1>Ana María Suache Sabogal</h1>
+    <div class="cargo">Profesional en Bienes Raíces · Líder de Negocios</div>
+    <div class="div"></div>
+    <div class="lugar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5-4 8-8 8-12a8 8 0 10-16 0c0 4 3 8 8 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Villavicencio, Meta
+    </div>
+  </section>
+
+  <!-- ===================== BOTONES DE CONTACTO ===================== -->
+  <div class="contacto">
+    <a class="btn btn--wa" href="https://wa.me/573134978398" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.4-4A8 8 0 1120 12a8 8 0 01-12.6 6.5L4 20z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.3-1.4-2-1-.9.7a4.6 4.6 0 01-2.4-2.4l.7-.9-1-2L9 9.5z"/></svg>
+      WhatsApp
+    </a>
+    <a class="btn" href="tel:+573134978398">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>
+      Llamar
+    </a>
+    <a class="btn" href="mailto:bienesraicessuach@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      Correo
+    </a>
+  </div>
+
+  <!-- ===================== SOBRE MÍ ===================== -->
+  <div class="bloque">
+    <h2>Sobre mí</h2>
+    <p class="sobre">Especialista en venta de apartamentos, casas, lotes, quintas y fincas. Hago realidad tu sueño de encontrar el lugar ideal y te acompaño en cada paso para que tomes la mejor decisión al comprar o vender.</p>
+  </div>
+
+  <!-- ===================== REDES SOCIALES ===================== -->
+  <div class="redes">
+    <h2>Sígueme en redes</h2>
+    <div class="iconos">
+      <a class="red" href="https://www.instagram.com/suach_bienes_raices?igsh=dmJ3aGZoeHkyNXh0" target="_blank" rel="noopener" aria-label="Instagram de Ana María">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+      </a>
+      <a class="red" href="https://www.tiktok.com/@suach.annita" target="_blank" rel="noopener" aria-label="TikTok de Ana María">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v10.5a3 3 0 11-3-3"/><path d="M10 4c.5 2.8 2.4 4.7 5 5"/></svg>
+      </a>
+      <a class="red" href="https://www.facebook.com/profile.php?id=61579115764849" target="_blank" rel="noopener" aria-label="Facebook de Ana María">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8.5h3M14 8.5V7a2 2 0 012-2h1"/><path d="M14 8.5V21"/><path d="M10 12h7"/><path d="M10 8.5V21"/></svg>
+      </a>
+      <a class="red" href="https://www.linkedin.com/in/ana-mar%C3%ADa-suache-sabogal-28abb9427" target="_blank" rel="noopener" aria-label="LinkedIn de Ana María">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================== PIE ===================== -->
+  <footer>
+    <b>Alianza Empresarial</b>
+    <div class="sub">Tu Inmueble 360 · Villavicencio, Meta</div>
+    <div class="copy">© 2026 Alianza Empresarial · Todos los derechos reservados</div>
+  </footer>
+
+</div>
+</body>
+</html>
