@@ -188,10 +188,10 @@ section{ position:relative; }
    ============================================================ */
 .amen{ background:var(--negro); }
 .amen__head{ text-align:center; margin-bottom:clamp(38px,6vw,64px); }
-.amen__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.amen__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 .card{
   position:relative; border-radius:14px; overflow:hidden;
-  aspect-ratio:3/4; cursor:pointer; background:var(--carbon);
+  aspect-ratio:4/5; cursor:pointer; background:var(--carbon);
   border:1px solid rgba(255,255,255,.05);
 }
 .card__img{
@@ -204,14 +204,14 @@ section{ position:relative; }
   background:linear-gradient(to top, rgba(8,8,10,.92) 6%, rgba(8,8,10,.35) 55%, rgba(8,8,10,.15));
   transition:opacity .6s ease; z-index:1;
 }
-.card__body{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:22px 22px 24px; }
-.card__icon{ width:30px; height:30px; margin-bottom:12px; }
+.card__body{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:16px 16px 18px; }
+.card__icon{ width:24px; height:24px; margin-bottom:9px; }
 .card__icon svg{ width:100%; height:100%; stroke:var(--oro); fill:none; stroke-width:1.6; }
-.card__k{ font-size:.66rem; letter-spacing:.24em; text-transform:uppercase; color:var(--oro); font-weight:600; }
-.card__t{ font-family:var(--serif); font-size:1.32rem; font-weight:600; margin-top:3px; line-height:1.1; }
-.card__line{ width:0; height:2px; background:var(--grad-oro); margin:12px 0; transition:width .6s ease .05s; }
+.card__k{ font-size:.6rem; letter-spacing:.24em; text-transform:uppercase; color:var(--oro); font-weight:600; }
+.card__t{ font-family:var(--serif); font-size:1.06rem; font-weight:600; margin-top:3px; line-height:1.1; }
+.card__line{ width:0; height:2px; background:var(--grad-oro); margin:9px 0; transition:width .6s ease .05s; }
 .card__d{
-  color:var(--crema-2); font-size:.86rem; line-height:1.55;
+  color:var(--crema-2); font-size:.78rem; line-height:1.5;
   max-height:0; opacity:0; overflow:hidden;
   transition:max-height .6s ease, opacity .5s ease;
 }
@@ -219,28 +219,75 @@ section{ position:relative; }
 .card:hover .card__img, .card.open .card__img{ filter:grayscale(0) brightness(1); transform:scale(1); }
 .card:hover::after, .card.open::after{ opacity:.9; }
 .card:hover .card__line, .card.open .card__line{ width:52px; }
-.card:hover .card__d, .card.open .card__d{ max-height:130px; opacity:1; }
+.card:hover .card__d, .card.open .card__d{ max-height:120px; opacity:1; }
 .card__hint{ position:absolute; top:16px; right:16px; z-index:2; font-size:.62rem; letter-spacing:.18em;
   text-transform:uppercase; color:var(--crema-2); opacity:.55; transition:opacity .4s; }
 .card:hover .card__hint, .card.open .card__hint{ opacity:0; }
 
 /* ============================================================
-   7) GALERÍA  ·  CUADRÍCULA CSS (responsive, sin librerías)
+   7) VISOR ÚNICO  ·  renders + fotos reales en carrusel horizontal
+      Reemplaza a la antigua galería y al mosaico: la sección tiene
+      altura fija, así que ya no crece el scroll al agregar fotos.
    ============================================================ */
-.gal{ background:var(--negro-2); }
-.gal__head{ text-align:center; margin-bottom:44px; }
-.gal__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.gal-item{
-  position:relative; border-radius:14px; overflow:hidden; cursor:pointer;
-  aspect-ratio:4/3; background:var(--carbon); box-shadow:0 18px 44px rgba(0,0,0,.4);
+.visor{ background:var(--negro-2); }
+.visor__head{ text-align:center; margin-bottom:30px; }
+
+/* Botones Todo / Render / Hoy */
+.filtros{ display:inline-flex; gap:8px; margin-top:22px; flex-wrap:wrap; justify-content:center; }
+.filtro{
+  border:1px solid var(--linea); background:transparent; color:var(--crema-2);
+  border-radius:100px; padding:9px 20px; cursor:pointer;
+  font-family:var(--sans); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s;
 }
-.gal-item img{ width:100%; height:100%; object-fit:cover; transition:transform .8s ease; }
-.gal-item:hover img{ transform:scale(1.06); }
-.gal-item .zoom{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-  background:rgba(13,13,15,.34); opacity:0; transition:opacity .4s; }
-.gal-item:hover .zoom{ opacity:1; }
-.gal-item .zoom span{ border:1px solid var(--crema); color:var(--crema); border-radius:100px;
-  padding:9px 18px; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; background:rgba(13,13,15,.4); }
+.filtro:hover{ border-color:var(--oro); color:var(--crema); }
+.filtro.on{ background:var(--grad-oro); color:var(--negro); border-color:transparent; font-weight:700; }
+
+/* Pista deslizable: scroll-snap = se detiene foto por foto */
+.pista{
+  display:flex; gap:14px; overflow-x:auto; overflow-y:hidden;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  padding:4px clamp(16px,6vw,90px) 12px;
+  scrollbar-width:none;
+}
+.pista::-webkit-scrollbar{ display:none; }
+.slide{
+  flex:0 0 clamp(260px, 78vw, 540px); scroll-snap-align:center;
+  position:relative; aspect-ratio:4/3; border-radius:14px; overflow:hidden;
+  cursor:zoom-in; background:var(--carbon); box-shadow:0 18px 44px rgba(0,0,0,.45);
+}
+.slide img{ width:100%; height:100%; object-fit:cover; transition:transform .8s ease; }
+.slide:hover img{ transform:scale(1.05); }
+.slide figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:26px 16px 14px;
+  background:linear-gradient(transparent, rgba(13,13,15,.82));
+  font-size:.78rem; letter-spacing:.06em; color:var(--crema);
+}
+.etq{
+  position:absolute; top:12px; left:12px; z-index:2;
+  font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700;
+  padding:5px 12px; border-radius:100px; backdrop-filter:blur(3px);
+}
+.etq.render{ background:rgba(13,13,15,.62); color:var(--oro-claro); border:1px solid var(--linea); }
+.etq.real{ background:var(--grad-oro); color:var(--negro); }
+
+/* Flechas + contador */
+.visor__ctrl{ display:flex; align-items:center; justify-content:center; gap:18px; margin-top:24px; }
+.flecha{
+  width:48px; height:48px; border-radius:50%; cursor:pointer;
+  background:rgba(255,255,255,.06); border:1px solid var(--linea); color:var(--crema);
+  font-size:1.3rem; line-height:1; display:flex; align-items:center; justify-content:center;
+  transition:background .3s, color .3s;
+}
+.flecha:hover{ background:var(--grad-oro); color:var(--negro); border-color:transparent; }
+.contador{ font-size:.75rem; letter-spacing:.2em; color:var(--tenue); min-width:64px; text-align:center; }
+
+/* Chips de amenidades secundarias (texto, sin foto) */
+.chips{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:34px; }
+.chip{
+  border:1px solid var(--linea); border-radius:100px; padding:9px 18px;
+  font-size:.78rem; color:var(--crema-2); background:rgba(255,255,255,.02);
+}
 
 /* ---- Lightbox propio (zoom al hacer clic) ---- */
 .lb{ position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center;
@@ -257,20 +304,10 @@ section{ position:relative; }
 .lb__next{ right:22px; top:50%; transform:translateY(-50%); }
 
 /* ============================================================
-   8) EL LUGAR HOY + UBICACIÓN
+   8) UBICACIÓN  ·  ahora vive dentro de la sección de contacto
    ============================================================ */
-.lugar{ background:var(--negro); }
-.lugar__head{ text-align:center; margin-bottom:clamp(36px,6vw,60px); }
-.mosaico{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:160px; gap:12px; grid-auto-flow:dense; }
-.mosaico figure{ position:relative; overflow:hidden; border-radius:10px; cursor:pointer; }
-.mosaico img{ width:100%; height:100%; object-fit:cover; transition:transform .9s ease; }
-.mosaico figure:hover img{ transform:scale(1.07); }
-.mosaico figcaption{ position:absolute; left:12px; bottom:10px; font-size:.66rem; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--crema); background:rgba(13,13,15,.5); padding:5px 10px; border-radius:100px;
-  backdrop-filter:blur(3px); }
-.m-wide{ grid-column:span 2; } .m-big{ grid-column:span 2; grid-row:span 2; }
-.ubic{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,48px); align-items:center; margin-top:56px; }
-.ubic__map{ border-radius:14px; overflow:hidden; border:1px solid var(--linea); min-height:340px; }
+.ubic{ display:grid; gap:20px; }
+.ubic__map{ border-radius:14px; overflow:hidden; border:1px solid var(--linea); min-height:300px; }
 .ubic__map iframe{ width:100%; height:100%; min-height:340px; border:0; filter:grayscale(.2) contrast(1.05); }
 .ubic h3{ font-family:var(--serif); font-size:clamp(1.8rem,4vw,2.8rem); margin:12px 0 16px; }
 .ubic p{ color:var(--crema-2); max-width:44ch; }
@@ -279,20 +316,10 @@ section{ position:relative; }
 .ubic li b{ color:var(--oro); font-weight:600; }
 
 /* ============================================================
-   9) CTA "¿QUÉ ESPERAS?"
-   ============================================================ */
-.cta{ position:relative; text-align:center; padding:clamp(80px,13vw,150px) 0; overflow:hidden; }
-.cta__bg{ position:absolute; inset:0; background:url('img/g5.jpg') center/cover; filter:brightness(.32) grayscale(.3); z-index:0; }
-.cta::before{ content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(169,127,44,.35), rgba(13,13,15,.6)); z-index:1; }
-.cta__inner{ position:relative; z-index:2; }
-.cta h2{ font-family:var(--serif); font-size:clamp(2.4rem,8vw,5rem); font-weight:700; line-height:1; }
-.cta p{ color:var(--crema-2); margin:18px auto 32px; max-width:40ch; }
-
-/* ============================================================
    10) FORMULARIO
    ============================================================ */
 .form{ background:var(--negro-2); }
-.form__grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,5vw,70px); align-items:center; }
+.form__grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,60px); align-items:start; }
 .form h2{ margin:14px 0 16px; }
 .form p{ color:var(--crema-2); max-width:42ch; }
 .form__box{ background:var(--carbon); border:1px solid var(--linea); border-radius:16px; padding:clamp(24px,4vw,40px); }
@@ -331,21 +358,17 @@ footer{ background:var(--negro); border-top:1px solid rgba(255,255,255,.06); pad
    ============================================================ */
 @media (max-width:900px){
   .intro__grid{ grid-template-columns:1fr; }
-  .amen__grid{ grid-template-columns:repeat(2,1fr); gap:14px; }
-  .gal__grid{ grid-template-columns:repeat(2,1fr); }
-  .mosaico{ grid-template-columns:repeat(2,1fr); grid-auto-rows:150px; }
-  .m-big{ grid-column:span 2; grid-row:span 2; }
-  .m-wide{ grid-column:span 2; }
-  .ubic{ grid-template-columns:1fr; }
+  .amen__grid{ grid-template-columns:repeat(3,1fr); gap:12px; }
   .form__grid{ grid-template-columns:1fr; }
 }
 @media (max-width:560px){
-  .amen__grid{ grid-template-columns:1fr; }
-  .card{ aspect-ratio:16/10; }
+  .amen__grid{ grid-template-columns:repeat(2,1fr); gap:10px; }
+  .card{ aspect-ratio:4/5; }
+  .card__t{ font-size:.95rem; }
+  .card__body{ padding:12px 12px 14px; }
   .card.open .card__d{ max-height:160px; }
-  .gal__grid{ grid-template-columns:1fr; }
-  .gal-item{ aspect-ratio:16/10; }
-  .mosaico{ grid-template-columns:repeat(2,1fr); grid-auto-rows:130px; }
+  .slide{ aspect-ratio:4/3; }
+  .visor__ctrl{ gap:14px; }
   nav .btn-nav{ display:none; }
   nav .btn-volver{ display:inline-block; font-size:.68rem; padding:9px 16px; }
   .hero__meta{ gap:16px; }
@@ -415,69 +438,67 @@ footer{ background:var(--negro); border-top:1px solid rgba(255,255,255,.06); pad
       <svg class="peak" viewBox="0 0 100 60"><path d="M50 4 L74 40 L64 40 L82 56 L18 56 L36 40 L26 40 Z"/></svg>
       <span class="eyebrow">Amenidades</span>
       <h2 class="titulo" style="margin-top:12px">Todo un mundo <span class="oro-text">para ti</span></h2>
-      <p style="color:var(--crema-2); max-width:52ch; margin:16px auto 0">Pasa el cursor sobre cada espacio <span style="color:var(--oro)">— o tócalo en tu celular —</span> para descubrirlo.</p>
+      <p style="color:var(--crema-2); max-width:52ch; margin:16px auto 0">Toque cada espacio para ver el detalle.</p>
     </div>
     <div class="amen__grid" id="amenGrid"></div>
-  </div>
-</section>
-
-<!-- ================= GALERÍA ================= -->
-<section class="gal pad">
-  <div class="wrap gal__head reveal">
-    <span class="eyebrow">Galería</span>
-    <h2 class="titulo" style="margin-top:12px">Así se <span class="oro-text">vive Le Mont</span></h2>
-  </div>
-  <div class="wrap"><div class="gal__grid" id="galGrid"></div></div>
-</section>
-
-<!-- ================= EL LUGAR HOY + UBICACIÓN ================= -->
-<section class="lugar pad" id="ubicacion">
-  <div class="wrap">
-    <div class="lugar__head reveal">
-      <span class="eyebrow">El lugar, hoy</span>
-      <h2 class="titulo" style="margin-top:12px">Un paisaje <span class="oro-text">real</span></h2>
-      <p style="color:var(--crema-2); max-width:52ch; margin:16px auto 0">Fotografías reales del terreno: las mismas vistas que tendrás desde tu lote.</p>
+    <!-- Amenidades secundarias como texto: no gastan una foto ni scroll.
+         Para agregar más, escriba otro <span class="chip">…</span> -->
+    <div class="chips reveal">
+      <span class="chip">Senderos ecológicos</span>
+      <span class="chip">Zona de fogata</span>
+      <span class="chip">Zonas verdes y descanso pasivo</span>
     </div>
+  </div>
+</section>
 
-    <div class="mosaico reveal d1" id="mosaico"></div>
+<!-- ================= VISOR ÚNICO: RENDERS + REALIDAD ================= -->
+<section class="visor pad" id="galeria">
+  <div class="wrap visor__head reveal">
+    <span class="eyebrow">Renders y fotos reales</span>
+    <h2 class="titulo" style="margin-top:12px">Así se <span class="oro-text">vive Le Mont</span></h2>
+    <p style="color:var(--crema-2); max-width:50ch; margin:16px auto 0">
+      Deslice de lado para recorrer el proyecto. Cada imagen indica si es un render o una fotografía del terreno hoy.
+    </p>
+    <div class="filtros" role="group" aria-label="Filtrar imágenes">
+      <button class="filtro on" data-f="todo">Todo</button>
+      <button class="filtro" data-f="render">Render</button>
+      <button class="filtro" data-f="real">Hoy</button>
+    </div>
+  </div>
 
-    <div class="ubic">
-      <div class="ubic__map reveal">
-        <iframe title="Ubicación Restrepo, Meta" loading="lazy" src="https://www.google.com/maps?q=Restrepo,+Meta,+Colombia&z=11&output=embed"></iframe>
-      </div>
-      <div class="reveal d1">
-        <span class="eyebrow">Ubicación</span>
-        <h3>Restrepo <span class="oro-text">— Medina</span></h3>
-        <p>Enclavado en las montañas del Meta, con vista al valle y a las luces de tres ciudades al caer la tarde.</p>
+  <div class="pista" id="pista"></div>
+
+  <div class="visor__ctrl">
+    <button class="flecha" id="visorPrev" aria-label="Imagen anterior">&#8249;</button>
+    <span class="contador" id="visorNum">1 / 10</span>
+    <button class="flecha" id="visorNext" aria-label="Imagen siguiente">&#8250;</button>
+  </div>
+</section>
+
+<!-- ================= UBICACIÓN + FORMULARIO (una sola sección) ================= -->
+<section class="form pad" id="contacto">
+  <div class="wrap" style="text-align:center; margin-bottom:clamp(34px,5vw,54px)">
+    <span class="eyebrow reveal">Restrepo &middot; Meta</span>
+    <h2 class="titulo reveal d1" style="margin-top:12px">Da el <span class="oro-text">primer paso</span></h2>
+    <p class="reveal d2" style="color:var(--crema-2); max-width:50ch; margin:16px auto 0">
+      Déjenos sus datos y un asesor le comparte precios, disponibilidad y formas de pago. Sin compromiso.
+    </p>
+  </div>
+
+  <div class="wrap form__grid">
+    <div class="reveal">
+      <div class="ubic">
+        <div class="ubic__map">
+          <iframe title="Ubicación Restrepo, Meta" loading="lazy"
+                  src="https://www.google.com/maps?q=Restrepo,+Meta,+Colombia&z=11&output=embed"></iframe>
+        </div>
         <ul>
-          <li><b>◆</b> A pocos minutos del casco urbano de Restrepo.</li>
-          <li><b>◆</b> Clima de montaña, aire limpio y silencio real.</li>
-          <li><b>◆</b> Lotes demarcados en terreno, listos para conocer.</li>
-          <li><b>◆</b> Escritura individual: el lote queda a tu nombre.</li>
+          <li><b>&#9670;</b> En las montañas de Restrepo, con vista al valle y a las luces de tres ciudades.</li>
+          <li><b>&#9670;</b> Lotes ya demarcados en terreno: puede ir y conocerlos.</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ================= CTA ================= -->
-<section class="cta">
-  <div class="cta__bg"></div>
-  <div class="cta__inner wrap reveal">
-    <h2>¿Qué esperas?</h2>
-    <p>Los mejores lotes se reservan primero. Déjanos tus datos y un asesor te contacta.</p>
-    <a class="hero__cta" href="#contacto" style="animation:none; opacity:1">Quiero mi lote</a>
-  </div>
-</section>
-
-<!-- ================= FORMULARIO ================= -->
-<section class="form pad" id="contacto">
-  <div class="wrap form__grid">
-    <div class="reveal">
-      <span class="eyebrow">Contacto</span>
-      <h2 class="titulo" style="margin-top:12px">Da el <span class="oro-text">primer paso</span></h2>
-      <p>Completa el formulario y recibe la información de precios, disponibilidad y formas de pago de Le Mont Reserve. Sin compromiso.</p>
-    </div>
     <div class="form__box reveal d1">
       <form id="leadForm" novalidate>
         <div class="campo">
@@ -508,8 +529,10 @@ footer{ background:var(--negro); border-top:1px solid rgba(255,255,255,.06); pad
 <footer>
   <div class="wrap">
     <img class="foot__logo" src="img/logo-dark.png" alt="Le Mont Reserve" />
-    <!--<p class="foot__k">Un proyecto de</p>
-    <div class="foot__aliados"><img src="img/aliados.jpg" alt="DCH Grupo Empresarial · Alianza Empresarial" /></div><!--
+    <!-- Bloque de aliados desactivado. Para reactivarlo, borre esta línea y la del cierre.
+    <p class="foot__k">Un proyecto de</p>
+    <div class="foot__aliados"><img src="img/aliados.jpg" alt="DCH Grupo Empresarial · Alianza Empresarial" /></div>
+    -->
     <p class="foot__slogan">“Tres ciudades a tus pies, un mundo para ti.”</p>
     <p class="foot__copy">© 2026 Le Mont Reserve · Restrepo, Meta · DCH Grupo Empresarial S.A.S. · Alianza Empresarial</p>
   </div>
@@ -536,26 +559,26 @@ const AMENIDADES = [
     d:'Juegos seguros y coloridos donde los niños crecen jugando en plena naturaleza.',
     icon:'<path d="M12 4v16M5 20l7-8 7 8M9 8h6"/>' },
   { img:'img/am-hamacas.jpg', k:'Descanso', t:'Zona de hamacas',
-    d:'Un rincón de sombra entre árboles para desconectarte del ruido y no hacer nada.',
+    d:'Un rincón de sombra entre árboles para desconectarte del ruido.',
     icon:'<path d="M3 9c6 6 12 6 18 0M4 9v3M20 9v3"/>' },
-  { img:'img/am-fogata.jpg', k:'Encuentro', t:'Zona de fogata',
-    d:'Reúnete alrededor del fuego, bajo un cielo lleno de estrellas.',
-    icon:'<path d="M12 3c3 3 4 6 1 9 2 0 3-1 3-3 2 3 1 8-4 9-5-1-6-6-3-9 0 2 1 3 2 3-2-3-1-6 2-9z"/>' },
-  { img:'img/am-mirador.jpg', k:'Panorámica', t:'Mirador',
-    d:'Un punto para contemplar el valle y los atardeceres que definen a Le Mont.',
+  { img:'img/am-fogata.jpg', k:'Panorámica', t:'Mirador al valle',
+    d:'El punto alto del proyecto: desde aquí se ven los atardeceres que definen a Le Mont.',
     icon:'<path d="M3 18l6-9 4 5 3-4 5 8zM8 7a1 1 0 100-.01"/>' },
-  { img:'img/am-senderos.jpg', k:'Naturaleza', t:'Zonas con senderos',
-    d:'Senderos ecológicos rodeados de verde que conectan cada zona del proyecto.',
-    icon:'<path d="M7 20c0-8 10-8 10-16M7 8h.01M15 16h.01"/>' },
 ];
-const GALERIA = ['img/g1.jpg','img/g2.jpg','img/g3.jpg','img/g4.jpg','img/g5.jpg','img/hero.jpg'];
-const MOSAICO = [
-  { img:'img/real-05-land.jpg', cap:'Vista al valle',  cls:'m-big'  },
-  { img:'img/real-01-port.jpg', cap:'El terreno',      cls:''       },
-  { img:'img/real-03-port.jpg', cap:'Lotes demarcados',cls:''       },
-  { img:'img/real-06-land.jpg', cap:'Montañas',        cls:'m-wide' },
-  { img:'img/real-08-land.jpg', cap:'Ingreso',         cls:'m-wide' },
-  { img:'img/real-02-port.jpg', cap:'Naturaleza',      cls:'m-wide' },
+/* Una sola lista para todo el visor.
+   tipo:'render' = imagen de diseño   ·   tipo:'real' = fotografía del terreno
+   Para quitar una imagen del sitio, basta con borrar su línea de aquí. */
+const MEDIA = [
+  { img:'img/g1.jpg',           cap:'El proyecto en su conjunto',   tipo:'render' },
+  { img:'img/g2.jpg',           cap:'Zonas comunes',                tipo:'render' },
+  { img:'img/g3.jpg',           cap:'Vivienda campestre',           tipo:'render' },
+  { img:'img/g4.jpg',           cap:'Diseño del entorno',           tipo:'render' },
+  { img:'img/real-05-land.jpg', cap:'Vista al valle',               tipo:'real'   },
+  { img:'img/real-01-port.jpg', cap:'El terreno',                   tipo:'real'   },
+  { img:'img/real-03-port.jpg', cap:'Lotes demarcados',             tipo:'real'   },
+  { img:'img/real-06-land.jpg', cap:'Las montañas de Restrepo',     tipo:'real'   },
+  { img:'img/real-08-land.jpg', cap:'Vía de ingreso',               tipo:'real'   },
+  { img:'img/real-02-port.jpg', cap:'Naturaleza alrededor',         tipo:'real'   },
 ];
 
 /* ---- Construir amenidades ---- */
@@ -581,22 +604,54 @@ AMENIDADES.forEach((a,i)=>{
   grid.appendChild(c);
 });
 
-/* ---- Construir galería (cuadrícula) ---- */
-const galGrid = document.getElementById('galGrid');
-GALERIA.forEach(src=>{
-  galGrid.insertAdjacentHTML('beforeend', `
-    <div class="gal-item zoomable" data-full="${src}">
-      <img src="${src}" alt="Render de Le Mont Reserve" loading="lazy" />
-      <div class="zoom"><span>Ver en grande</span></div>
-    </div>`);
-});
+/* ---- Construir el VISOR (carrusel horizontal con filtros) ---- */
+(function(){
+  const pista   = document.getElementById('pista');
+  const num     = document.getElementById('visorNum');
+  const GAP     = 14;               // el mismo gap del CSS .pista
+  let filtro    = 'todo';
 
-/* ---- Construir mosaico de fotos reales ---- */
-const mos = document.getElementById('mosaico');
-MOSAICO.forEach(m=>{
-  mos.insertAdjacentHTML('beforeend', `
-    <figure class="${m.cls} zoomable" data-full="${m.img}"><img src="${m.img}" alt="${m.cap}" loading="lazy" /><figcaption>${m.cap}</figcaption></figure>`);
-});
+  function pintar(){
+    const lista = MEDIA.filter(m => filtro === 'todo' || m.tipo === filtro);
+    pista.innerHTML = lista.map(m => `
+      <figure class="slide zoomable" data-full="${m.img}">
+        <span class="etq ${m.tipo}">${m.tipo === 'render' ? 'Render' : 'Hoy'}</span>
+        <img src="${m.img}" alt="${m.cap}" loading="lazy" />
+        <figcaption>${m.cap}</figcaption>
+      </figure>`).join('');
+    pista.scrollLeft = 0;
+    contar();
+  }
+
+  function contar(){
+    const s = pista.children;
+    if(!s.length){ num.textContent = '0 / 0'; return; }
+    const paso = s[0].offsetWidth + GAP;
+    const i = Math.round(pista.scrollLeft / paso) + 1;
+    num.textContent = Math.min(i, s.length) + ' / ' + s.length;
+  }
+
+  function mover(dir){
+    const s = pista.children;
+    if(!s.length) return;
+    pista.scrollBy({ left: dir * (s[0].offsetWidth + GAP), behavior:'smooth' });
+  }
+
+  document.getElementById('visorPrev').onclick = () => mover(-1);
+  document.getElementById('visorNext').onclick = () => mover(1);
+  pista.addEventListener('scroll', contar, { passive:true });
+
+  document.querySelectorAll('.filtro').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('.filtro').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      filtro = b.dataset.f;
+      pintar();
+    });
+  });
+
+  pintar();
+})();
 
 /* ============================================================
    INTERACCIONES
