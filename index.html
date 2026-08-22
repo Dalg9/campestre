@@ -134,6 +134,11 @@ nav .btn-nav:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(30,9
 .pcard.oculto{ display:none; }
 /* cabecera gráfica generada (sin foto): degradado + colinas SVG + inicial */
 .pcard__top{ position:relative; height:150px; overflow:hidden; }
+.pcard__img{ position:absolute; inset:0; background-size:cover; background-position:center; transform:scale(1.02); transition:transform .6s ease; }
+.pcard:hover .pcard__img{ transform:scale(1.09); }
+.pcard__ov{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,40,28,.12) 0%,rgba(20,40,28,.30) 45%,rgba(20,40,28,.72) 100%); }
+.pcard__logo{ position:absolute; left:16px; bottom:14px; height:36px; max-width:62%; object-fit:contain; filter:drop-shadow(0 2px 8px rgba(0,0,0,.55)); z-index:2; }
+.grid-uno{ grid-template-columns:1fr; max-width:460px; margin:0 auto; }
 .pcard__grad{ position:absolute; inset:0; }
 .pcard__hills{ position:absolute; left:0; right:0; bottom:-1px; }
 .pcard__sol{ position:absolute; top:22px; right:26px; width:44px; height:44px; border-radius:50%;
@@ -176,14 +181,14 @@ nav .btn-nav:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(30,9
 /* ============================================================
    PROCESO
    ============================================================ */
-.proc{ background:var(--verde); color:var(--crema); }
+.proc{ background:#fff; color:var(--tinta); border-top:1px solid var(--linea); }
 .proc__head{ text-align:center; margin-bottom:clamp(40px,6vw,60px); }
-.proc__head .titulo{ color:#fff; }
+.proc__head .titulo{ color:var(--tinta); }
 .pasos{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
 .paso{ position:relative; padding:24px; }
-.paso__n{ font-family:var(--serif); font-size:2.6rem; font-weight:700; color:rgba(154,194,98,.55); line-height:1; }
-.paso h3{ font-family:var(--serif); font-size:1.15rem; font-weight:600; margin:10px 0 8px; color:#fff; }
-.paso p{ font-size:.88rem; color:rgba(247,244,236,.78); }
+.paso__n{ font-family:var(--serif); font-size:2.6rem; font-weight:700; line-height:1; background:var(--grad-sol); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.paso h3{ font-family:var(--serif); font-size:1.15rem; font-weight:600; margin:10px 0 8px; color:var(--verde); }
+.paso p{ font-size:.88rem; color:var(--tinta-2); }
 
 /* ============================================================
    FORMULARIO
@@ -273,9 +278,22 @@ body.anim .reveal.in{ opacity:1; transform:none; }
 #puerta{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center;
   padding:20px; overflow-y:auto; background:rgba(22,40,29,.52);
   -webkit-backdrop-filter:blur(12px) saturate(1.06); backdrop-filter:blur(12px) saturate(1.06);
-  opacity:1; transition:opacity .55s ease; }
+  opacity:0; pointer-events:none; transition:opacity .45s ease; }
+#puerta.abierta{ opacity:1; pointer-events:auto; }
 #puerta.oculta{ opacity:0; pointer-events:none; }
 body.bloqueado{ overflow:hidden; }
+#bloqueo{ position:relative; }
+body.visitante #bloqueo{ max-height:420px; overflow:hidden; }
+body.visitante #bloqueo .bloqueo-inner{ filter:blur(7px); opacity:.55; pointer-events:none; user-select:none; }
+#bloqueo .bloqueo-cta{ display:none; }
+body.visitante #bloqueo .bloqueo-cta{ display:flex; position:absolute; inset:0; z-index:5; align-items:center; justify-content:center; padding:16px; }
+body.visitante #bloqueo .bloqueo-cta::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(237,231,215,.15) 0%,rgba(237,231,215,.8) 45%,var(--crema-2) 100%); }
+.cta-card{ position:relative; background:#fff; border:1px solid var(--linea); border-radius:18px; box-shadow:0 20px 50px rgba(22,40,29,.16); padding:26px 28px; text-align:center; max-width:440px; }
+.cta-card .lock{ width:48px; height:48px; border-radius:13px; background:var(--crema); display:grid; place-items:center; margin:0 auto 12px; }
+.cta-card .lock svg{ width:24px; height:24px; stroke:var(--verde-2); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.cta-card h3{ font-family:var(--serif); font-weight:600; font-size:1.3rem; margin-bottom:7px; line-height:1.2; }
+.cta-card p{ font-size:.86rem; color:var(--tinta-2); margin-bottom:16px; }
+.btn-abrir{ padding:13px 28px; border-radius:100px; background:var(--grad-sol); color:#fff; font-family:var(--sans); font-weight:700; font-size:.94rem; border:none; cursor:pointer; box-shadow:0 12px 30px rgba(232,121,47,.3); }
 
 .puerta-caja{ width:100%; max-width:430px; margin:auto; border-radius:20px;
   padding:clamp(24px,5vw,34px) clamp(20px,4.5vw,30px);
@@ -283,8 +301,9 @@ body.bloqueado{ overflow:hidden; }
   -webkit-backdrop-filter:blur(20px) saturate(1.2); backdrop-filter:blur(20px) saturate(1.2);
   border:1px solid rgba(255,255,255,.26);
   box-shadow:0 24px 60px rgba(0,0,0,.28); color:#fff; }
-.puerta-marca{ display:flex; align-items:center; gap:10px; margin-bottom:18px; }
-.puerta-marca img{ height:34px; width:auto; }
+.puerta-marca{ display:none; }
+.puerta-caja{ position:relative; }
+#puerta-cerrar{ position:absolute; top:12px; right:14px; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.24); background:rgba(255,255,255,.08); color:#fff; font-size:20px; line-height:1; cursor:pointer; display:grid; place-items:center; }
 .puerta-caja .ojo{ display:block; font-size:.68rem; letter-spacing:.26em; text-transform:uppercase;
   color:rgba(255,255,255,.72); font-weight:700; margin-bottom:10px; }
 .puerta-caja h2{ font-family:var(--serif); font-weight:500; line-height:1.14;
@@ -324,13 +343,10 @@ body.bloqueado{ overflow:hidden; }
 <!-- ===================== PUERTA DE DATOS ===================== -->
 <div id="puerta">
   <div class="puerta-caja">
-    <div class="puerta-marca">
-      <img src="img/logo-alianza.png" alt="Alianza Empresarial" />
-    </div>
-
-    <span class="ojo">Acceso al portafolio</span>
-    <h2>Antes de entrar,<br>cuéntanos quién eres</h2>
-    <p class="sub">Déjanos tus datos y verás todos los proyectos, amenidades y condiciones de pago. Toma 20 segundos.</p>
+    <button type="button" id="puerta-cerrar" aria-label="Cerrar">&times;</button>
+    <span class="ojo">Acceso al portafolio completo</span>
+    <h2>Ve todo y recibe<br>el catálogo</h2>
+    <p class="sub">Déjanos tus datos y al instante ves todos los proyectos. Además te enviamos el catálogo con <b>precios y formas de pago</b>, los planos del proyecto que te interese, y un asesor te contacta.</p>
 
     <div class="puerta-campos">
       <input type="text"  id="p-nombre"   placeholder="Nombre completo" autocomplete="name" />
@@ -343,7 +359,7 @@ body.bloqueado{ overflow:hidden; }
       <label for="p-autorizo">Autorizo a Alianza Empresarial a contactarme y a tratar mis datos personales conforme a la <a href="#" target="_blank">política de privacidad</a> (Ley 1581 de 2012).</label>
     </div>
 
-    <button type="button" id="puerta-btn">Ver los proyectos &nbsp;&rarr;</button>
+    <button type="button" id="puerta-btn">Ver todo y recibir el catálogo &nbsp;&rarr;</button>
 
     <div id="puerta-msg"></div>
 
@@ -355,15 +371,15 @@ body.bloqueado{ overflow:hidden; }
 </div>
 
 <script>
-/* Si ya se registró antes, quitamos la puerta antes de que se vea */
 (function(){
   try{
     if(localStorage.getItem('ae_registro')==='ok'){
+      document.body.classList.add('acceso-total');
       var p=document.getElementById('puerta'); if(p) p.remove();
-    } else {
-      document.body.classList.add('bloqueado');
-    }
-  }catch(e){ document.body.classList.add('bloqueado'); }
+      var b=document.getElementById('bloqueo');
+      if(b){ b.querySelector('.bloqueo-cta').style.display='none'; b.style.maxHeight='none'; b.style.overflow='visible'; b.querySelector('.bloqueo-inner').style.cssText='filter:none;opacity:1;pointer-events:auto'; }
+    } else { document.body.classList.add('visitante'); }
+  }catch(e){ document.body.classList.add('visitante'); }
 })();
 </script>
 
@@ -377,7 +393,7 @@ body.bloqueado{ overflow:hidden; }
     <span class="sep"></span>
    <!-- <span class="txt">Tu Inmueble 360</span> -->
   </a>
-  <a class="btn-nav" href="#formulario">Quiero información</a>
+  <a class="btn-nav" href="#" data-abrir-puerta>Quiero información</a>
 </nav>
 
 <!-- ===================== HERO ===================== -->
@@ -430,11 +446,7 @@ body.bloqueado{ overflow:hidden; }
     <h1>Tu pedazo de Llano,<br><em>con escritura propia.</em></h1>
     <p>Invierte en un lote campestre cerca de Villavicencio, rodeado de naturaleza y con la tranquilidad de una escritura individual a tu nombre.</p>
     <a class="hero__cta" href="#proyectos">Ver proyectos disponibles →</a>
-    <div class="hero__chips">
-      <span>✔ Escritura individual</span>
-      <span>📈 Alta valorización</span>
-      <span>🏦 Financiación directa</span>
-    </div>
+
   </div>
 </header>
 
@@ -448,33 +460,6 @@ body.bloqueado{ overflow:hidden; }
   </div>
 </section>
 
-<!-- ===================== VENTAJAS ===================== -->
-<section class="benef pad">
-  <div class="wrap">
-    <div class="benef__head reveal">
-      <span class="eyebrow">¿Por qué un lote campestre?</span>
-      <h2 class="titulo" style="margin-top:12px">Una inversión que <span class="verde-text">crece contigo</span></h2>
-    </div>
-    <div class="benef__grid">
-      <div class="bcard reveal">
-        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M4 8l8-5 8 5v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M9 21v-6h6v6"/></svg></div>
-        <h3>Escritura individual</h3><p>El lote queda legalmente a tu nombre, con título propio y seguridad jurídica.</p>
-      </div>
-      <div class="bcard reveal d1">
-        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
-        <h3>Alta valorización</h3><p>Zonas en desarrollo con obras de infraestructura que hacen crecer tu inversión.</p>
-      </div>
-      <div class="bcard reveal d2">
-        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M3 10h18M6 6h12l3 4H3z"/><path d="M4 10v8h16v-8M9 18v-4h6v4"/></svg></div>
-        <h3>Financiación directa</h3><p>Cuotas cómodas con la constructora, sin trámites bancarios complicados.</p>
-      </div>
-      <div class="bcard reveal d3">
-        <div class="bcard__ic"><svg viewBox="0 0 24 24"><path d="M12 22c5-4 8-8 8-12a8 8 0 10-16 0c0 4 3 8 8 12z"/><path d="M12 3c-2 4-2 8 0 15 2-7 2-11 0-15z"/></svg></div>
-        <h3>Rodeado de naturaleza</h3><p>Aire limpio, verde y tranquilidad a pocos minutos de la ciudad.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===================== EXPLORADOR DE PROYECTOS ===================== -->
 <section class="proy pad" id="proyectos">
@@ -484,27 +469,18 @@ body.bloqueado{ overflow:hidden; }
       <h2 class="titulo" style="margin-top:12px">Encuentra tu <span class="sol-text">lugar ideal</span></h2>
       <p style="color:var(--tinta-2); max-width:52ch; margin:14px auto 0">Filtra por zona y descubre el proyecto que más se ajusta a ti. Todos con escritura individual.</p>
     </div>
-    <div class="filtros" id="filtros"></div>
+    <div class="filtros" id="filtros" style="display:none"></div>
     <div class="grid-proy" id="gridProy"></div>
   </div>
 </section>
 
-<!-- ===================== AMENIDADES ===================== -->
-<section class="amen pad">
-  <div class="wrap">
-    <div class="amen__head reveal">
-      <span class="eyebrow">Amenidades</span>
-      <h2 class="titulo" style="margin-top:12px">Vive con todas las <span class="verde-text">comodidades</span></h2>
-    </div>
-    <div class="amen__grid" id="amenGrid"></div>
-  </div>
-</section>
 
+<div id="bloqueo"><div class="bloqueo-inner">
 <!-- ===================== PROCESO ===================== -->
 <section class="proc pad">
   <div class="wrap">
     <div class="proc__head reveal">
-      <span class="eyebrow" style="color:var(--lima)">Es muy fácil</span>
+      <span class="eyebrow" style="color:var(--sol-2)">Es muy fácil</span>
       <h2 class="titulo" style="margin-top:12px">Tu lote en 4 pasos</h2>
     </div>
     <div class="pasos">
@@ -606,6 +582,9 @@ body.bloqueado{ overflow:hidden; }
     <div class="foot-copy">© 2026 Alianza Empresarial · Tu Inmueble 360 · Lotes campestres con escritura individual</div>
   </div>
 </footer>
+</div>
+<div class="bloqueo-cta"><div class="cta-card"><div class="lock"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Desbloquea el portafolio completo</h3><p>Registra tus datos para ver todos los proyectos, precios, formas de pago y planos.</p><button type="button" class="btn-abrir" data-abrir-puerta>Registrar mis datos</button></div></div>
+</div>
 
 <script>
 /* ============================================================
@@ -615,54 +594,34 @@ body.bloqueado{ overflow:hidden; }
    ============================================================ */
 const PROYECTOS = [
   { nom:'Le Mont Reserve', zona:'Restrepo', lugar:'Restrepo – Medina, Meta', tipo:'Parcelación', hue:42, destacado:true,
+    foto:'lemont/img/hero.jpg', logo:'lemont/img/logo-light.png',
     url:'lemont/',   /* <-- página propia de Le Mont. Si la subes a OTRO repositorio,
                             cambia esta línea por: url:'https://dalg9.github.io/lemont/' */
     datos:['116 lotes campestres','Mirador panorámico y senderos','Zonas de hamacas y fogata'],
     amen:['Mirador','Senderos','Gimnasio','Parque infantil'], entrega:'Escritura individual' },
   { nom:'Condominio Santorini Reservado', zona:'Restrepo', lugar:'Restrepo, Meta · Vereda Los Medios', tipo:'Condominio', hue:200,
+    foto:'santorini/img/portada.jpg', logo:'santorini/img/logo-santorini.png',
     url:'santorini/',   /* página propia. En OTRO repositorio: 'https://dalg9.github.io/santorini/' */
     datos:['59 parcelas de 515, 1.100 y 2.200 m²','Ingreso por vía pavimentada','Salón social de 90 m²'],
     amen:['Salón social','Fútbol 5','Parques infantiles','Fuente hídrica'], entrega:'Escritura individual' },
   { nom:'Los Chíguiros Club Campestre', zona:'Villavicencio', lugar:'Villavicencio · Vía Puerto López', tipo:'Club campestre', hue:22,
+    foto:'chiguiros/img/hero.jpg', logo:'chiguiros/img/logo-ch-crema.png',
     url:'chiguiros/',   /* página propia. En OTRO repositorio: 'https://dalg9.github.io/chiguiros/' */
     datos:['Etapa Flor Morado con escritura individual','Club con piscina de 100 m² y laguna','6 zonas sociales y sendero ecológico'],
     amen:['Laguna','Tenis','Piscina','Squash'], entrega:'Escritura individual' },
   { nom:'Hacienda Inglesa', zona:'Villavicencio', lugar:'Vía Villavicencio – Puerto López km 24', tipo:'Club campestre', hue:155,
+    foto:'hacienda-inglesa/img/hero.jpg', logo:'hacienda-inglesa/img/logo-hi-crema.png',
     url:'hacienda-inglesa/',   /* página propia. En OTRO repositorio: 'https://dalg9.github.io/hacienda-inglesa/' */
     datos:['86 lotes campestres + 4 comerciales','A solo 15 minutos de Villavicencio','Club con piscina y salón de eventos'],
     amen:['Piscina','Cancha múltiple','Cabañas','Sendero'], entrega:'Escritura individual' },
 ];
 
-const AMENIDADES = [
-  { t:'Piscina', ic:'<path d="M3 18c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M7 14V5a2 2 0 014 0M13 14V5a2 2 0 014 0"/>' },
-  { t:'Gimnasio biosaludable', ic:'<path d="M4 12h16M7 8v8M17 8v8M3 10v4M21 10v4"/>' },
-  { t:'Parque infantil', ic:'<path d="M5 20l3-9 3 9M6 14h4M15 20V8M13 8h6l-3 5z"/>' },
-  { t:'Cancha de fútbol', ic:'<circle cx="12" cy="12" r="9"/><path d="M12 8l3 2-1 4h-4l-1-4z"/>' },
-  { t:'Senderos ecológicos', ic:'<path d="M8 21c0-8 8-8 8-16M8 9h.01M14 15h.01"/>' },
-  { t:'Portería 24/7', ic:'<path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6"/>' },
-  { t:'Avistamiento de aves', ic:'<path d="M3 8q6-6 12 0M9 8v6a3 3 0 006 0M17 6l4-2-2 4"/>' },
-  { t:'Bahías de parqueo', ic:'<path d="M6 20V8h6a3 3 0 010 6H6M4 20h4M16 20h4"/>' },
-];
-
-/* ---- construir amenidades ---- */
-const ag = document.getElementById('amenGrid');
-AMENIDADES.forEach((a,i)=>{
-  ag.insertAdjacentHTML('beforeend',
-    `<div class="acard reveal ${i%4===1?'d1':i%4===2?'d2':i%4===3?'d3':''}">
-       <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">${a.ic}</svg>
-       <span>${a.t}</span></div>`);
-});
 
 /* ---- cabecera gráfica generada por proyecto (sin foto) ---- */
-function cabecera(hue){
-  const g = `linear-gradient(135deg, hsl(${hue}, 45%, 52%), hsl(${(hue+34)%360}, 52%, 38%))`;
-  return `
-    <div class="pcard__grad" style="background:${g}"></div>
-    <svg class="pcard__hills" viewBox="0 0 400 90" preserveAspectRatio="none" width="100%" height="90">
-      <path d="M0 60 Q100 35 200 55 T400 50 V90 H0Z" fill="rgba(255,255,255,.16)"/>
-      <path d="M0 74 Q120 52 250 70 T400 66 V90 H0Z" fill="rgba(255,255,255,.28)"/>
-    </svg>
-    <div class="pcard__sol"></div>`;
+function cabecera(p){
+  if(p.foto) return '<div class="pcard__img" style="background-image:url('+p.foto+')"></div><div class="pcard__ov"></div>'+(p.logo?'<img class="pcard__logo" src="'+p.logo+'" alt="'+p.nom+'">':'');
+  var g='linear-gradient(135deg,hsl('+p.hue+',45%,52%),hsl('+((p.hue+34)%360)+',52%,38%))';
+  return '<div class="pcard__grad" style="background:'+g+'"></div><span class="pcard__ini">'+p.nom[0]+'</span>';
 }
 
 /* ---- construir tarjetas de proyectos ---- */
@@ -677,8 +636,7 @@ function pintar(lista){
       <article class="pcard reveal ${i%3===1?'d1':i%3===2?'d2':''}" data-proyecto="${p.nom}" data-url="${p.url||''}">
         ${dtag}
         <div class="pcard__top">
-          ${cabecera(p.hue)}
-          <span class="pcard__ini">${p.nom[0]}</span>
+          ${cabecera(p)}
           <span class="pcard__badge">${p.tipo}</span>
         </div>
         <div class="pcard__body">
@@ -696,10 +654,10 @@ function pintar(lista){
         </div>
       </article>`);
   });
-  // revelar las tarjetas de forma escalonada (garantiza que SIEMPRE se vean)
   requestAnimationFrame(()=>{
     document.querySelectorAll('.grid-proy .reveal').forEach((e,i)=> setTimeout(()=>e.classList.add('in'), 55*i));
   });
+  aplicarMuro();
   document.querySelectorAll('.pcard').forEach(c=>{
     c.addEventListener('click', e=>{
       // el botón "Me interesa" lleva al formulario, aunque el proyecto tenga página propia
@@ -713,6 +671,13 @@ function pintar(lista){
     });
   });
 }
+const PROYECTO_VISIBLE='Condominio Santorini Reservado';
+function tieneAcceso(){try{return localStorage.getItem('ae_registro')==='ok'}catch(e){return false}}
+function aplicarMuro(){var g=document.getElementById('gridProy'),c=[...g.querySelectorAll('.pcard')];if(tieneAcceso()){document.body.classList.remove('visitante');document.body.classList.add('acceso-total');g.classList.remove('grid-uno');return}c.forEach(x=>{if(x.dataset.proyecto!==PROYECTO_VISIBLE)x.style.display='none'});g.classList.add('grid-uno')}
+function abrirPuerta(){var p=document.getElementById('puerta');if(!p)return;p.classList.add('abierta');document.body.classList.add('bloqueado');var f=document.getElementById('p-nombre');if(f)setTimeout(()=>f.focus(),250)}
+function cerrarPuerta(){var p=document.getElementById('puerta');if(!p)return;p.classList.remove('abierta');document.body.classList.remove('bloqueado')}
+document.addEventListener('click',e=>{if(e.target.closest('[data-abrir-puerta]')){e.preventDefault();abrirPuerta()}if(e.target.closest('#puerta-cerrar')){e.preventDefault();cerrarPuerta()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarPuerta()});
 
 /* ---- filtros por zona ---- */
 const zonas = ['Todos', ...new Set(PROYECTOS.map(p=>p.zona))];
@@ -847,9 +812,13 @@ function msg(t,tipo){ mensaje.className='mensaje mensaje--'+(tipo==='ok'?'ok':'e
   function pm(t, tipo){ pmsg.className = tipo; pmsg.textContent = t; }
 
   function abrir(){
-    puerta.classList.add('oculta');
-    document.body.classList.remove('bloqueado');
-    setTimeout(()=>puerta.remove(), 600);
+    puerta.classList.remove('abierta');puerta.classList.add('oculta');
+    document.body.classList.remove('bloqueado','visitante');document.body.classList.add('acceso-total');
+    document.querySelectorAll('#gridProy .pcard').forEach(c=>c.style.display='');
+    document.getElementById('gridProy').classList.remove('grid-uno');
+    var bl=document.getElementById('bloqueo');
+    if(bl){bl.style.maxHeight='none';bl.style.overflow='visible';bl.querySelector('.bloqueo-cta').style.display='none';bl.querySelector('.bloqueo-inner').style.cssText='filter:none;opacity:1;pointer-events:auto'}
+    setTimeout(()=>puerta.remove(),600);
   }
 
   bp.addEventListener('click', async ()=>{
