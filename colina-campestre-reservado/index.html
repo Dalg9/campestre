@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colina Campestre Reservado — Lotes campestres con escritura individual | Restrepo, Meta</title>
+<meta name="description" content="33 lotes campestres desde 500 m² con escritura individual en Restrepo, Meta. Etapa única en parcelación campestre con piscina, senderos y zonas deportivas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════ TOKENS — colores medidos del archivo del logo ══════════ */
+:root{
+  --oliva:#3d4536;
+  --crema-logo:#ecd8a6;
+  --oliva-hondo:#2b3126;
+  --oliva-claro:#525b48;
+  --hueso:#faf8f2;
+  --blanco:#ffffff;
+  --tinta:#22261c;
+  --gris:#6b6f62;
+  --linea:#e2ded0;
+  --ff-d:'Cormorant Garamond',Georgia,serif;
+  --ff-b:'Karla',system-ui,sans-serif;
+  --ancho:1120px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--ff-b);color:var(--tinta);background:var(--hueso);line-height:1.65;overflow-x:hidden;font-weight:400}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--crema-logo);color:var(--oliva)}
+
+/* ══════════ BARRA DE PROGRESO ══════════ */
+#progreso{position:fixed;top:0;left:0;height:2px;width:0;background:var(--crema-logo);z-index:9999;transition:width .1s linear}
+
+/* ══════════ NAV ══════════ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:14px 0;transition:background .4s,padding .4s,box-shadow .4s}
+#nav.solido{background:rgba(43,49,38,.96);backdrop-filter:blur(10px);padding:9px 0;box-shadow:0 1px 18px rgba(0,0,0,.28)}
+.envoltura{max-width:var(--ancho);margin:0 auto;padding:0 24px}
+.nav-fila{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-marca{height:38px;width:auto;transition:height .4s}
+#nav.solido .nav-marca{height:32px}
+.nav-liga{display:flex;align-items:center;gap:18px}
+.volver{font-size:.76rem;color:rgba(255,255,255,.72);letter-spacing:.02em;transition:color .3s}
+.volver:hover{color:var(--crema-logo)}
+.btn-nav{font-size:.76rem;font-weight:600;letter-spacing:.06em;color:var(--oliva);background:var(--crema-logo);padding:9px 20px;border-radius:2px;transition:background .3s,transform .2s}
+.btn-nav:hover{background:#fff;transform:translateY(-1px)}
+@media(max-width:640px){.volver{display:none}.nav-marca{height:30px}}
+
+/* ══════════ PORTADA ══════════ */
+#portada{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--oliva-hondo)}
+#portada-fondo{position:absolute;inset:0;background:url('img/render-club.jpg') center/cover no-repeat;transform:scale(1.06);will-change:transform}
+#portada::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(34,38,28,.62),rgba(34,38,28,.46) 45%,rgba(34,38,28,.9))}
+.portada-cont{position:relative;z-index:3;padding:110px 24px 84px;max-width:760px}
+.marca{width:clamp(140px,22vw,188px);margin:0 auto 30px;filter:drop-shadow(0 4px 20px rgba(0,0,0,.45))}
+#portada h1{font-family:var(--ff-d);font-weight:300;font-size:clamp(2.3rem,6.2vw,4rem);line-height:1.08;color:#fff;letter-spacing:-.01em}
+#portada h1 em{font-style:italic;color:var(--crema-logo);font-weight:400}
+.linea-oro{width:52px;height:1px;background:var(--crema-logo);margin:26px auto}
+.portada-sub{color:rgba(255,255,255,.8);font-size:.97rem;font-weight:300;max-width:490px;margin:0 auto;letter-spacing:.01em}
+.datos-clave{display:flex;justify-content:center;gap:clamp(22px,6vw,54px);margin:38px 0 34px;flex-wrap:wrap}
+.dato b{display:block;font-family:var(--ff-d);font-size:clamp(1.7rem,4.5vw,2.4rem);font-weight:400;color:var(--crema-logo);line-height:1}
+.dato span{display:block;font-size:.66rem;letter-spacing:.19em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:7px}
+.btn-portada{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--oliva);background:var(--crema-logo);padding:15px 40px;border-radius:2px;transition:background .3s,transform .25s}
+.btn-portada:hover{background:#fff;transform:translateY(-2px)}
+.flecha-scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.5);font-size:1.3rem;animation:flota 2.4s ease-in-out infinite}
+@keyframes flota{0%,100%{transform:translate(-50%,0);opacity:.5}50%{transform:translate(-50%,9px);opacity:1}}
+
+/* ══════════ SECCIONES ══════════ */
+.seccion{padding:clamp(64px,9vw,104px) 0}
+.eyebrow{display:block;font-size:.66rem;font-weight:600;letter-spacing:.21em;text-transform:uppercase;color:var(--oliva-claro);margin-bottom:14px}
+.titulo{font-family:var(--ff-d);font-weight:300;font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:20px}
+.titulo em{font-style:italic;color:var(--oliva);font-weight:400}
+.parrafo{font-size:.95rem;font-weight:300;color:var(--gris);max-width:560px;line-height:1.8}
+
+/* ── Bienvenida ── */
+.bienvenida{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
+.bienvenida-foto{border-radius:2px;overflow:hidden}
+.bienvenida-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.3,1)}
+.bienvenida-foto:hover img{transform:scale(1.05)}
+.contadores{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 20px;margin-top:36px;padding-top:30px;border-top:1px solid var(--linea)}
+.cont-caja b{display:block;font-family:var(--ff-d);font-size:1.85rem;font-weight:400;color:var(--oliva);line-height:1}
+.cont-caja span{display:block;font-size:.72rem;color:var(--gris);margin-top:5px;letter-spacing:.02em}
+@media(max-width:760px){.bienvenida{grid-template-columns:1fr}}
+
+
+/* ══════════ AMENIDADES ══════════ */
+.rejilla-amenidades{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;margin-top:40px}
+.tarjeta-am{position:relative;overflow:hidden;border-radius:2px;aspect-ratio:5/4;cursor:pointer;outline:none}
+.tarjeta-am:focus-visible{box-shadow:0 0 0 3px var(--crema-logo)}
+.tarjeta-am img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.3,1),filter .45s}
+.tarjeta-am::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(34,38,28,.92) 0%,rgba(34,38,28,.26) 46%,transparent 72%);opacity:.55;transition:opacity .45s}
+.tarjeta-am:hover img,.tarjeta-am:focus img,.tarjeta-am.viva img{transform:scale(1.07);filter:brightness(.7)}
+.tarjeta-am:hover::after,.tarjeta-am:focus::after,.tarjeta-am.viva::after{opacity:1}
+.am-texto{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px 15px;transform:translateY(14px);transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.tarjeta-am:hover .am-texto,.tarjeta-am:focus .am-texto,.tarjeta-am.viva .am-texto{transform:translateY(0)}
+.am-texto h3{font-family:var(--ff-d);font-weight:400;font-size:1.14rem;color:var(--crema-logo);line-height:1.2}
+.am-texto p{font-size:.74rem;font-weight:300;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.55;max-height:0;opacity:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease}
+.tarjeta-am:hover .am-texto p,.tarjeta-am:focus .am-texto p,.tarjeta-am.viva .am-texto p{max-height:120px;opacity:1}
+.fichas{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}
+.ficha{font-size:.76rem;font-weight:400;color:var(--oliva);border:1px solid var(--linea);background:var(--blanco);padding:8px 15px;border-radius:40px;letter-spacing:.01em}
+
+/* ══════════ VISOR ══════════ */
+.visor-cab{text-align:center;max-width:660px;margin:0 auto}
+.visor-cab .parrafo{margin:0 auto}
+.filtros{display:flex;justify-content:center;gap:8px;margin-top:26px;flex-wrap:wrap}
+.filtro{font-size:.74rem;font-weight:500;letter-spacing:.05em;color:var(--gris);background:none;border:1px solid var(--linea);padding:8px 20px;border-radius:40px;transition:all .3s}
+.filtro:hover{border-color:var(--oliva-claro);color:var(--oliva)}
+.filtro.on{background:var(--oliva);border-color:var(--oliva);color:#fff}
+.pista{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:38px 24px 12px;scrollbar-width:none;-ms-overflow-style:none}
+.pista::-webkit-scrollbar{display:none}
+.lam{flex:0 0 clamp(280px,58vw,620px);scroll-snap-align:center;position:relative;cursor:zoom-in;border-radius:2px;overflow:hidden;background:var(--linea)}
+.lam img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform .7s}
+.lam:hover img{transform:scale(1.03)}
+.lam-tipo{position:absolute;top:12px;left:12px;z-index:2;font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border-radius:2px}
+.lam-tipo.render{background:rgba(236,216,166,.92);color:var(--oliva)}
+.lam-tipo.real{background:rgba(61,69,54,.88);color:var(--crema-logo)}
+.lam-pie{position:absolute;left:0;right:0;bottom:0;padding:26px 16px 13px;font-size:.78rem;font-weight:300;color:#fff;background:linear-gradient(transparent,rgba(34,38,28,.88))}
+.visor-ctrl{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:14px}
+.flecha{width:40px;height:40px;border-radius:50%;border:1px solid var(--linea);background:var(--blanco);color:var(--oliva);font-size:1.15rem;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.flecha:hover{background:var(--oliva);border-color:var(--oliva);color:#fff}
+.contador{font-size:.76rem;color:var(--gris);letter-spacing:.08em;min-width:56px;text-align:center}
+.legal{text-align:center;font-size:.68rem;font-weight:300;color:#9a9d92;margin-top:26px;max-width:640px;margin-inline:auto;line-height:1.6}
+
+/* ══════════ CONTACTO ══════════ */
+#contacto{background:var(--oliva-hondo);color:#fff}
+#contacto .eyebrow{color:var(--crema-logo)}
+#contacto .titulo em{color:var(--crema-logo)}
+#contacto .parrafo{color:rgba(255,255,255,.62)}
+.cont-cab{text-align:center;max-width:600px;margin:0 auto 48px}
+.cont-cab .parrafo{margin:0 auto}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,48px);align-items:start}
+.mapa{border-radius:2px;overflow:hidden;aspect-ratio:1/1;border:1px solid rgba(236,216,166,.16)}
+.mapa iframe{width:100%;height:100%;border:0;filter:grayscale(.32) contrast(1.04)}
+.ubic-nota{margin-top:16px;font-size:.8rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.7}
+.ubic-nota strong{color:var(--crema-logo);font-weight:600}
+.caja-form{background:rgba(255,255,255,.045);border:1px solid rgba(236,216,166,.16);border-radius:2px;padding:clamp(22px,3.4vw,34px)}
+.campo{margin-bottom:17px}
+.campo label{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:7px}
+.campo input,.campo textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:2px;color:#fff;font-family:var(--ff-b);font-size:.92rem;transition:border-color .3s,background .3s}
+.campo textarea{resize:vertical;min-height:78px}
+.campo input::placeholder,.campo textarea::placeholder{color:rgba(255,255,255,.28)}
+.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--crema-logo);background:rgba(255,255,255,.08)}
+.check{display:flex;align-items:flex-start;gap:10px;margin:20px 0}
+.check input{margin-top:3px;accent-color:var(--crema-logo);flex-shrink:0;width:15px;height:15px}
+.check label{font-size:.75rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.55}
+.check label a{color:var(--crema-logo);text-decoration:underline}
+.btn-enviar{width:100%;padding:15px;border:none;border-radius:2px;background:var(--crema-logo);color:var(--oliva);font-size:.8rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:background .3s,transform .2s}
+.btn-enviar:hover:not(:disabled){background:#fff;transform:translateY(-2px)}
+.btn-enviar:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.aviso{margin-top:14px;padding:11px 14px;border-radius:2px;font-size:.82rem;font-weight:300;display:none;text-align:center}
+.aviso.ok{display:block;background:rgba(236,216,166,.14);color:var(--crema-logo);border:1px solid rgba(236,216,166,.3)}
+.aviso.mal{display:block;background:rgba(200,90,70,.14);color:#e8a99b;border:1px solid rgba(200,90,70,.3)}
+@media(max-width:760px){.contacto-grid{grid-template-columns:1fr}.mapa{aspect-ratio:4/3}}
+
+/* ══════════ PIE ══════════ */
+footer{background:var(--oliva);color:rgba(255,255,255,.5);text-align:center;padding:52px 0 40px;font-size:.79rem;font-weight:300}
+footer img{width:118px;margin:0 auto 20px;opacity:.92}
+footer p{margin-bottom:5px}
+footer p strong{color:var(--crema-logo);font-weight:600;letter-spacing:.02em}
+footer .fino{font-size:.66rem;color:rgba(255,255,255,.3);max-width:600px;margin:20px auto 0;line-height:1.6}
+
+/* ══════════ LIGHTBOX ══════════ */
+#lightbox{position:fixed;inset:0;z-index:9990;background:rgba(28,32,24,.97);display:none;align-items:center;justify-content:center;padding:56px 20px}
+#lightbox.abierto{display:flex}
+#lb-img{max-width:100%;max-height:82vh;border-radius:2px}
+.lb-btn{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.25rem;display:flex;align-items:center;justify-content:center;transition:background .3s}
+.lb-btn:hover{background:rgba(255,255,255,.2)}
+#lb-cerrar{top:20px;right:20px}
+#lb-ant{left:18px;top:50%;transform:translateY(-50%)}
+#lb-sig{right:18px;top:50%;transform:translateY(-50%)}
+#lb-pie{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:.8rem;font-weight:300;color:rgba(255,255,255,.62);padding:0 20px}
+
+/* ══════════ REVEAL ══════════ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.2,.7,.3,1),transform .85s cubic-bezier(.2,.7,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="progreso"></div>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <div class="envoltura nav-fila">
+    <a href="../"><img src="img/logo-colina.png" alt="Colina Campestre Luxury Rural" class="nav-marca"></a>
+    <div class="nav-liga">
+      <a href="../" class="volver">← Todos los proyectos</a>
+      <a href="#contacto" class="btn-nav">Quiero información</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header id="portada">
+  <div id="portada-fondo"></div>
+  <div class="portada-cont">
+    <img src="img/logo-colina.png" alt="Colina Campestre Luxury Rural" class="marca">
+    <h1>Colina Campestre<br><em>Escritura individual</em></h1>
+    <div class="linea-oro"></div>
+    <p class="portada-sub">Parcelación campestre en Restrepo, Meta. Lotes desde 500 m², cada uno con su escritura individual.</p>
+    <div class="datos-clave">
+      <div class="dato"><b>33</b><span>Lotes</span></div>
+      <div class="dato"><b>500 m²</b><span>Desde</span></div>
+      <div class="dato"><b>Única</b><span>Etapa</span></div>
+    </div>
+    <a href="#contacto" class="btn-portada">Quiero conocerlo</a>
+  </div>
+  <div class="flecha-scroll">↓</div>
+</header>
+
+<!-- ══════════ BIENVENIDA ══════════ -->
+<section class="seccion">
+  <div class="envoltura bienvenida">
+    <div class="reveal">
+      <span class="eyebrow">Restrepo, Meta</span>
+      <h2 class="titulo">Déjate <em>encantar</em>,<br>por Restrepo.</h2>
+      <p class="parrafo">El municipio verde del Piedemonte Llanero, conocido como la Capital Salinera del Meta y el «Chía de los Llanos». Su clima, sus paisajes y su cercanía a Villavicencio lo han convertido en el destino natural de quienes quieren vivir en el campo sin alejarse de la ciudad. La llegada constante de condominios campestres ha empujado la valorización del sector año tras año.</p>
+      <div class="contadores">
+        <div class="cont-caja"><b data-hasta="33">0</b><span>Lotes en total</span></div>
+        <div class="cont-caja"><b data-hasta="500" data-sufijo=" m²">0</b><span>Área desde</span></div>
+        <div class="cont-caja"><b data-hasta="100" data-sufijo="%">0</b><span>Con escritura individual</span></div>
+        <div class="cont-caja"><b data-hasta="1">0</b><span>Sola etapa</span></div>
+      </div>
+    </div>
+    <div class="bienvenida-foto reveal">
+      <img src="img/aerial-montanas.jpg" alt="Vista aérea del predio con la cordillera al fondo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ AMENIDADES ══════════ -->
+<section class="seccion">
+  <div class="envoltura">
+    <div class="reveal">
+      <span class="eyebrow">Zona social y comunal</span>
+      <h2 class="titulo">La vida <em>afuera</em> de tu casa.</h2>
+      <p class="parrafo">Toca o pasa el cursor sobre cada espacio para ver el detalle.</p>
+    </div>
+
+    <div class="rejilla-amenidades reveal">
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/render-piscina.jpg" alt="Piscina con zona cubierta de descanso" loading="lazy">
+        <div class="am-texto"><h3>Piscina</h3><p>Para adultos y niños, con pérgola de descanso, mobiliario y zonas verdes alrededor.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/render-porteria.jpg" alt="Portería de acceso al proyecto" loading="lazy">
+        <div class="am-texto"><h3>Portería</h3><p>Pórtico de ingreso con control de acceso, oficina y bahías de parqueo.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/render-sendero.jpg" alt="Sendero arbolado con bambú y bancas" loading="lazy">
+        <div class="am-texto"><h3>Sendero y descanso pasivo</h3><p>Recorrido arbolado con bambú, jardineras y bancas integradas al paisaje.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/render-cancha.jpg" alt="Cancha de fútbol en grama" loading="lazy">
+        <div class="am-texto"><h3>Cancha de fútbol</h3><p>Cancha en grama con arcos, más voleibol y mini basketball en la zona deportiva.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/render-infantil.jpg" alt="Parque infantil junto a la zona BBQ" loading="lazy">
+        <div class="am-texto"><h3>Parque infantil</h3><p>Módulos de juego, columpios y rodadero, contiguos a la zona BBQ cubierta.</p></div>
+      </article>
+      <article class="tarjeta-am" tabindex="0">
+        <img src="img/render-panoramica.jpg" alt="Vista general de la zona social" loading="lazy">
+        <div class="am-texto"><h3>Zona social integrada</h3><p>Basketball, mobiliario en concreto, juegos y circulaciones que conectan todas las áreas.</p></div>
+      </article>
+    </div>
+
+    <!-- Amenidades sin foto propia: van como texto para no forzar imágenes que no correspondan.
+         Para agregar más, escriba otro <span class="ficha">…</span> -->
+    <div class="fichas reveal">
+      <span class="ficha">Salón social</span>
+      <span class="ficha">Gimnasio biosaludable</span>
+      <span class="ficha">Zona de lectura y hamacas</span>
+      <span class="ficha">Acueducto y red eléctrica</span>
+      <span class="ficha">Vías con sardineles</span>
+      <span class="ficha">Portería con control de acceso</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ VISOR ══════════ -->
+<section class="seccion" style="background:var(--blanco)" id="galeria">
+  <div class="envoltura">
+    <div class="reveal visor-cab">
+      <span class="eyebrow">Renders y fotografías reales</span>
+      <h2 class="titulo">El proyecto, y el <em>terreno hoy</em>.</h2>
+      <p class="parrafo" style="margin:14px auto 0">Desliza de lado para recorrerlo. Cada imagen indica si es un render de referencia o una fotografía del predio en su estado actual.</p>
+      <div class="filtros" role="group" aria-label="Filtrar imágenes">
+        <button class="filtro on" data-f="todo">Todo</button>
+        <button class="filtro" data-f="render">Render</button>
+        <button class="filtro" data-f="real">Hoy</button>
+      </div>
+    </div>
+    <div class="pista" id="pista"></div>
+    <div class="visor-ctrl">
+      <button class="flecha" id="visor-prev" aria-label="Imagen anterior">&#8249;</button>
+      <span class="contador" id="visor-num">1 / 9</span>
+      <button class="flecha" id="visor-sig" aria-label="Imagen siguiente">&#8250;</button>
+    </div>
+    <p class="legal">Las imágenes de renders son una representación gráfica del artista, pueden tener variaciones en diseño y acabados y no comprometen a la empresa constructora.</p>
+  </div>
+</section>
+
+<!-- ══════════ CONTACTO ══════════ -->
+<section class="seccion" id="contacto">
+  <div class="envoltura">
+    <div class="cont-cab reveal">
+      <span class="eyebrow">Sin compromiso</span>
+      <h2 class="titulo">Déjanos tus <em>datos</em>.</h2>
+      <p class="parrafo">Un asesor te comparte disponibilidad, áreas y formas de pago.</p>
+    </div>
+    <div class="contacto-grid">
+      <div class="reveal">
+        <div class="mapa">
+          <iframe src="https://www.google.com/maps?q=Restrepo,+Meta,+Colombia&output=embed" loading="lazy" title="Ubicación en Restrepo, Meta" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="ubic-nota">El proyecto está en <strong>Restrepo, Meta</strong>, a pocos minutos de Villavicencio. Un asesor te indica el punto exacto y coordina la visita.</p>
+      </div>
+
+      <div class="caja-form reveal">
+        <form id="formulario" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Tu nombre">
+          </div>
+          <div class="campo">
+            <label for="telefono">Teléfono / WhatsApp *</label>
+            <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="300 000 0000">
+          </div>
+          <div class="campo">
+            <label for="correo">Correo electrónico *</label>
+            <input type="email" id="correo" name="correo" required autocomplete="email" placeholder="nombre@correo.com">
+          </div>
+          <div class="campo">
+            <label for="mensaje">Mensaje (opcional)</label>
+            <textarea id="mensaje" name="mensaje" placeholder="¿Algo que debamos saber?"></textarea>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="autorizo" required>
+            <label for="autorizo">Autorizo el tratamiento de mis datos personales para ser contactado por un asesor, conforme a la <a href="privacidad.html" target="_blank">política de privacidad</a> (Ley 1581 de 2012).</label>
+          </div>
+          <button type="submit" class="btn-enviar" id="btn-enviar">Enviar mis datos</button>
+          <div class="aviso" id="aviso"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PIE ══════════ -->
+<footer>
+  <div class="envoltura">
+    <img src="img/logo-colina.png" alt="Colina Campestre Luxury Rural">
+    <p><strong>Colina Campestre Reservado</strong></p>
+    <p>Restrepo, Meta</p>
+    <p>Innova Proyectos y Desarrollos Inmobiliarios S.A.S. — NIT 901.863.276-7</p>
+    <p class="fino">Las imágenes de renders son una representación gráfica del artista, pueden tener variaciones en diseño y acabados y no comprometen a la empresa constructora.</p>
+  </div>
+</footer>
+
+<!-- ══════════ LIGHTBOX ══════════ -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lb-btn" id="lb-cerrar" aria-label="Cerrar">✕</button>
+  <button class="lb-btn" id="lb-ant" aria-label="Anterior">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-btn" id="lb-sig" aria-label="Siguiente">›</button>
+  <div id="lb-pie"></div>
+</div>
+
+<script>
+/* ══════════ CATÁLOGO DE IMÁGENES DEL VISOR ══════════ */
+var LAMINAS=[
+  {src:'img/render-lotes-aereo.jpg', tipo:'render', pie:'Distribución general del proyecto'},
+  {src:'img/render-club.jpg',        tipo:'render', pie:'Zona social y piscina'},
+  {src:'img/render-piscina.jpg',     tipo:'render', pie:'Piscina con pérgola de descanso'},
+  {src:'img/render-porteria.jpg',    tipo:'render', pie:'Portería de acceso'},
+  {src:'img/render-sendero.jpg',     tipo:'render', pie:'Sendero arbolado y zona de descanso'},
+  {src:'img/render-amenidades.jpg',  tipo:'render', pie:'Planta de la zona social'},
+  {src:'img/aerial-panorama.jpg',    tipo:'real',   pie:'Vista aérea del predio — estado actual'},
+  {src:'img/aerial-lotes.jpg',       tipo:'real',   pie:'Trazado de lotes en obra'},
+  {src:'img/aerial-montanas.jpg',    tipo:'real',   pie:'El predio con la cordillera al fondo'}
+];
+
+/* ══════════ REVEAL (con red de seguridad) ══════════ */
+(function(){
+  function todos(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('visible')})}
+  try{
+    if(!('IntersectionObserver' in window)){todos();return}
+    var ob=new IntersectionObserver(function(en){
+      en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target)}})
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(e){ob.observe(e)});
+    setTimeout(todos,4500);
+  }catch(_){todos()}
+})();
+
+/* ══════════ NAV + BARRA DE PROGRESO ══════════ */
+(function(){
+  var nav=document.getElementById('nav'),prog=document.getElementById('progreso');
+  function alScroll(){
+    var y=window.scrollY||document.documentElement.scrollTop;
+    nav.classList.toggle('solido',y>80);
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?(y/h)*100:0)+'%';
+  }
+  window.addEventListener('scroll',alScroll,{passive:true});alScroll();
+})();
+
+/* ══════════ PARALLAX DE PORTADA ══════════ */
+(function(){
+  var f=document.getElementById('portada-fondo');if(!f)return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var pend=false;
+  window.addEventListener('scroll',function(){
+    if(pend)return;pend=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY;
+      if(y<window.innerHeight)f.style.transform='scale(1.06) translateY('+(y*.28)+'px)';
+      pend=false;
+    });
+  },{passive:true});
+})();
+
+/* ══════════ CONTADORES ══════════ */
+(function(){
+  var cajas=document.querySelectorAll('[data-hasta]');if(!cajas.length)return;
+  function correr(el){
+    var meta=parseInt(el.dataset.hasta,10),suf=el.dataset.sufijo||'',ini=null,dur=1500;
+    function paso(t){
+      if(!ini)ini=t;
+      var p=Math.min((t-ini)/dur,1),e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(meta*e).toLocaleString('es-CO')+suf;
+      if(p<1)requestAnimationFrame(paso);
+    }
+    requestAnimationFrame(paso);
+  }
+  if(!('IntersectionObserver' in window)){
+    cajas.forEach(function(e){e.textContent=e.dataset.hasta+(e.dataset.sufijo||'')});return;
+  }
+  var ob=new IntersectionObserver(function(en){
+    en.forEach(function(e){if(e.isIntersecting){correr(e.target);ob.unobserve(e.target)}})
+  },{threshold:.6});
+  cajas.forEach(function(e){ob.observe(e)});
+})();
+
+/* ══════════ VISOR + FILTROS + LIGHTBOX ══════════ */
+(function(){
+  var pista=document.getElementById('pista'),
+      num=document.getElementById('visor-num'),
+      prev=document.getElementById('visor-prev'),
+      sig=document.getElementById('visor-sig'),
+      filtros=document.querySelectorAll('.filtro'),
+      lb=document.getElementById('lightbox'),
+      lbImg=document.getElementById('lb-img'),
+      lbPie=document.getElementById('lb-pie'),
+      activas=LAMINAS.slice(),idx=0;
+
+  function pintar(f){
+    activas=(f==='todo')?LAMINAS.slice():LAMINAS.filter(function(l){return l.tipo===f});
+    pista.innerHTML='';
+    activas.forEach(function(l,i){
+      var d=document.createElement('div');d.className='lam';d.dataset.i=i;
+      d.innerHTML='<span class="lam-tipo '+l.tipo+'">'+(l.tipo==='render'?'Render':'Hoy')+'</span>'+
+                  '<img src="'+l.src+'" alt="'+l.pie+'" loading="lazy">'+
+                  '<div class="lam-pie">'+l.pie+'</div>';
+      d.addEventListener('click',function(){abrir(parseInt(this.dataset.i,10))});
+      pista.appendChild(d);
+    });
+    idx=0;marcar();
+  }
+  function marcar(){num.textContent=(activas.length?idx+1:0)+' / '+activas.length}
+  function irA(i){
+    if(!activas.length)return;
+    idx=Math.max(0,Math.min(i,activas.length-1));
+    var l=pista.children[idx];
+    if(l)pista.scrollTo({left:l.offsetLeft-(pista.clientWidth-l.clientWidth)/2,behavior:'smooth'});
+    marcar();
+  }
+  prev.addEventListener('click',function(){irA(idx-1)});
+  sig.addEventListener('click',function(){irA(idx+1)});
+
+  var t;
+  pista.addEventListener('scroll',function(){
+    clearTimeout(t);
+    t=setTimeout(function(){
+      var c=pista.scrollLeft+pista.clientWidth/2,mejor=0,dm=Infinity;
+      Array.prototype.forEach.call(pista.children,function(l,i){
+        var d=Math.abs((l.offsetLeft+l.clientWidth/2)-c);
+        if(d<dm){dm=d;mejor=i}
+      });
+      idx=mejor;marcar();
+    },90);
+  },{passive:true});
+
+  filtros.forEach(function(b){
+    b.addEventListener('click',function(){
+      filtros.forEach(function(x){x.classList.remove('on')});
+      this.classList.add('on');pintar(this.dataset.f);
+    });
+  });
+
+  function abrir(i){
+    idx=i;lbImg.src=activas[i].src;lbImg.alt=activas[i].pie;
+    lbPie.textContent=activas[i].pie+' · '+(activas[i].tipo==='render'?'Render de referencia':'Fotografía actual');
+    lb.classList.add('abierto');document.body.style.overflow='hidden';
+  }
+  function cerrar(){lb.classList.remove('abierto');document.body.style.overflow=''}
+  function mover(p){idx=(idx+p+activas.length)%activas.length;abrir(idx)}
+
+  document.getElementById('lb-cerrar').addEventListener('click',cerrar);
+  document.getElementById('lb-ant').addEventListener('click',function(e){e.stopPropagation();mover(-1)});
+  document.getElementById('lb-sig').addEventListener('click',function(e){e.stopPropagation();mover(1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)cerrar()});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('abierto'))return;
+    if(e.key==='Escape')cerrar();
+    if(e.key==='ArrowLeft')mover(-1);
+    if(e.key==='ArrowRight')mover(1);
+  });
+
+  pintar('todo');
+})();
+
+/* ══════════ AMENIDADES EN TÁCTIL ══════════ */
+(function(){
+  if(!window.matchMedia('(hover:none)').matches)return;
+  document.querySelectorAll('.tarjeta-am').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.querySelectorAll('.tarjeta-am.viva').forEach(function(o){if(o!==c)o.classList.remove('viva')});
+      c.classList.toggle('viva');
+    });
+  });
+})();
+
+/* ══════════ FORMULARIO → GOOGLE SHEETS ══════════ */
+(function(){
+  var ENDPOINT='https://script.google.com/macros/s/AKfycbzVMHUvLCnoQ8jiQR03529SpXmNdX3Xn9RyB5HswJvylLQaxOzt4tR9XuRd1NK6y8gR/exec';
+  var f=document.getElementById('formulario'),
+      btn=document.getElementById('btn-enviar'),
+      av=document.getElementById('aviso');
+
+  function decir(txt,clase){av.textContent=txt;av.className='aviso '+clase}
+
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var nombre=f.nombre.value.trim(),tel=f.telefono.value.trim(),
+        correo=f.correo.value.trim(),msg=f.mensaje.value.trim(),
+        ok=document.getElementById('autorizo').checked;
+
+    if(!nombre||!tel||!correo){decir('Completa nombre, teléfono y correo.','mal');return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){decir('Revisa el correo electrónico.','mal');return}
+    if(!ok){decir('Necesitamos tu autorización para contactarte.','mal');return}
+
+    btn.disabled=true;btn.textContent='Enviando…';av.className='aviso';
+
+    var p=new URLSearchParams(window.location.search);
+    fetch(ENDPOINT,{
+      method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        tipo:'registro',
+        pagina:'colina-campestre-reservado',
+        nombre:nombre,telefono:tel,correo:correo,mensaje:msg,
+        proyecto:'Colina Campestre Reservado',
+        origen:p.get('utm_source')||'web',
+        medio:p.get('utm_medium')||'directo',
+        campana:p.get('utm_campaign')||''
+      })
+    }).then(function(){
+      decir('¡Listo! Un asesor te contactará pronto.','ok');
+      f.reset();
+    }).catch(function(){
+      decir('No se pudo enviar. Revisa tu conexión e intenta de nuevo.','mal');
+    }).finally(function(){
+      btn.disabled=false;btn.textContent='Enviar mis datos';
+    });
+  });
+})();
+
+/* ══════════ REGISTRO DE VISITA ══════════ */
+(function(){
+  try{
+    if(sessionStorage.getItem('colina_visita'))return;
+    sessionStorage.setItem('colina_visita','1');
+    var p=new URLSearchParams(window.location.search);
+    fetch('https://script.google.com/macros/s/AKfycbzVMHUvLCnoQ8jiQR03529SpXmNdX3Xn9RyB5HswJvylLQaxOzt4tR9XuRd1NK6y8gR/exec',{
+      method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        tipo:'visita',pagina:'colina-campestre-reservado',
+        origen:p.get('utm_source')||'web',
+        medio:p.get('utm_medium')||'directo',
+        campana:p.get('utm_campaign')||''
+      })
+    });
+  }catch(_){}
+})();
+</script>
+</body>
+</html>
