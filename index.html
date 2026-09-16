@@ -337,6 +337,82 @@ body.visitante #bloqueo .bloqueo-cta::before{ content:""; position:absolute; ins
 #puerta-msg.error{ color:#ffcdc0; }
 #puerta-msg.ok{ color:#d8f2c9; }
 @media (max-width:420px){ .puerta-caja{ border-radius:16px; } }
+
+/* ═══════════════════════════════════════════ */
+/* ★ BURBUJA FLOTANTE — "Hay más"              */
+/* ═══════════════════════════════════════════ */
+.flotante{
+  position:fixed; bottom:16px; right:16px; z-index:9999;
+  opacity:0; pointer-events:none; transform:translateY(20px) scale(.6);
+  transition:opacity .35s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.flotante.on{ opacity:1; pointer-events:auto; transform:translateY(0) scale(1); }
+
+.burbuja{
+  width:60px; height:60px; border-radius:50%;
+  background:linear-gradient(135deg, var(--verde), var(--tinta));
+  box-shadow:0 8px 24px rgba(21,63,44,.4), 0 0 0 4px rgba(255,255,255,.5);
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px; color:#fff; cursor:pointer; position:relative;
+  animation:ae-pulse 2.4s ease-in-out infinite;
+}
+@keyframes ae-pulse{
+  0%,100%{ box-shadow:0 8px 24px rgba(21,63,44,.4), 0 0 0 4px rgba(255,255,255,.5), 0 0 0 0 rgba(232,121,47,.5); }
+  50%{ box-shadow:0 8px 24px rgba(21,63,44,.4), 0 0 0 4px rgba(255,255,255,.5), 0 0 0 14px rgba(232,121,47,0); }
+}
+.burbuja .badge{
+  position:absolute; top:-4px; right:-4px;
+  background:#e8792f; color:#fff; font-size:11px; font-weight:800;
+  min-width:22px; height:22px; border-radius:11px;
+  display:flex; align-items:center; justify-content:center; padding:0 6px;
+  border:2px solid var(--crema);
+}
+
+.ae-panel{
+  position:absolute; bottom:0; right:0; width:280px;
+  background:#fff; border-radius:18px; overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,.22), 0 0 0 1px var(--linea);
+  transform-origin:bottom right;
+  transform:scale(0); opacity:0; pointer-events:none;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), opacity .2s;
+}
+.ae-panel.on{ transform:scale(1); opacity:1; pointer-events:auto; }
+
+.ae-panel .p-head{
+  background:linear-gradient(135deg, var(--tinta), var(--verde));
+  color:#fff; padding:14px 16px; position:relative;
+}
+.ae-panel .p-head .kicker{
+  font-size:9.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--lima); margin-bottom:2px;
+}
+.ae-panel .p-head h3{
+  font-family:var(--serif); font-size:16px; font-weight:600;
+  line-height:1.2; padding-right:20px; margin:0;
+}
+.ae-panel .p-head .cerrar{
+  position:absolute; top:10px; right:10px; background:rgba(255,255,255,.15);
+  border:none; color:#fff; width:24px; height:24px; border-radius:50%;
+  font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+.ae-panel .p-head .cerrar:hover{ background:rgba(255,255,255,.3); }
+
+.ae-panel .p-body{ padding:8px 8px 12px; }
+.ae-panel .cat-item{
+  width:100%; background:none; border:none; cursor:pointer; text-align:left;
+  padding:9px 10px; border-radius:10px; display:flex; align-items:center; gap:10px;
+  transition:background .15s; font-family:var(--sans);
+  text-decoration:none; color:inherit;
+}
+.ae-panel .cat-item:hover{ background:#f5f2e9; }
+.ae-panel .cat-item .ci{
+  width:34px; height:34px; border-radius:9px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:17px;
+}
+.ae-panel .cat-item .ct{ flex:1; }
+.ae-panel .cat-item .ct b{ display:block; font-size:13px; font-weight:600; color:var(--tinta); }
+.ae-panel .cat-item .ct span{ font-size:10.5px; color:var(--tinta-2); }
+.ae-panel .cat-item .fl{ color:var(--tinta-2); font-size:16px; }
 </style>
 </head>
 <body>
@@ -684,7 +760,7 @@ function pintar(lista){
 }
 const PROYECTO_VISIBLE='Condominio Santorini Reservado';
 function tieneAcceso(){try{return localStorage.getItem('ae_registro')==='ok'}catch(e){return false}}
-function aplicarMuro(){var g=document.getElementById('gridProy'),c=[...g.querySelectorAll('.pcard')];if(tieneAcceso()){document.body.classList.remove('visitante');document.body.classList.add('acceso-total');g.classList.remove('grid-uno');return}c.forEach(x=>{if(x.dataset.proyecto!==PROYECTO_VISIBLE)x.style.display='none'});g.classList.add('grid-uno')}
+function aplicarMuro(){var g=document.getElementById('gridProy'),c=[...g.querySelectorAll('.pcard')];if(tieneAcceso()){document.body.classList.remove('visitante');document.body.classList.add('acceso-total');g.classList.remove('grid-uno');aeMostrarFlotante();var b=document.getElementById('ae-burbuja');if(b)b.style.animation='none';return}c.forEach(x=>{if(x.dataset.proyecto!==PROYECTO_VISIBLE)x.style.display='none'});g.classList.add('grid-uno')}
 function abrirPuerta(){var p=document.getElementById('puerta');if(!p)return;p.classList.add('abierta');document.body.classList.add('bloqueado');var f=document.getElementById('p-nombre');if(f)setTimeout(()=>f.focus(),250)}
 function cerrarPuerta(){var p=document.getElementById('puerta');if(!p)return;p.classList.remove('abierta');document.body.classList.remove('bloqueado')}
 document.addEventListener('click',e=>{if(e.target.closest('[data-abrir-puerta]')){e.preventDefault();abrirPuerta()}if(e.target.closest('#puerta-cerrar')){e.preventDefault();cerrarPuerta()}});
@@ -830,6 +906,8 @@ function msg(t,tipo){ mensaje.className='mensaje mensaje--'+(tipo==='ok'?'ok':'e
     var bl=document.getElementById('bloqueo');
     if(bl){bl.style.maxHeight='none';bl.style.overflow='visible';bl.querySelector('.bloqueo-cta').style.display='none';bl.querySelector('.bloqueo-inner').style.cssText='filter:none;opacity:1;pointer-events:auto'}
     setTimeout(()=>puerta.remove(),600);
+    /* ★ burbuja: aparece 900ms tras desbloquear */
+    setTimeout(aeMostrarFlotante, 900);
   }
 
   bp.addEventListener('click', async ()=>{
@@ -876,6 +954,68 @@ function msg(t,tipo){ mensaje.className='mensaje mensaje--'+(tipo==='ok'?'ok':'e
     if(form.correo)   form.correo.value   = d.correo   || '';
   }catch(e){}
 })();
+
+/* ═══════════════════════════════════════════ */
+/* ★ BURBUJA FLOTANTE — "Hay más"              */
+/* ═══════════════════════════════════════════ */
+function aeMostrarFlotante(){
+  var f=document.getElementById('flotante');
+  if(f) f.classList.add('on');
+}
+function aeExpandir(){
+  document.getElementById('ae-burbuja').style.display='none';
+  document.getElementById('ae-panel').classList.add('on');
+}
+function aeColapsar(){
+  document.getElementById('ae-panel').classList.remove('on');
+  setTimeout(function(){
+    document.getElementById('ae-burbuja').style.display='flex';
+  },250);
+}
 </script>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ★ BURBUJA FLOTANTE — "Hay más"             -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="flotante" id="flotante">
+  <div class="burbuja" id="ae-burbuja" onclick="aeExpandir()" style="display:flex">
+    ✨
+    <div class="badge">5</div>
+  </div>
+  <div class="ae-panel" id="ae-panel">
+    <div class="p-head">
+      <div class="kicker">✨ Hay más</div>
+      <h3>No solo vendemos lotes</h3>
+      <button class="cerrar" onclick="aeColapsar()">×</button>
+    </div>
+    <div class="p-body">
+      <a class="cat-item" href="propiedades.html">
+        <div class="ci" style="background:#e4f0dd;color:#1e5c40">🏡</div>
+        <div class="ct"><b>Propiedades</b><span>Casas y terrenos</span></div>
+        <div class="fl">›</div>
+      </a>
+      <a class="cat-item" href="vehiculos.html">
+        <div class="ci" style="background:#e8e4db;color:#6b7570">🚗</div>
+        <div class="ct"><b>Vehículos</b><span>Carros y motos</span></div>
+        <div class="fl">›</div>
+      </a>
+      <a class="cat-item" href="pagos.html">
+        <div class="ci" style="background:#e4f0dd;color:#1e5c40">💳</div>
+        <div class="ct"><b>Pagos</b><span>Cesantías · permuta · crédito</span></div>
+        <div class="fl">›</div>
+      </a>
+      <a class="cat-item" href="socios.html">
+        <div class="ci" style="background:#fdeede;color:#e8792f">🤝</div>
+        <div class="ct"><b>Socios</b><span>Contratos · aportar terreno</span></div>
+        <div class="fl">›</div>
+      </a>
+      <a class="cat-item" href="educate.html">
+        <div class="ci" style="background:#e8eef0;color:#4a6a78">🎓</div>
+        <div class="ct"><b>Edúcate</b><span>Videos de 1 minuto</span></div>
+        <div class="fl">›</div>
+      </a>
+    </div>
+  </div>
+</div>
 </body>
 </html>
