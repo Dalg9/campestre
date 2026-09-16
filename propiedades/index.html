@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propiedades en venta o permuta | Alianza Empresarial</title>
+<meta name="description" content="Casas, lotes y apartamentos con escritura pública individual. Alianza Empresarial · Tu Inmueble 360.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#1e5c40;--verde-2:#2f7d55;--verde-3:#43a06b;--tinta:#16281d;--tinta-2:#38493f;
+  --crema:#f7f4ec;--crema-2:#ede7d7;--lima:#9ac262;--naranja:#e8792f;
+  --linea:rgba(30,92,64,.14);
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;z-index:50;display:flex;align-items:center;gap:12px;padding:0 18px;
+  background:rgba(247,244,236,0);backdrop-filter:blur(0);transition:background .4s var(--ease),backdrop-filter .4s var(--ease),box-shadow .4s var(--ease)}
+.topbar.solid{background:rgba(247,244,236,.85);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--linea)}
+.topbar .back{background:rgba(255,255,255,.7);border:1px solid var(--linea);width:38px;height:38px;border-radius:50%;
+  font-size:20px;cursor:pointer;color:var(--verde);display:flex;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;
+  transition:transform .2s var(--spring)}
+.topbar .back:active{transform:scale(.88)}
+.topbar .tt{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--verde);opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s}
+.topbar.solid .tt{opacity:1;transform:translateY(0)}
+.topbar .tt small{display:block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--lima),var(--verde-3));width:0;z-index:52;border-radius:0 3px 3px 0}
+
+/* HERO */
+.sec-hero{position:relative;padding:96px 22px 26px;overflow:hidden;max-width:900px;margin:0 auto}
+.sec-hero .blob{position:absolute;border-radius:50%;filter:blur(40px);z-index:0;will-change:transform}
+.sec-hero .blob.a{width:220px;height:220px;background:#bfe0a8;opacity:.5;top:-50px;right:-40px}
+.sec-hero .blob.b{width:160px;height:160px;background:#f6c99a;opacity:.4;bottom:-40px;left:-30px}
+.sec-hero .inner{position:relative;z-index:1;will-change:transform,opacity}
+.sec-hero .eyebrow{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--naranja);font-weight:800}
+.sec-hero h1{font-family:var(--serif);font-size:clamp(30px,8vw,44px);font-weight:600;color:var(--tinta);margin:6px 0 8px;line-height:1.04;letter-spacing:-.015em}
+.sec-hero h1 .ln{display:block;overflow:hidden}
+.sec-hero h1 .ln span{display:block;will-change:transform}
+.sec-hero p{font-size:13.5px;color:var(--tinta-2);max-width:34ch}
+.sec-hero .stat{display:flex;gap:22px;margin-top:20px}
+.sec-hero .stat b{font-family:var(--serif);font-size:26px;color:var(--verde);font-weight:700;display:block;line-height:1}
+.sec-hero .stat span{font-size:9.5px;color:var(--tinta-2);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+
+/* FILTROS */
+.filtros{display:flex;gap:9px;overflow-x:auto;padding:8px 22px;scrollbar-width:none;max-width:900px;margin:0 auto}
+.filtros::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;border:1.4px solid var(--linea);background:#fff;color:var(--tinta-2);
+  font-size:12px;font-weight:600;padding:8px 16px;border-radius:18px;cursor:pointer;white-space:nowrap;transition:all .3s var(--ease)}
+.chip:active{transform:scale(.93)}
+.chip.activo{background:var(--verde);color:#fff;border-color:var(--verde);box-shadow:0 4px 14px rgba(30,92,64,.3)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px 22px 60px;max-width:900px;margin:0 auto}
+@media(min-width:620px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 22px rgba(0,0,0,.06);cursor:pointer;
+  border:1px solid var(--linea);will-change:transform,opacity}
+.card:active{transform:scale(.96)!important}
+.card .fw{position:relative;overflow:hidden;height:130px}
+.card .foto{width:100%;height:128%;object-fit:cover;display:block;background:#dfe5da;position:absolute;top:-14%;will-change:transform}
+.card .pill{position:absolute;top:9px;left:9px;background:rgba(22,40,29,.72);color:#fff;font-size:9px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:11px;backdrop-filter:blur(4px);z-index:2}
+.card .body{padding:12px 13px 14px}
+.card .precio{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--verde);line-height:1}
+.card .nombre{font-size:12.5px;font-weight:600;color:var(--tinta);margin:4px 0 2px;line-height:1.2}
+.card .ubi{font-size:10.5px;color:var(--tinta-2)}
+.card .mini{display:flex;gap:10px;margin-top:9px;padding-top:9px;border-top:1px solid var(--linea);font-size:10.5px;color:var(--tinta-2)}
+
+/* DETALLE */
+.detalle{position:fixed;inset:0;background:var(--crema);z-index:60;display:flex;flex-direction:column;
+  transform:translateY(100%);will-change:transform;pointer-events:none}
+.detalle.on{pointer-events:auto}
+.det-close{position:absolute;top:16px;left:16px;z-index:12;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);
+  border:1px solid var(--linea);width:40px;height:40px;border-radius:50%;font-size:21px;color:var(--tinta);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:transform .2s var(--spring)}
+.det-close:active{transform:scale(.85)}
+.det-scroll{flex:1;overflow-y:auto;scrollbar-width:none}
+.det-scroll::-webkit-scrollbar{display:none}
+.det-inner{max-width:600px;margin:0 auto}
+.galeria{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:300px;background:#cdd3c8}
+.galeria::-webkit-scrollbar{display:none}
+.galeria .slide{flex:0 0 100%;scroll-snap-align:center;height:100%;overflow:hidden;position:relative}
+.galeria .slide img{width:118%;height:100%;object-fit:cover;display:block;position:absolute;left:-9%;will-change:transform}
+.gal-dots{display:flex;gap:6px;justify-content:center;margin-top:-26px;position:relative;z-index:5}
+.gal-dots .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55);transition:all .35s var(--ease)}
+.gal-dots .dot.on{background:#fff;width:22px;border-radius:4px}
+.det-body{padding:24px 22px 60px}
+.det-badge{display:inline-block;background:var(--naranja);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;padding:5px 13px;border-radius:14px;margin-bottom:13px}
+.det-precio{font-family:var(--serif);font-size:33px;font-weight:700;color:var(--verde);line-height:1}
+.det-nombre{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--tinta);margin:9px 0 4px}
+.det-ubi{font-size:12.5px;color:var(--tinta-2);margin-bottom:17px;line-height:1.45}
+.det-esc{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.03em;
+  text-transform:uppercase;color:var(--verde);background:#e4f0dd;padding:8px 14px;border-radius:9px;margin-bottom:22px}
+.det-datos{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:24px}
+.dato{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:13px 15px;will-change:transform,opacity}
+.dato .k{font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--tinta-2);font-weight:700}
+.dato .v{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--tinta);margin-top:3px}
+.det-sub{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--tinta);margin:8px 0 12px}
+.caracts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.caract{background:var(--crema-2);color:var(--tinta-2);font-size:11.5px;font-weight:500;padding:8px 13px;border-radius:15px;will-change:transform,opacity}
+.cta{display:block;width:100%;text-align:center;text-decoration:none;color:#fff;border:none;padding:16px;border-radius:14px;
+  font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.03em;cursor:pointer;margin-bottom:11px;transition:transform .2s var(--spring)}
+.cta:active{transform:scale(.97)}
+.cta.wpp{background:#1fa855;box-shadow:0 8px 20px rgba(31,168,85,.3)}
+.cta.sec{background:none;color:var(--verde);border:1.6px solid var(--verde)}
+.det-nota{font-size:10.5px;color:var(--tinta-2);text-align:center;margin-top:6px;opacity:.8}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+<div class="topbar" id="topbar">
+  <a class="back" href="../index.html" title="Volver al inicio">‹</a>
+  <div class="tt">Propiedades<small>Alianza Empresarial</small></div>
+</div>
+
+<div class="sec-hero">
+  <div class="blob a" data-speed="0.4"></div><div class="blob b" data-speed="0.7"></div>
+  <div class="inner">
+    <div class="eyebrow">Escritura pública individual</div>
+    <h1><span class="ln"><span>Propiedades</span></span><span class="ln"><span>en venta o permuta</span></span></h1>
+    <p>Casas, lotes y apartamentos con escritura pública individual a tu nombre.</p>
+    <div class="stat">
+      <div><b data-count="4">0</b><span>Disponibles</span></div>
+      <div><b data-count="3">0</b><span>Ciudades</span></div>
+      <div><b>100%</b><span>Escritura</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="filtros" id="filtros"></div>
+<div class="grid" id="grid"></div>
+
+<!-- Contenedor del detalle (se llena dinámicamente) -->
+<div class="detalle" id="detalle">
+  <button class="det-close" onclick="cerrarDet()">✕</button>
+  <div class="det-scroll"><div class="det-inner" id="det-contenido"></div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* ============================================================
+   DATOS — para agregar una propiedad, copia un bloque y edítalo.
+   Las fotos van en img/ con el nombre <id>-1.jpg, <id>-2.jpg...
+   ============================================================ */
+const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp
+const PROPIEDADES = [
+  {
+    id:"casa-caudal", tipo:"Casa", ciudad:"Villavicencio",
+    nombre:"Casa Esquinera", precioCorto:"$1.020M", precio:"$1.020.000.000",
+    ubicacion:"Calle 47A No 29B-07, Barrio El Caudal · Villavicencio, Meta",
+    fotos:3,
+    datos:{"Área lote":"145,47 m²","Área construida":"145,4 m²","Habitaciones":"3","Baños":"3"},
+    mini:["📐 145m²","🛏 3","🛁 3"],
+    caracts:["Parqueadero 3 carros","Amplio depósito","Cocina integral","Sala, comedor","Baño auxiliar"]
+  },
+  {
+    id:"casa-pompeya", tipo:"Casa", ciudad:"Villavicencio",
+    nombre:"Casa Pompeya", precioCorto:"$380M", precio:"$380.000.000",
+    ubicacion:"Vereda Pompeya Bajo, Condominio Santa Isabel · Villavicencio, Meta",
+    fotos:2,
+    datos:{"Área lote":"500 m²","Área construida":"121 m²","Habitaciones":"3","Baños":"1"},
+    mini:["📐 500m²","🛏 3","🛁 1"],
+    caracts:["Parqueadero","Parque infantil","Zona BBQ","Cocina integral","Sala comedor","Zonas verdes"]
+  },
+  {
+    id:"lote-trapiche", tipo:"Lote", ciudad:"Restrepo",
+    nombre:"Lote Comercial Trapiche", precioCorto:"$340M", precio:"$340.000.000",
+    ubicacion:"Vereda Choapal, sobre vía nacional Villavicencio–Restrepo · Restrepo, Meta",
+    fotos:1,
+    datos:{"Área lote":"683,4 m²","Uso":"Comercial"},
+    mini:["📐 683m²","🏞 Comercial"],
+    caracts:["Sobre vía nacional","Uso comercial","Escritura pública individual"]
+  },
+  {
+    id:"apto-timiza", tipo:"Apto", ciudad:"Bogotá",
+    nombre:"Apartamento Timiza", precioCorto:"$230M", precio:"$230.000.000",
+    ubicacion:"Calle 42D sur #72h-87, Bloque 5-2, Apto 202 · Bogotá D.C.",
+    fotos:2,
+    datos:{"Área":"52 m²","Habitaciones":"3","Baños":"1"},
+    mini:["📐 52m²","🛏 3","🛁 1"],
+    caracts:["Cocina integral","Sala comedor","3 habitaciones"]
+  }
+];
+
+/* ---- Construir filtros de ciudad ---- */
+const ciudades = ["Todas", ...new Set(PROPIEDADES.map(p=>p.ciudad))];
+const filtrosEl = document.getElementById('filtros');
+ciudades.forEach((c,i)=>{
+  const b=document.createElement('div');
+  b.className='chip'+(i===0?' activo':'');
+  b.textContent=c; b.onclick=()=>filtrar(c,b);
+  filtrosEl.appendChild(b);
+});
+function filtrar(ciudad, btn){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('activo'));
+  btn.classList.add('activo');
+  pintar(ciudad==='Todas'?PROPIEDADES:PROPIEDADES.filter(p=>p.ciudad===ciudad));
+}
+
+/* ---- Pintar tarjetas ---- */
+const grid=document.getElementById('grid');
+function pintar(lista){
+  grid.innerHTML='';
+  lista.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='card';
+    card.onclick=()=>verDetalle(p.id);
+    card.innerHTML=`
+      <div class="fw"><img class="foto" src="img/${p.id}-1.jpg" alt="${p.nombre}"><div class="pill">${p.tipo}</div></div>
+      <div class="body">
+        <div class="precio">${p.precioCorto}</div>
+        <div class="nombre">${p.nombre}</div>
+        <div class="ubi">${p.ciudad}</div>
+        <div class="mini">${p.mini.map(m=>`<span>${m}</span>`).join('')}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  animarCards();
+}
+
+/* ---- Detalle ---- */
+function verDetalle(id){
+  const p=PROPIEDADES.find(x=>x.id===id);
+  const slides=[];
+  for(let i=1;i<=p.fotos;i++) slides.push(`<div class="slide"><img src="img/${p.id}-${i}.jpg" alt="${p.nombre} ${i}"></div>`);
+  const datos=Object.entries(p.datos).map(([k,v])=>`<div class="dato"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+  const caracts=p.caracts.map(c=>`<div class="caract">${c}</div>`).join('');
+  const msg=encodeURIComponent(`Hola, me interesa la propiedad "${p.nombre}" (${p.precio}). ¿Me dan más información?`);
+  document.getElementById('det-contenido').innerHTML=`
+    <div class="galeria" id="gal">${slides.join('')}</div>
+    <div class="gal-dots" id="galdots"></div>
+    <div class="det-body">
+      <div class="det-badge dr">Se vende o permuta</div>
+      <div class="det-precio dr">${p.precio}</div>
+      <div class="det-nombre dr">${p.nombre}</div>
+      <div class="det-ubi dr">📍 ${p.ubicacion}</div>
+      <div class="dr"><div class="det-esc">✅ Escritura pública individual</div></div>
+      <div class="det-datos">${datos}</div>
+      <div class="det-sub dr">Características</div>
+      <div class="caracts">${caracts}</div>
+      <a class="cta wpp" href="https://wa.me/${WHATSAPP}?text=${msg}">💬 Preguntar por esta propiedad</a>
+      <div class="det-nota">Un asesor te responde el mismo día</div>
+    </div>`;
+  abrirDet();
+}
+
+/* ============================================================
+   ANIMACIONES (GSAP)
+   ============================================================ */
+gsap.registerPlugin(ScrollTrigger);
+const topbar=document.getElementById('topbar');
+const prog=document.getElementById('prog');
+addEventListener('scroll',()=>{
+  const y=scrollY, max=document.body.scrollHeight-innerHeight;
+  topbar.classList.toggle('solid', y>40);
+  prog.style.width=(max>0?y/max*100:0)+'%';
+});
+/* Hero */
+gsap.from('.sec-hero h1 .ln span',{yPercent:120,duration:.9,ease:'power4.out',stagger:.12,delay:.1});
+gsap.from('.sec-hero .eyebrow, .sec-hero p, .sec-hero .stat',{y:20,opacity:0,duration:.7,ease:'power3.out',stagger:.08,delay:.3});
+document.querySelectorAll('[data-count]').forEach(el=>{const o={v:0};gsap.to(o,{v:+el.dataset.count,duration:1.1,delay:.5,ease:'power2.out',onUpdate:()=>el.textContent=Math.round(o.v)})});
+gsap.utils.toArray('.sec-hero .blob').forEach(b=>gsap.to(b,{y:200*(+b.dataset.speed),ease:'none',scrollTrigger:{trigger:'.sec-hero',start:'top top',end:'bottom top',scrub:true}}));
+gsap.to('.sec-hero .inner',{y:80,opacity:0,ease:'none',scrollTrigger:{trigger:'.sec-hero',start:'top top',end:'bottom top',scrub:true}});
+/* Tarjetas */
+function animarCards(){
+  gsap.from('.card',{y:60,opacity:0,scale:.94,duration:.7,ease:'power3.out',stagger:.09,scrollTrigger:{trigger:'.grid',start:'top 90%'}});
+  gsap.utils.toArray('.card .foto').forEach(img=>gsap.fromTo(img,{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:img.closest('.card'),start:'top bottom',end:'bottom top',scrub:true}}));
+}
+
+/* Galería */
+function initGaleria(){
+  const gal=document.getElementById('gal'), dotsC=document.getElementById('galdots');
+  const slides=[...gal.querySelectorAll('.slide')];
+  dotsC.innerHTML='';
+  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');dotsC.appendChild(d)});
+  gal.onscroll=()=>{
+    const idx=Math.round(gal.scrollLeft/gal.clientWidth);
+    dotsC.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===idx));
+    slides.forEach((s,i)=>{const img=s.querySelector('img');const rel=(gal.scrollLeft-i*gal.clientWidth)/gal.clientWidth;gsap.set(img,{xPercent:rel*10})});
+  };
+}
+/* Abrir / cerrar detalle */
+const det=document.getElementById('detalle');
+function abrirDet(){
+  det.classList.add('on');
+  initGaleria();
+  gsap.fromTo(det,{yPercent:100},{yPercent:0,duration:.6,ease:'power4.out',onComplete:()=>{
+    gsap.from(det.querySelectorAll('.dr'),{y:24,opacity:0,duration:.6,ease:'power3.out',stagger:.07});
+    gsap.from(det.querySelectorAll('.dato'),{y:24,opacity:0,scale:.92,duration:.55,ease:'back.out(1.5)',stagger:.08,delay:.15});
+    gsap.from(det.querySelectorAll('.caract'),{scale:.6,opacity:0,duration:.45,ease:'back.out(2)',stagger:.05,delay:.3});
+    gsap.from(det.querySelectorAll('.galeria .slide img'),{scale:1.12,duration:1.1,ease:'power2.out'});
+  }});
+  document.body.style.overflow='hidden';
+}
+function cerrarDet(){
+  gsap.to(det,{yPercent:100,duration:.45,ease:'power3.in',onComplete:()=>{det.classList.remove('on');gsap.set(det,{yPercent:100});document.body.style.overflow=''}});
+}
+
+/* Inicial */
+pintar(PROPIEDADES);
+</script>
+</body>
+</html>
