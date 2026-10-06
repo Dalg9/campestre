@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Socios: construye tu casa o aporta tu terreno | Alianza Empresarial</title>
+<meta name="description" content="Contratos de construcción con financiación directa y modelo de aportación de terrenos. Alianza Empresarial · Tu Inmueble 360.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#1e5c40;--verde-2:#2f7d55;--verde-3:#43a06b;--tinta:#16281d;--tinta-2:#38493f;
+  --crema:#f7f4ec;--crema-2:#ede7d7;--lima:#9ac262;--naranja:#e8792f;
+  --linea:rgba(30,92,64,.14);
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--lima),var(--verde-3));width:0;z-index:52;border-radius:0 3px 3px 0}
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;z-index:50;display:flex;align-items:center;gap:12px;padding:0 18px;
+  background:rgba(247,244,236,.85);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--linea)}
+.topbar .back{background:rgba(255,255,255,.7);border:1px solid var(--linea);width:38px;height:38px;border-radius:50%;
+  font-size:20px;color:var(--verde);display:flex;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;transition:transform .2s}
+.topbar .back:active{transform:scale(.88)}
+.topbar .tt{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--verde)}
+.topbar .tt small{display:block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.contenedor{max-width:620px;margin:0 auto;padding-top:60px;background:var(--crema);min-height:100vh}
+.tabs{position:sticky;top:60px;z-index:40;display:flex;gap:6px;padding:10px 14px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--linea)}
+.tab{flex:1;text-align:center;padding:10px 6px;border-radius:11px;font-size:12px;font-weight:700;cursor:pointer;
+  border:1.4px solid var(--linea);color:var(--tinta-2);background:#fff;transition:all .25s}
+.tab.on{background:var(--verde);color:#fff;border-color:var(--verde)}
+.pagina{display:none}
+.pagina.on{display:block}
+.nota-orient{font-size:10px;color:var(--tinta-2);margin-top:9px;text-align:center;opacity:.9}
+.hero{position:relative;overflow:hidden}
+.hero .blob{position:absolute;border-radius:50%;filter:blur(40px);z-index:0;will-change:transform}
+.hero .blob.a{width:200px;height:200px;background:#bfe0a8;opacity:.5;top:-50px;right:-40px}
+.hero .blob.b{width:150px;height:150px;background:#f6c99a;opacity:.4;bottom:-40px;left:-30px}
+.hero .inner{position:relative;z-index:1}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:block}
+a.cta{display:block}
+/* HERO */
+.hero{padding:30px 18px 18px}
+.hero .eyebrow{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--naranja);font-weight:800}
+.hero h1{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--tinta);margin:4px 0 5px;line-height:1.1}
+.hero p{font-size:12.5px;color:var(--tinta-2)}
+
+/* SECCIÓN genérica */
+.sec{padding:16px 18px;border-top:1px solid var(--linea)}
+.sec .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:7px;
+  background:var(--verde);color:#fff;font-size:11px;font-weight:800;margin-right:7px}
+.sec h2{font-family:var(--serif);font-size:16.5px;font-weight:600;color:var(--tinta);display:inline}
+.sec .desc{font-size:11.5px;color:var(--tinta-2);margin:5px 0 12px 29px}
+
+/* Paso 1: chips de lote */
+.lote-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lote-chip{border:1.6px solid var(--linea);background:#fff;border-radius:13px;padding:11px 12px;cursor:pointer;transition:all .2s}
+.lote-chip.on{border-color:var(--verde);background:#eaf3ec;box-shadow:0 3px 10px rgba(30,92,64,.15)}
+.lote-chip b{display:block;font-family:var(--serif);font-size:14px;color:var(--tinta)}
+.lote-chip span{font-size:9.5px;color:var(--tinta-2)}
+
+/* Paso 2: grid modelos */
+.modelos-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
+.modelo-card{border-radius:13px;overflow:hidden;border:1px solid var(--linea);background:#fff;cursor:pointer;transition:opacity .25s,transform .2s}
+.modelo-card.dim{opacity:.32;pointer-events:none}
+.modelo-card.sel{outline:2.5px solid var(--verde);outline-offset:-2px}
+.distrib-img{border-radius:14px;overflow:hidden;border:1px solid var(--linea);margin-top:4px}
+.distrib-img img{width:100%;display:block}
+.modelo-card .ph{height:62px;background:linear-gradient(135deg,#cfe0c6,#a9c98f);display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden}
+.modelo-card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.paso-item .pn.ico{font-size:13px;background:var(--crema-2)}
+.modelo-card .mb{padding:8px 9px}
+.modelo-card b{font-family:var(--serif);font-size:12.5px;color:var(--tinta);display:block}
+.modelo-card span{font-size:9.5px;color:var(--tinta-2)}
+
+/* Distribución de lote */
+.distrib{display:flex;flex-direction:column;gap:4px;margin-top:4px}
+.dz{border-radius:9px;padding:9px 12px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.dz.frente{background:#e8e4d5;color:var(--tinta-2)}
+.dz.ante{background:#dcebd3;color:var(--verde)}
+.dz.viv{background:var(--verde);color:#fff;padding:16px 12px;font-family:var(--serif);font-size:13px}
+.dz.patio{background:#dcebd3;color:var(--verde)}
+.dz.fondo{background:#e8e4d5;color:var(--tinta-2)}
+.dz small{font-weight:500;font-size:9px;opacity:.8}
+
+/* Ficha técnica toggle */
+.toggle2{display:flex;background:#fff;border:1.4px solid var(--linea);border-radius:12px;padding:3px;margin-bottom:12px}
+.toggle2 .opt{flex:1;text-align:center;padding:8px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer;color:var(--tinta-2)}
+.toggle2 .opt.on{background:var(--verde);color:#fff}
+.check-list{display:flex;flex-direction:column;gap:6px}
+.check-item{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--tinta)}
+.check-item .ic{flex-shrink:0;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}
+.check-item.si .ic{background:#dcebd3;color:var(--verde)}
+.check-item.no .ic{background:#f3ded6;color:#b5502f}
+
+/* Financiamiento */
+.fin-numeros{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.fin-box{background:#fff;border:1px solid var(--linea);border-radius:13px;padding:12px}
+.fin-box.full{grid-column:1/-1;background:var(--verde);border:none}
+.fin-box .k{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta-2);font-weight:700}
+.fin-box.full .k{color:#cfe3d3}
+.fin-box .v{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--tinta);margin-top:2px}
+.fin-box.full .v{color:#fff;font-size:22px}
+.fin-nota{font-size:10px;color:var(--tinta-2);margin-top:10px;text-align:center;opacity:.85}
+.fin-pendiente{background:#fdf1e2;border:1.4px dashed var(--naranja);border-radius:12px;padding:12px;font-size:11px;color:#8a5a1f;text-align:center}
+
+/* Protocolo accordion */
+.acc-item{border:1px solid var(--linea);border-radius:12px;margin-bottom:8px;overflow:hidden;background:#fff}
+.acc-head{padding:11px 13px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:12px;font-weight:700;color:var(--tinta)}
+.acc-head .fl{transition:transform .25s}
+.acc-item.on .acc-head .fl{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s var(--ease)}
+.acc-item.on .acc-body{max-height:300px}
+.acc-body ul{padding:0 13px 12px 28px;font-size:10.8px;color:var(--tinta-2);line-height:1.5}
+.doc-link{display:flex;align-items:center;gap:8px;background:#eaf3ec;border-radius:11px;padding:11px 13px;font-size:11px;font-weight:600;color:var(--verde);margin-top:4px}
+
+.cta{display:block;width:100%;text-align:center;text-decoration:none;color:#fff;background:#1fa855;border:none;
+  padding:15px;border-radius:13px;font-weight:700;font-size:13.5px;margin:18px 0 4px;box-shadow:0 8px 20px rgba(31,168,85,.28)}
+
+/* Aportaciones — marcado como borrador */
+.draft-banner{margin:14px 18px 0;background:#fdf1e2;border:1.4px dashed var(--naranja);border-radius:13px;padding:12px 14px;font-size:11px;color:#8a5a1f;line-height:1.5}
+.draft-steps{padding:16px 18px}
+.draft-step{display:flex;gap:11px;margin-bottom:14px;opacity:.72}
+.draft-step .dn{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1.6px dashed var(--tinta-2);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--tinta-2)}
+.draft-step .dt b{display:block;font-size:12.5px;color:var(--tinta)}
+.draft-step .dt span{font-size:10.5px;color:var(--tinta-2)}
+
+
+/* Aportaciones — componentes nuevos */
+.stat-mini{display:flex;gap:14px;overflow-x:auto;padding:2px 0 4px;margin-top:4px}
+.stat-mini div{flex-shrink:0;text-align:center;min-width:58px}
+.stat-mini b{display:block;font-family:var(--serif);font-size:17px;color:var(--verde);font-weight:700;line-height:1}
+.stat-mini span{font-size:8px;color:var(--tinta-2);text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+
+.comp-card{border-radius:14px;padding:14px;margin-bottom:10px}
+.comp-card.trad{background:#fff;border:1px solid var(--linea)}
+.comp-card.socio{background:var(--verde);color:#fff}
+.comp-card h3{font-family:var(--serif);font-size:13.5px;font-weight:600;margin-bottom:9px}
+.comp-card.socio h3{color:#fff}
+.comp-card .check-item{margin-bottom:6px}
+.comp-card.socio .check-item{color:#eaf3ec}
+.comp-card.socio .check-item.si .ic{background:rgba(255,255,255,.22);color:#fff}
+.tagline-box{background:var(--crema-2);border-radius:11px;padding:10px 13px;font-size:11px;color:var(--tinta);
+  font-style:italic;text-align:center;margin-top:2px}
+
+.paso-item{display:flex;gap:11px;margin-bottom:13px}
+.paso-item .pn{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--verde);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+.paso-item .pt b{display:block;font-size:12.5px;color:var(--tinta)}
+.paso-item .pt span{font-size:10.5px;color:var(--tinta-2)}
+
+.modalidad-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;margin-top:6px;margin-right:5px}
+.modalidad-badge.a{background:#e4f0dd;color:var(--verde)}
+.modalidad-badge.m{background:#fdeede;color:var(--naranja)}
+
+.rentab-caso{font-size:9.5px;color:var(--naranja);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+
+/* Calculadoras */
+.calc-box{background:#fff;border:1px solid var(--linea);border-radius:13px;padding:12px 14px;margin-bottom:12px}
+.calc-label{font-size:10px;font-weight:700;color:var(--tinta-2);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px}
+.calc-input{width:100%;padding:10px 12px;border:1.4px solid var(--linea);border-radius:10px;font-family:var(--serif);
+  font-size:16px;font-weight:600;color:var(--verde);background:var(--crema)}
+.calc-input:focus{outline:none;border-color:var(--verde)}
+.calc-hint{font-size:9.5px;color:var(--tinta-2);margin-top:5px}
+.calc-row{display:flex;gap:8px;margin-bottom:10px}
+.calc-row .calc-box{flex:1;margin-bottom:0}
+.rango-chips{display:flex;gap:6px;margin-top:5px}
+.rango-chip{flex:1;text-align:center;padding:8px 4px;border-radius:9px;border:1.4px solid var(--linea);
+  background:#fff;font-size:11.5px;font-weight:700;color:var(--tinta-2);cursor:pointer}
+.rango-chip.on{background:var(--naranja);color:#fff;border-color:var(--naranja)}
+.calc-disclaimer{font-size:9.5px;color:var(--tinta-2);text-align:center;margin-top:8px;opacity:.8;line-height:1.4}
+
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="topbar">
+  <a class="back" href="../index.html" title="Volver al inicio">‹</a>
+  <div class="tt">Socios<small>Alianza Empresarial</small></div>
+</div>
+<div class="contenedor">
+<div class="tabs">
+  <div class="tab on" id="tab-construccion" onclick="irTab('construccion')">🏗️ Construcción</div>
+  <div class="tab" id="tab-aportaciones" onclick="irTab('aportaciones')">🤝 Aportaciones</div>
+</div>
+
+<div>
+
+
+  <!-- ══════════════ TAB 1: CONSTRUCCIÓN ══════════════ -->
+  <div class="pagina on" id="pag-construccion">
+
+    <div class="hero">
+      <div class="blob a" data-speed="0.4"></div><div class="blob b" data-speed="0.7"></div>
+      <div class="inner">
+        <div class="eyebrow">Contratos de construcción</div>
+        <h1><span class="ln"><span>Construye tu casa,</span></span><span class="ln"><span>con financiación directa</span></span></h1>
+        <p>Del lote al hogar terminado. Elige tu modelo y conoce el plan de pagos.</p>
+      </div>
+    </div>
+
+    <!-- Paso 1: tamaño de lote -->
+    <div class="sec">
+      <span class="num">1</span><h2>¿Qué tamaño tiene tu lote?</h2>
+      <div class="desc">Identifica el rango y descubre los modelos disponibles.</div>
+      <div class="lote-grid" id="lote-grid"></div>
+      <div class="nota-orient">Orientativo: tu asesor confirma el modelo ideal para las medidas exactas de tu lote.</div>
+    </div>
+
+    <!-- Paso 2: elige modelo -->
+    <div class="sec">
+      <span class="num">2</span><h2>Elige el tamaño de tu casa</h2>
+      <div class="desc">Los modelos disponibles según tu lote se resaltan.</div>
+      <div class="modelos-grid" id="modelos-grid"></div>
+    </div>
+
+    <!-- Paso 3: distribución -->
+    <div class="sec">
+      <span class="num">3</span><h2>Así se distribuye tu lote</h2>
+      <div class="desc">Cada lote contempla áreas funcionales para tu comodidad.</div>
+      <div class="distrib-img"><img src="img/distribucion.jpg" alt="Distribución del lote: frente, antejardín, vivienda, patio y fondo" loading="lazy" alt="Distribución del lote"></div>
+    </div>
+
+    <!-- Ficha técnica -->
+    <div class="sec">
+      <span class="num">4</span><h2>Ficha técnica</h2>
+      <div class="desc">Sistema constructivo tradicional con muros de confinamiento, estructura en concreto de 3000 PSI.</div>
+      <div class="toggle2">
+        <div class="opt on" id="ft-gris" onclick="modalidad('gris')">Obra Gris</div>
+        <div class="opt" id="ft-blanca" onclick="modalidad('blanca')">Obra Blanca</div>
+      </div>
+      <div class="check-list" id="check-list"></div>
+    </div>
+
+    <!-- Financiamiento -->
+    <div class="sec">
+      <span class="num">5</span><h2>Plan de financiamiento</h2>
+      <div class="desc">Calculadora — ajusta el área y la modalidad para ver el valor en vivo.</div>
+      <div class="calc-box">
+        <label class="calc-label">Área construida (m²)</label>
+        <input type="number" class="calc-input" id="calc-area" value="87" min="1" oninput="calcAreaManual()">
+        <div class="calc-hint" id="calc-hint">Autocompletado con Tipo 1 · edítalo libremente</div>
+      </div>
+      <div id="fin-contenido"></div>
+      <div class="fin-nota">El valor por m² puede variar entre $2.875.000 y $5.100.000 según el proyecto.</div>
+    </div>
+
+    <!-- Protocolo de obra -->
+    <div class="sec">
+      <span class="num">6</span><h2>Protocolo de obra</h2>
+      <div class="desc">Normas de convivencia y construcción para todos los propietarios.</div>
+      <div id="acc-protocolo"></div>
+      <div class="doc-link">📄 Documento completo disponible con tu asesor</div>
+    </div>
+
+    <div class="sec" style="border-top:none">
+      <a class="cta" id="cta-construir" href="#" target="_blank" rel="noopener">💬 Quiero construir mi casa</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ TAB 2: APORTACIONES ══════════════ -->
+  <div class="pagina" id="pag-aportaciones">
+    <div class="hero">
+      <div class="blob a" data-speed="0.4"></div><div class="blob b" data-speed="0.7"></div>
+      <div class="inner">
+      <div class="eyebrow">Aportaciones de terreno</div>
+      <h1><span class="ln"><span>Su terreno ya tiene valor.</span></span><span class="ln"><span>Ayudémosle a multiplicarlo.</span></span></h1>
+      <p>Modelo de alianza estratégica para desarrollo urbanístico. No compramos terrenos — desarrollamos oportunidades junto a nuestros socios.</p>
+      <div class="stat-mini">
+        <div><b>16+</b><span>Años</span></div>
+        <div><b>90+</b><span>Asesores</span></div>
+        <div><b>3</b><span>Sedes</span></div>
+        <div><b>7</b><span>Municipios</span></div>
+      </div>
+      </div>
+    </div>
+
+    <!-- ¿Vender o asociarse? -->
+    <div class="sec">
+      <span class="num">1</span><h2>¿Vender o asociarse?</h2>
+      <div class="desc">El mayor valor de un terreno normalmente aparece después de su desarrollo.</div>
+      <div class="comp-card trad">
+        <h3>💰 Venta tradicional</h3>
+        <div class="check-item si"><div class="ic">✓</div>Recibe un único pago</div>
+        <div class="check-item si"><div class="ic">✓</div>Finaliza la negociación inmediatamente</div>
+        <div class="check-item no"><div class="ic">✕</div>No participa de la valorización futura</div>
+        <div class="check-item no"><div class="ic">✕</div>No participa de las utilidades del desarrollo</div>
+        <div class="check-item no"><div class="ic">✕</div>Sale completamente del negocio</div>
+      </div>
+      <div class="comp-card socio">
+        <h3>🤝 Asociación con la constructora</h3>
+        <div class="check-item si"><div class="ic">✓</div>Se convierte en socio del desarrollo</div>
+        <div class="check-item si"><div class="ic">✓</div>Participa en la valorización</div>
+        <div class="check-item si"><div class="ic">✓</div>Participa en las utilidades</div>
+        <div class="check-item si"><div class="ic">✓</div>Mantiene vinculación al proyecto</div>
+        <div class="check-item si"><div class="ic">✓</div>Multiplica el potencial económico de su terreno</div>
+      </div>
+    </div>
+
+    <!-- Cómo funciona la alianza -->
+    <div class="sec">
+      <span class="num">2</span><h2>¿Cómo funciona la alianza?</h2>
+      <div class="desc">Usted aporta la tierra. Nosotros desarrollamos el proyecto.</div>
+      <div class="comp-card trad">
+        <h3>🧑‍💼 El socio aporta</h3>
+        <div class="check-item si"><div class="ic">✓</div>El terreno — el activo principal del proyecto</div>
+        <div class="check-item si"><div class="ic">✓</div>Vinculación estratégica al desarrollo</div>
+        <div class="check-item si"><div class="ic">✓</div>Sin inversión adicional</div>
+      </div>
+      <div class="comp-card socio">
+        <h3>🏗️ La constructora aporta</h3>
+        <div class="check-item si"><div class="ic">✓</div>Capital</div>
+        <div class="check-item si"><div class="ic">✓</div>Diseño urbanístico</div>
+        <div class="check-item si"><div class="ic">✓</div>Licencias y permisos</div>
+        <div class="check-item si"><div class="ic">✓</div>Urbanismo, obras y gestión jurídica/financiera</div>
+        <div class="check-item si"><div class="ic">✓</div>Comercialización</div>
+      </div>
+    </div>
+
+    <!-- Ejemplo de rentabilidad -->
+    <div class="sec">
+      <span class="num">3</span><h2>Calculadora de rentabilidad</h2>
+      <div class="rentab-caso">⚠ Estimación ilustrativa — ajusta los valores</div>
+      <div class="calc-row">
+        <div class="calc-box">
+          <label class="calc-label">Área (hectáreas)</label>
+          <input type="number" class="calc-input" id="calc-ha" value="20" min="0" step="0.1" oninput="renderRentab()">
+        </div>
+        <div class="calc-box">
+          <label class="calc-label">Valor por hectárea</label>
+          <input type="number" class="calc-input" id="calc-valorha" value="400000000" min="0" step="1000000" oninput="renderRentab()">
+        </div>
+      </div>
+      <div class="calc-box">
+        <label class="calc-label">Valorización estimada del proyecto</label>
+        <div class="rango-chips" id="rango-chips"></div>
+        <div class="calc-hint">Rango real publicado: 35% a 60% · elige un escenario</div>
+      </div>
+      <div class="calc-box">
+        <label class="calc-label">Participación adicional (margen de negociación)</label>
+        <div class="rango-chips" id="rango-chips-part"></div>
+        <div class="calc-hint">15% a 32,6% · empieza conservador, sube según la negociación</div>
+      </div>
+      <div id="rentab-contenido"></div>
+      <div class="calc-disclaimer">Estimación ilustrativa, no es una garantía de rentabilidad. Ambos porcentajes son ajustables dentro de rangos reales — no valores fijos prometidos.</div>
+    </div>
+
+    <!-- Formas de pago -->
+    <div class="sec">
+      <span class="num">4</span><h2>Formas de pago al socio</h2>
+      <div class="desc">Cuatro modalidades — puede combinarlas según sus necesidades.</div>
+      <div id="acc-pagos"></div>
+    </div>
+
+    <!-- El camino del proyecto -->
+    <div class="sec">
+      <span class="num">5</span><h2>El camino del proyecto</h2>
+      <div class="desc">Etapas clave, desde la evaluación técnica hasta la entrega de beneficios.</div>
+      <div class="paso-item"><div class="pn ico">🔍</div><div class="pt"><b>Evaluación técnica</b><span>Análisis del predio y potencial urbanístico</span></div></div>
+      <div class="paso-item"><div class="pn ico">📜</div><div class="pt"><b>Contrato de asociación</b><span>Formalización jurídica</span></div></div>
+      <div class="paso-item"><div class="pn ico">📐</div><div class="pt"><b>Diseño urbanístico</b><span>Estructuración técnica</span></div></div>
+      <div class="paso-item"><div class="pn ico">🏛️</div><div class="pt"><b>Licencias y permisos</b><span>Aprobación municipal</span></div></div>
+      <div class="paso-item"><div class="pn ico">🚧</div><div class="pt"><b>Urbanismo y obras</b><span>Ejecución del proyecto</span></div></div>
+      <div class="paso-item"><div class="pn ico">📢</div><div class="pt"><b>Comercialización</b><span>Promoción y ventas</span></div></div>
+      <div class="paso-item"><div class="pn ico">🤝</div><div class="pt"><b>Liquidación de participación</b><span>Entrega de beneficios al socio</span></div></div>
+    </div>
+
+    <!-- Seguridad para el socio -->
+    <div class="sec">
+      <span class="num">6</span><h2>Seguridad para el socio</h2>
+      <div class="desc">Seguridad jurídica y financiera durante todo el proceso.</div>
+      <div class="check-list">
+        <div class="check-item si"><div class="ic">✓</div>Contrato formal de asociación</div>
+        <div class="check-item si"><div class="ic">✓</div>Formalización jurídica</div>
+        <div class="check-item si"><div class="ic">✓</div>Seguimiento financiero e informes periódicos</div>
+        <div class="check-item si"><div class="ic">✓</div>Auditoría, conciliaciones y trazabilidad de recaudos</div>
+        <div class="check-item si"><div class="ic">✓</div>Transparencia contractual</div>
+      </div>
+    </div>
+
+    <!-- Preguntas frecuentes -->
+    <div class="sec">
+      <span class="num">7</span><h2>Preguntas frecuentes</h2>
+      <div id="acc-faq"></div>
+    </div>
+
+    <div class="sec" style="border-top:none">
+      <a class="cta" id="cta-terreno" href="#" target="_blank" rel="noopener" style="background:var(--naranja);box-shadow:0 8px 20px rgba(232,121,47,.28)">📝 Cuéntame sobre tu terreno</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp (mismo que en propiedades/ y vehiculos/)
+
+/* ============ DATOS REALES (de los 3 PDF) ============ */
+
+const LOTES = [
+  {id:'105', label:'Lote 105 m²', frente:'7.0 m', prof:'15.0 m', modelos:['7.1','7.2']},
+  {id:'200', label:'Lote 200 m²', frente:'7.0 m', prof:'16.0 m', modelos:['2','7.1','7.2','8']},
+  {id:'300', label:'Lote 300 m²', frente:'9.0 m', prof:'18.5 m', modelos:['1','3','4']},
+  {id:'300+', label:'Mayor a 300 m²', frente:'20.0 m', prof:'21.0 m', modelos:['5','6','9']}
+];
+// Nota: la relación lote→modelo se tomó de la tabla "medidas mínimas" (columna DESCRIPCIÓN),
+// que es más precisa que los íconos de la primera página.
+
+const MODELOS = [
+  {id:'1', area:87, pisos:1},
+  {id:'2', area:52, pisos:1},
+  {id:'3', area:88, pisos:1},
+  {id:'4', area:140, pisos:1},
+  {id:'5', area:161, pisos:1},
+  {id:'6', area:263, pisos:1},
+  {id:'7.1', area:51, pisos:1},
+  {id:'7.2', area:50.92, pisos:1},
+  {id:'8', area:141, pisos:2},
+  {id:'9', area:305, pisos:2}
+];
+
+const FICHA = {
+  comun:["Acometida eléctrica interna a 110V","Acometida sanitaria e hidráulica","Cubierta en teja arquitectónica cal. 28","Muros lisos en pañete, fachada en graniplast","Puertas y ventanas externas en Cold Rolled","Pozo séptico"],
+  gris_no:["Pintura interior","Acabados de piso","Iluminación interna","Acabados de pared (cerámicas)","Tanque de almacenamiento de agua","Cielo raso, unidad sanitaria, puertas internas"],
+  blanca_si:["Pintura interior","Acabados de piso","Iluminación interna","Acabados de pared (cerámicas)","Tanque de almacenamiento de agua","Cielo raso, unidad sanitaria, puertas internas"]
+};
+
+// Calculadora de financiamiento: valor total = área × valor/m². Con esto
+// cualquier área (incluidos los modelos 7.1/7.2, aún sin precio oficial
+// confirmado) calcula en vivo, en vez de depender de una tabla fija.
+const FINANCIACION = {
+  gris:   { valorM2: 2875000 },
+  blanca: { valorM2: 5100000 }
+};
+
+const PROTOCOLO = [
+  {t:"Horarios y coordinación", items:["Informar al director de obra el cronograma de actividades","Horario de obra: L-V 8:00am-5:00pm, Sáb 8:00am-1:00pm","No se permite personal en horarios diferentes"]},
+  {t:"Aislamientos y diseño", items:["1m en cada lado, 1m posterior, 1m anterior desde el paramento","3m totales desde el bordillo hacia el interior (para lotes ≥200m²)","Lotes de 105m²: sin aislamiento lateral · Lotes de 150m²: 0,50m lateral","Diseño debe ser de un Arquitecto — no madera, guadua ni prefabricado"]},
+  {t:"Convivencia y seguridad", items:["Listado actualizado de trabajadores en obra","Propietario responsable de seguridad social y conducta del personal","Mantener la obra aseada y no obstruir las vías","No se permite alicoramiento ni sustancias psicoactivas","Puertas deben permanecer cerradas"]},
+  {t:"Aguas residuales", items:["Sistema séptico integrado prefabricado, de calidad garantizada","Ubicación opuesta a pozos o aljibes para evitar contaminación"]}
+];
+
+const PAGOS = [
+  {t:"Pago en Lotes del Proyecto", d:"El socio recibe lotes equivalentes al valor de su aporte y se beneficia de su valorización futura.", ico:"🏘️"},
+  {t:"Pago Proporcional por Venta de Lotes", d:"El valor del aporte se reparte entre los lotes; cada venta genera un pago proporcional.", ico:"📊"},
+  {t:"Participación en el Recaudo de Ventas", d:"El socio recibe un porcentaje del recaudo mensual de ventas, según el avance del proyecto.", ico:"💵"},
+  {t:"Modelo de Pago Combinado", d:"Combina varias modalidades según las necesidades del socio.", ico:"🔀"}
+];
+
+const FAQ = [
+  {q:"¿Pierdo mi terreno?", a:"No. La participación se estructura mediante mecanismos contractuales definidos."},
+  {q:"¿Debo invertir dinero adicional?", a:"No. La constructora asume la inversión del desarrollo."},
+  {q:"¿Quién comercializa el proyecto?", a:"La constructora, o conjuntamente con el socio, según la modalidad seleccionada."},
+  {q:"¿Cómo recibo mis beneficios?", a:"Según la modalidad de participación acordada."},
+  {q:"¿Cómo controlo el desarrollo?", a:"Mediante informes periódicos, seguimiento financiero y auditoría."}
+];
+
+
+/* ============ RENDER ============ */
+let loteSel = null, modeloSel = '1', modalidadSel = 'gris';
+
+function renderLotes(){
+  document.getElementById('lote-grid').innerHTML = LOTES.map(l=>`
+    <div class="lote-chip ${loteSel===l.id?'on':''}" onclick="elegirLote('${l.id}')">
+      <b>${l.label}</b><span>Frente ${l.frente} · Fondo ${l.prof}</span>
+    </div>`).join('');
+}
+function elegirLote(id){ loteSel = (loteSel===id)?null:id; renderLotes(); renderModelos(); }
+
+function renderModelos(){
+  const lote = LOTES.find(l=>l.id===loteSel);
+  document.getElementById('modelos-grid').innerHTML = MODELOS.map(m=>{
+    const disponible = !lote || lote.modelos.includes(m.id);
+    const key = 'tipo'+m.id.replace('.','-');
+    return `<div class="modelo-card ${disponible?'':'dim'} ${modeloSel===m.id?'sel':''}" onclick="elegirModelo('${m.id}')">
+      <div class="ph"><img src="img/${key}.jpg" alt="Casa Tipo ${m.id}"></div>
+      <div class="mb"><b>Tipo ${m.id}</b><span>${m.area} m² · ${m.pisos} piso${m.pisos>1?'s':''}</span></div>
+    </div>`;
+  }).join('');
+}
+function elegirModelo(id){
+  modeloSel = id; renderModelos();
+  const m = MODELOS.find(x=>x.id===id);
+  document.getElementById('calc-area').value = m.area;
+  document.getElementById('calc-hint').textContent = `Autocompletado con Tipo ${id} · edítalo libremente`;
+  renderFinanciacion();
+}
+function calcAreaManual(){
+  document.getElementById('calc-hint').textContent = 'Valor personalizado';
+  renderFinanciacion();
+}
+
+function modalidad(m){
+  modalidadSel = m;
+  document.getElementById('ft-gris').classList.toggle('on', m==='gris');
+  document.getElementById('ft-blanca').classList.toggle('on', m==='blanca');
+  renderFicha(); renderFinanciacion();
+}
+function renderFicha(){
+  const noIncluye = modalidadSel==='gris' ? FICHA.gris_no : [];
+  const siIncluye = modalidadSel==='blanca' ? FICHA.blanca_si : [];
+  let html = FICHA.comun.map(i=>`<div class="check-item si"><div class="ic">✓</div>${i}</div>`).join('');
+  if(modalidadSel==='gris'){
+    html += noIncluye.map(i=>`<div class="check-item no"><div class="ic">✕</div>${i} <small style="opacity:.7">(no incluido)</small></div>`).join('');
+  } else {
+    html += siIncluye.map(i=>`<div class="check-item si"><div class="ic">✓</div>${i}</div>`).join('');
+  }
+  document.getElementById('check-list').innerHTML = html;
+}
+
+function fmt(n){ return '$'+Math.round(n).toLocaleString('es-CO'); }
+function renderFinanciacion(){
+  const valorM2 = FINANCIACION[modalidadSel].valorM2;
+  const areaInput = document.getElementById('calc-area');
+  const area = Math.max(0, parseFloat(areaInput ? areaInput.value : 87) || 0);
+  const total = area * valorM2;
+  const inicial = total * 0.30;
+  const cuota = (total * 0.70) / 12;
+  const cont = document.getElementById('fin-contenido');
+  cont.innerHTML = `
+    <div class="fin-numeros">
+      <div class="fin-box"><div class="k">Área</div><div class="v">${area} m²</div></div>
+      <div class="fin-box"><div class="k">Valor m²</div><div class="v">${fmt(valorM2)}</div></div>
+      <div class="fin-box full"><div class="k">Valor total</div><div class="v">${fmt(total)}</div></div>
+      <div class="fin-box"><div class="k">Inicial (30%)</div><div class="v">${fmt(inicial)}</div></div>
+      <div class="fin-box"><div class="k">Cuota × 12</div><div class="v">${fmt(cuota)}</div></div>
+    </div>`;
+}
+
+function renderProtocolo(){
+  document.getElementById('acc-protocolo').innerHTML = PROTOCOLO.map((p,i)=>`
+    <div class="acc-item" id="acc-${i}">
+      <div class="acc-head" onclick="toggleAcc(${i})">${p.t} <span class="fl">⌄</span></div>
+      <div class="acc-body"><ul>${p.items.map(it=>`<li>${it}</li>`).join('')}</ul></div>
+    </div>`).join('');
+}
+function toggleAcc(i){ document.getElementById('acc-'+i).classList.toggle('on'); }
+
+function renderPagos(){
+  document.getElementById('acc-pagos').innerHTML = PAGOS.map((p,i)=>`
+    <div class="paso-item"><div class="pn ico">${p.ico}</div><div class="pt"><b>${p.t}</b><span>${p.d}</span></div></div>
+  `).join('');
+}
+
+function renderFAQ(){
+  document.getElementById('acc-faq').innerHTML = FAQ.map((f,i)=>`
+    <div class="acc-item" id="acc-faq-${i}">
+      <div class="acc-head" onclick="toggleAccFaq(${i})">${f.q} <span class="fl">⌄</span></div>
+      <div class="acc-body"><ul><li>${f.a}</li></ul></div>
+    </div>`).join('');
+}
+function toggleAccFaq(i){ document.getElementById('acc-faq-'+i).classList.toggle('on'); }
+
+/* ============ CALCULADORA DE RENTABILIDAD (Aportaciones) ============ */
+const RANGOS = [35, 45, 60]; // % — rango real publicado: 35% a 60%
+let rangoSel = 35;
+const PARTICIPACION_RANGOS = [15, 20, 25, 32.6]; // % — 32,6% es el techo real confirmado, no el punto de partida
+let participacionSel = 20; // arranca conservador; hay margen para subir en la negociación
+
+function pct(n){ return String(n).replace('.', ','); } // formato colombiano: coma decimal
+
+function renderRangoChips(){
+  document.getElementById('rango-chips').innerHTML = RANGOS.map(r=>
+    `<div class="rango-chip ${rangoSel===r?'on':''}" onclick="elegirRango(${r})">${pct(r)}%</div>`
+  ).join('');
+  document.getElementById('rango-chips-part').innerHTML = PARTICIPACION_RANGOS.map(r=>
+    `<div class="rango-chip ${participacionSel===r?'on':''}" onclick="elegirParticipacion(${r})">${pct(r)}%</div>`
+  ).join('');
+}
+function elegirRango(r){ rangoSel = r; renderRangoChips(); renderRentab(); }
+function elegirParticipacion(r){ participacionSel = r; renderRangoChips(); renderRentab(); }
+
+function renderRentab(){
+  const ha = Math.max(0, parseFloat(document.getElementById('calc-ha').value) || 0);
+  const valorHa = Math.max(0, parseFloat(document.getElementById('calc-valorha').value) || 0);
+  const valorActual = ha * valorHa;
+  const valorizacion = valorActual * (rangoSel/100);
+  const participacion = valorActual * (participacionSel/100);
+  const total = valorActual + valorizacion + participacion;
+  const incremento = valorizacion + participacion;
+  document.getElementById('rentab-contenido').innerHTML = `
+    <div class="fin-numeros">
+      <div class="fin-box"><div class="k">Valor actual del predio</div><div class="v">${fmt(valorActual)}</div></div>
+      <div class="fin-box"><div class="k">Valorización (${pct(rangoSel)}%)</div><div class="v">${fmt(valorizacion)}</div></div>
+      <div class="fin-box"><div class="k">Participación (${pct(participacionSel)}%)</div><div class="v">${fmt(participacion)}</div></div>
+      <div class="fin-box full"><div class="k">Valor final proyectado</div><div class="v">${fmt(total)}</div></div>
+    </div>
+    <div class="fin-nota">Incremento patrimonial estimado: <b>${fmt(incremento)}</b> — sin inversión adicional por parte del socio.</div>`;
+}
+
+
+function irTab(t){
+  document.getElementById('tab-construccion').classList.toggle('on', t==='construccion');
+  document.getElementById('tab-aportaciones').classList.toggle('on', t==='aportaciones');
+  document.getElementById('pag-construccion').classList.toggle('on', t==='construccion');
+  document.getElementById('pag-aportaciones').classList.toggle('on', t==='aportaciones');
+  window.scrollTo({top:0,behavior:'auto'});
+  animarPagina(t);
+}
+
+/* ============ WHATSAPP ============ */
+function wa(texto){ return 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(texto); }
+function prepararCTAs(){
+  const c=document.getElementById('cta-construir'), a=document.getElementById('cta-terreno');
+  c.addEventListener('click',()=>{
+    const m=MODELOS.find(x=>x.id===modeloSel);
+    c.href=wa('Hola, quiero construir mi casa. Me interesa el modelo Tipo '+modeloSel+' ('+m.area+' m²) en '+(modalidadSel==='gris'?'obra gris':'obra blanca')+'. ¿Me dan más información?');
+  });
+  c.href=wa('Hola, quiero construir mi casa. ¿Me dan más información?');
+  a.href=wa('Hola, tengo un terreno y quiero conocer el modelo de aportación. ¿Me pueden asesorar?');
+}
+
+/* ============ ANIMACIONES (GSAP) ============ */
+const animadas={};
+function animarPagina(t){
+  if(typeof gsap==='undefined') return; // si el CDN no carga, la página sigue funcionando sin animación
+  const pag=document.getElementById('pag-'+t);
+  if(animadas[t]){ ScrollTrigger.refresh(); return; }
+  animadas[t]=true;
+  gsap.from(pag.querySelectorAll('.hero h1 .ln span'),{yPercent:120,duration:.9,ease:'power4.out',stagger:.12,delay:.05});
+  gsap.from(pag.querySelectorAll('.hero .eyebrow, .hero p, .hero .stat-mini'),{y:20,opacity:0,duration:.7,ease:'power3.out',stagger:.08,delay:.25});
+  pag.querySelectorAll('.hero .blob').forEach(b=>gsap.to(b,{y:200*(+b.dataset.speed),ease:'none',scrollTrigger:{trigger:pag.querySelector('.hero'),start:'top top',end:'bottom top',scrub:true}}));
+  pag.querySelectorAll('.sec').forEach(sec=>{
+    const items=sec.querySelectorAll('.num, h2, .desc, .lote-chip, .modelo-card, .distrib-img, .toggle2, .check-item, .calc-box, .acc-item, .paso-item, .comp-card, .doc-link, .cta, .fin-box');
+    gsap.from(items,{y:34,opacity:0,duration:.65,ease:'power3.out',stagger:.04,scrollTrigger:{trigger:sec,start:'top 88%',once:true}});
+  });
+  gsap.utils.toArray(pag.querySelectorAll('.modelo-card .ph img')).forEach(img=>gsap.fromTo(img,{yPercent:-8,scale:1.12},{yPercent:8,ease:'none',scrollTrigger:{trigger:img.closest('.modelo-card'),start:'top bottom',end:'bottom top',scrub:true}}));
+  ScrollTrigger.refresh();
+}
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement; const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
+  document.getElementById('prog').style.width=(p*100)+'%';
+},{passive:true});
+
+renderLotes(); renderModelos(); renderFicha(); renderFinanciacion(); renderProtocolo(); renderPagos(); renderFAQ(); renderRangoChips(); renderRentab();
+prepararCTAs();
+if(typeof gsap!=="undefined") gsap.registerPlugin(ScrollTrigger);
+animarPagina("construccion");
+</script>
+</body>
+</html>
