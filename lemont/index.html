@@ -338,6 +338,12 @@ section{ position:relative; }
 }
 .btn-enviar:hover{ transform:translateY(-2px); box-shadow:0 16px 36px rgba(217,178,76,.4); }
 .btn-enviar:disabled{ opacity:.6; cursor:wait; transform:none; }
+.btn-wa{
+  display:flex; align-items:center; justify-content:center; text-align:center; gap:9px; margin-top:14px; padding:15px; border-radius:100px;
+  border:1px solid var(--oro); color:var(--oro); font-family:var(--sans); font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; font-size:.76rem; text-decoration:none; transition:background .25s, color .25s, transform .25s;
+}
+.btn-wa:hover{ background:var(--oro); color:var(--negro); transform:translateY(-2px); }
 .form__msg{ margin-top:16px; text-align:center; font-size:.9rem; min-height:22px; }
 .form__msg.ok{ color:#7fd18f; } .form__msg.err{ color:#e69a8a; }
 .priv{ font-size:.72rem; color:var(--tenue); margin-top:14px; text-align:center; }
@@ -379,6 +385,7 @@ footer{ background:var(--negro); border-top:1px solid rgba(255,255,255,.06); pad
   .reveal{ opacity:1; transform:none; }
 }
 </style>
+<script src="../asesores.js"></script>
 </head>
 <body>
 
@@ -521,6 +528,7 @@ footer{ background:var(--negro); border-top:1px solid rgba(255,255,255,.06); pad
         <div class="form__msg" id="formMsg" role="status"></div>
         <p class="priv">Al enviar aceptas ser contactado por un asesor de Le Mont Reserve.</p>
       </form>
+      <a class="btn-wa" data-ae="wa" href="https://wa.me/573227414391" target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
     </div>
   </div>
 </section>
