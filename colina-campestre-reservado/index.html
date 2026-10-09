@@ -149,6 +149,8 @@ button{font-family:inherit;cursor:pointer}
 .btn-enviar{width:100%;padding:15px;border:none;border-radius:2px;background:var(--crema-logo);color:var(--oliva);font-size:.8rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:background .3s,transform .2s}
 .btn-enviar:hover:not(:disabled){background:#fff;transform:translateY(-2px)}
 .btn-enviar:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-wa{display:flex;text-align:center;align-items:center;justify-content:center;gap:9px;margin-top:14px;padding:14px;border:1px solid var(--crema-logo);border-radius:2px;color:var(--crema-logo);font-size:.78rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;transition:background .3s,color .3s,transform .2s}
+.btn-wa:hover{background:var(--crema-logo);color:var(--oliva);transform:translateY(-2px)}
 .aviso{margin-top:14px;padding:11px 14px;border-radius:2px;font-size:.82rem;font-weight:300;display:none;text-align:center}
 .aviso.ok{display:block;background:rgba(236,216,166,.14);color:var(--crema-logo);border:1px solid rgba(236,216,166,.3)}
 .aviso.mal{display:block;background:rgba(200,90,70,.14);color:#e8a99b;border:1px solid rgba(200,90,70,.3)}
@@ -180,6 +182,7 @@ footer .fino{font-size:.66rem;color:rgba(255,255,255,.3);max-width:600px;margin:
   .reveal{opacity:1;transform:none}
 }
 </style>
+<script src="../asesores.js"></script>
 </head>
 <body>
 
@@ -347,6 +350,7 @@ footer .fino{font-size:.66rem;color:rgba(255,255,255,.3);max-width:600px;margin:
           <button type="submit" class="btn-enviar" id="btn-enviar">Enviar mis datos</button>
           <div class="aviso" id="aviso"></div>
         </form>
+        <a class="btn-wa" data-ae="wa" href="https://wa.me/573227414391" target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
       </div>
     </div>
   </div>

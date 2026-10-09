@@ -111,7 +111,11 @@ body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-hei
 .cta.wpp{background:#1fa855;box-shadow:0 8px 20px rgba(31,168,85,.3)}
 .cta.sec{background:none;color:var(--verde);border:1.6px solid var(--verde)}
 .det-nota{font-size:10.5px;color:var(--tinta-2);text-align:center;margin-top:6px;opacity:.8}
+.cta-seccion{max-width:900px;margin:10px auto 70px;padding:0 22px;text-align:center}
+.cta-seccion p{font-size:13.5px;color:var(--tinta-2);margin-bottom:14px}
+.cta-seccion .cta{max-width:420px;margin:0 auto}
 </style>
+<script src="../asesores.js"></script>
 </head>
 <body>
 
@@ -138,6 +142,12 @@ body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-hei
 <div class="filtros" id="filtros"></div>
 <div class="grid" id="grid"></div>
 
+<!-- Llamado a la acción de la sección (general, no por propiedad) -->
+<div class="cta-seccion">
+  <p>¿Te interesa alguna propiedad o buscas algo distinto? Un asesor te cuenta lo que hay disponible hoy.</p>
+  <a class="cta wpp" data-ae="wa" href="https://wa.me/573227414391">💬 Hablar con un asesor por WhatsApp</a>
+</div>
+
 <!-- Contenedor del detalle (se llena dinámicamente) -->
 <div class="detalle" id="detalle">
   <button class="det-close" onclick="cerrarDet()">✕</button>
@@ -151,7 +161,6 @@ body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-hei
    DATOS — para agregar una propiedad, copia un bloque y edítalo.
    Las fotos van en img/ con el nombre <id>-1.jpg, <id>-2.jpg...
    ============================================================ */
-const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp
 const PROPIEDADES = [
   {
     id:"casa-caudal", tipo:"Casa", ciudad:"Villavicencio",
@@ -234,7 +243,6 @@ function verDetalle(id){
   for(let i=1;i<=p.fotos;i++) slides.push(`<div class="slide"><img src="img/${p.id}-${i}.jpg" alt="${p.nombre} ${i}"></div>`);
   const datos=Object.entries(p.datos).map(([k,v])=>`<div class="dato"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
   const caracts=p.caracts.map(c=>`<div class="caract">${c}</div>`).join('');
-  const msg=encodeURIComponent(`Hola, me interesa la propiedad "${p.nombre}" (${p.precio}). ¿Me dan más información?`);
   document.getElementById('det-contenido').innerHTML=`
     <div class="galeria" id="gal">${slides.join('')}</div>
     <div class="gal-dots" id="galdots"></div>
@@ -247,7 +255,7 @@ function verDetalle(id){
       <div class="det-datos">${datos}</div>
       <div class="det-sub dr">Características</div>
       <div class="caracts">${caracts}</div>
-      <a class="cta wpp" href="https://wa.me/${WHATSAPP}?text=${msg}">💬 Preguntar por esta propiedad</a>
+      <a class="cta wpp" data-ae="wa" href="https://wa.me/573227414391">💬 Hablar con un asesor por WhatsApp</a>
       <div class="det-nota">Un asesor te responde el mismo día</div>
     </div>`;
   abrirDet();

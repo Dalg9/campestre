@@ -103,7 +103,11 @@ body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-hei
 .cta:active{transform:scale(.97)}
 .cta.wpp{background:#1fa855;box-shadow:0 8px 20px rgba(31,168,85,.3)}
 .det-nota{font-size:10.5px;color:var(--tinta-2);text-align:center;margin-top:6px;opacity:.8}
+.cta-seccion{max-width:900px;margin:10px auto 70px;padding:0 22px;text-align:center}
+.cta-seccion p{font-size:13.5px;color:var(--tinta-2);margin-bottom:14px}
+.cta-seccion .cta{max-width:420px;margin:0 auto}
 </style>
+<script src="../asesores.js"></script>
 </head>
 <body>
 
@@ -128,6 +132,12 @@ body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-hei
 <div class="filtros" id="filtros"></div>
 <div class="grid" id="grid"></div>
 
+<!-- Llamado a la acción de la sección (general, no por vehículo) -->
+<div class="cta-seccion">
+  <p>¿Te interesa algún vehículo o buscas otro? Un asesor te cuenta lo que hay disponible hoy.</p>
+  <a class="cta wpp" data-ae="wa" href="https://wa.me/573227414391">💬 Hablar con un asesor por WhatsApp</a>
+</div>
+
 <div class="detalle" id="detalle">
   <button class="det-close" onclick="cerrarDet()">✕</button>
   <div class="det-scroll"><div class="det-inner" id="det-contenido"></div></div>
@@ -143,7 +153,6 @@ body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-hei
    tipo, color, cilindrada, combustible, kilometraje, valor).
    NUNCA se publica la tarjeta de propiedad ni otro dato sensible.
    ============================================================ */
-const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp
 const VEHICULOS = [
   {
     id:"bmw", tipo:"Automóvil", marca:"BMW",
@@ -236,7 +245,6 @@ function verDetalle(id){
   const slides=[];
   for(let i=1;i<=v.fotos;i++) slides.push(`<div class="slide"><img src="img/${v.id}-${i}.jpg" alt="${v.nombre} ${i}"></div>`);
   const filas=Object.entries(v.ficha).map(([k,val])=>`<tr><td class="k">${k}</td><td class="v">${val}</td></tr>`).join('');
-  const msg=encodeURIComponent(`Hola, me interesa el ${v.nombre} (${v.precio}). ¿Me dan más información?`);
   document.getElementById('det-contenido').innerHTML=`
     <div class="galeria" id="gal">${slides.join('')}</div>
     <div class="gal-dots" id="galdots"></div>
@@ -247,7 +255,7 @@ function verDetalle(id){
       <div class="det-ubi dr">🚗 ${v.tipo} · Modelo ${v.ficha["Modelo"]}</div>
       <div class="det-sub dr">Ficha técnica</div>
       <table class="ficha-tec">${filas}</table>
-      <a class="cta wpp" href="https://wa.me/${WHATSAPP}?text=${msg}">💬 Preguntar por este vehículo</a>
+      <a class="cta wpp" data-ae="wa" href="https://wa.me/573227414391">💬 Hablar con un asesor por WhatsApp</a>
       <div class="det-nota">Un asesor te responde el mismo día</div>
     </div>`;
   abrirDet();
