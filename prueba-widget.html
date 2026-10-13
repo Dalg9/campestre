@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Evita que Google indexe esta página de prueba -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Prueba del asistente</title>
+  <style>
+    body { font-family: Inter, Arial, sans-serif; background: #f7f4ec; color: #1e5c40; padding: 32px 20px; }
+    h1 { font-size: 1.4rem; }
+    p { max-width: 520px; line-height: 1.5; }
+
+    /* ---- Mueve el widget de Diana a la IZQUIERDA ---- */
+    /* Los botones flotantes (chat / cerrar) */
+    .dapta-fab-container { right: auto !important; left: 16px !important; }
+    /* La ventana del chat (solo en pantallas grandes; en celular ocupa todo el ancho) */
+    @media (min-width: 481px) {
+      #chatbot.modern-corner-widget,
+      .dapta-chatbot.modern-corner-widget { right: auto !important; left: 16px !important; }
+    }
+
+    /* ---- Burbuja de ejemplo a la DERECHA: simula la de las 5 secciones ---- */
+    .burbuja-simulada {
+      position: fixed; right: 16px; bottom: 16px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #e8792f; color: #fff; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,.25); z-index: 50;
+    }
+  </style>
+</head>
+<body>
+  <h1>Página de prueba del asistente virtual</h1>
+  <p>Aquí solo probamos el chat. La burbuja naranja de la derecha simula la de las 5 secciones. El asistente (Diana) debe aparecer en la esquina izquierda.</p>
+
+  <div class="burbuja-simulada">5 sec.</div>
+
+  <!-- Widget de Dapta: va justo antes de cerrar el body -->
+  <script src="https://widget-v2.dapta.ai/agent.min.js?agentId=ec64492a-abe5-4f18-a04e-444163e0a2e9"></script>
+</body>
+</html>

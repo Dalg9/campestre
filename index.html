@@ -1020,5 +1020,42 @@ function aeColapsar(){
 }
 </script>
 
+<!-- ============================================================
+     ASISTENTE DIANA (Dapta) — pegar en index.html
+     DÓNDE: justo ANTES de la etiqueta de cierre </body>
+     (si ya tienes otros <script> al final, pégalo después de ellos)
+     ============================================================ -->
+
+<style>
+  /* Mueve el widget de Diana a la IZQUIERDA para no chocar
+     con la burbuja de las 5 secciones, que está a la derecha */
+  .dapta-fab-container { right: auto !important; left: 16px !important; }
+  @media (min-width: 481px) {
+    #chatbot.modern-corner-widget,
+    .dapta-chatbot.modern-corner-widget { right: auto !important; left: 16px !important; }
+  }
+</style>
+
+<script>
+  /* Carga a Diana SOLO cuando la persona ya se registró (muro suave).
+     Así no responde sobre otros proyectos antes del registro. */
+  (function () {
+    function cargarDiana() {
+      if (document.getElementById('dapta-diana')) return;      // evita cargarlo dos veces
+      var s = document.createElement('script');
+      s.id = 'dapta-diana';
+      s.src = 'https://widget-v2.dapta.ai/agent.min.js?agentId=ec64492a-abe5-4f18-a04e-444163e0a2e9';
+      document.body.appendChild(s);
+    }
+    function registrado() {
+      try { return localStorage.getItem('ae_registro') === 'ok'; } catch (e) { return false; }
+    }
+    if (registrado()) { cargarDiana(); return; }                // visitante que ya se registró antes
+    var espera = setInterval(function () {                      // revisa cada segundo si acaba de registrarse
+      if (registrado()) { clearInterval(espera); cargarDiana(); }
+    }, 1000);
+  })();
+</script>
+
 </body>
 </html>
