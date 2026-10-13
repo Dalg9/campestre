@@ -116,6 +116,7 @@ svg.ic{display:block;width:100%;height:100%;fill:none;stroke:var(--ic,var(--verd
 .nota{font-size:11px;color:var(--tinta-2);text-align:center;margin:14px 0 50px;opacity:.85}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.ln span{transform:none}}
 </style>
+<script src="../asesores.js"></script>
 </head>
 <body>
 <div class="prog" id="prog"></div>
@@ -156,13 +157,12 @@ svg.ic{display:block;width:100%;height:100%;fill:none;stroke:var(--ic,var(--verd
       <div class="st"><div class="n" data-ic="bookmark"></div><div><b>Separa tu lote</b><span>Recibe asesoría sobre valores, requisitos y condiciones.</span></div></div>
       <div class="st last"><div class="n" data-ic="house"></div><div><b>Empieza a construir patrimonio</b><span>Da el primer paso hacia tu lote en el Meta.</span></div></div>
     </div>
-    <a class="cta rv" id="cta" href="#" target="_blank" rel="noopener">💬 QUIERO CONOCER MIS OPCIONES</a>
+    <a class="cta rv" id="cta" data-ae="wa" href="https://wa.me/573227414391" target="_blank" rel="noopener">💬 QUIERO CONOCER MIS OPCIONES</a>
     <div class="nota">Los valores y condiciones los confirma tu asesor según el proyecto.</div>
   </section>
 </main>
 
 <script>
-const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp (el mismo de propiedades/, vehiculos/ y socios/)
 
 /* ====== DATOS: para cambiar un texto, edítalo aquí ====== */
 const GRUPOS = [
@@ -232,7 +232,6 @@ function pasos(){
 }
 
 /* ====== WhatsApp y barra de progreso ====== */
-document.getElementById('cta').href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent('Hola, quiero conocer mis opciones para pagar un lote. ¿Me pueden asesorar?');
 addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%'},{passive:true});
 </script>
 </body>

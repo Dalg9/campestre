@@ -273,6 +273,7 @@ svg.ic{display:block;width:100%;height:100%;fill:none;stroke:var(--ic,var(--verd
 .nd{cursor:pointer}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+<script src="../asesores.js"></script>
 </head>
 <body>
 <div class="prog" id="prog"></div>
@@ -531,7 +532,6 @@ svg.ic{display:block;width:100%;height:100%;fill:none;stroke:var(--ic,var(--verd
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp (mismo que en propiedades/ y vehiculos/)
 
 /* ============ DATOS REALES (de los 3 PDF) ============ */
 
@@ -806,7 +806,9 @@ function initRuta(){
 }
 
 /* ============ WHATSAPP ============ */
-function wa(texto){ return 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(texto); }
+/* Cada vez que se arma un enlace, asesores.js sortea un asesor distinto.
+   Se conserva el mensaje de cada botón y se añade de dónde viene. */
+function wa(texto){ return AE.wa(texto+' Te escribo desde la sección Socios de la página de Alianza Empresarial.'); }
 function prepararCTAs(){
   const c=document.getElementById('cta-construir'), a=document.getElementById('cta-terreno');
   c.addEventListener('click',()=>{

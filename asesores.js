@@ -60,7 +60,8 @@
     "chiguiros":                   mensaje("Los Chigüiros Club Campestre"),
     "propiedades":                 mensaje("las propiedades"),
     "vehiculos":                   mensaje("los vehículos"),
-    "socios":                      mensaje("construir mi casa o aportar mi terreno")
+    "socios":                      mensaje("construir mi casa o aportar mi terreno"),
+    "pagos":                       mensaje("conocer las formas de pago de un lote")
   };
 
   /* -------------------------------------------------------------------
