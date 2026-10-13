@@ -414,7 +414,6 @@ body.visitante #bloqueo .bloqueo-cta::before{ content:""; position:absolute; ins
 .ae-panel .cat-item .ct span{ font-size:10.5px; color:var(--tinta-2); }
 .ae-panel .cat-item .fl{ color:var(--tinta-2); font-size:16px; }
 </style>
-<script src="asesores.js"></script>
 </head>
 <body>
 
@@ -443,7 +442,7 @@ body.visitante #bloqueo .bloqueo-cta::before{ content:""; position:absolute; ins
         <div class="ct"><b>Vehículos</b><span>Carros y motos</span></div>
         <div class="fl">›</div>
       </a>
-      <a class="cat-item" href="pagos.html">
+      <a class="cat-item" href="pagos/">
         <div class="ci" style="background:#e4f0dd;color:#1e5c40">💳</div>
         <div class="ct"><b>Pagos</b><span>Cesantías · permuta · crédito</span></div>
         <div class="fl">›</div>
@@ -657,7 +656,7 @@ body.visitante #bloqueo .bloqueo-cta::before{ content:""; position:absolute; ins
         </div>
         <button type="submit" class="boton-enviar" id="btn-enviar">Enviar mis datos</button>
       </form>
-      <a class="whatsapp" data-ae="wa" href="https://wa.me/573227414391" target="_blank" rel="noopener">💬 Prefiero escribir por WhatsApp</a>
+      <a class="whatsapp" href="https://wa.me/57XXXXXXXXXX" target="_blank">💬 Prefiero escribir por WhatsApp</a>
       <div id="mensaje" class="mensaje"></div>
     </div>
   </div>
@@ -673,7 +672,7 @@ body.visitante #bloqueo .bloqueo-cta::before{ content:""; position:absolute; ins
       </div>
       <div class="foot-cont">
         Villavicencio, Meta<br>
-        <a data-ae="wa" href="https://wa.me/573227414391" target="_blank" rel="noopener">Escríbenos por WhatsApp →</a>
+        <a href="https://wa.me/57XXXXXXXXXX">Escríbenos por WhatsApp →</a>
       </div>
     </div>
 
@@ -1018,43 +1017,6 @@ function aeColapsar(){
     document.getElementById('ae-burbuja').style.display='flex';
   },250);
 }
-</script>
-
-<!-- ============================================================
-     ASISTENTE DIANA (Dapta) — pegar en index.html
-     DÓNDE: justo ANTES de la etiqueta de cierre </body>
-     (si ya tienes otros <script> al final, pégalo después de ellos)
-     ============================================================ -->
-
-<style>
-  /* Mueve el widget de Diana a la IZQUIERDA para no chocar
-     con la burbuja de las 5 secciones, que está a la derecha */
-  .dapta-fab-container { right: auto !important; left: 16px !important; }
-  @media (min-width: 481px) {
-    #chatbot.modern-corner-widget,
-    .dapta-chatbot.modern-corner-widget { right: auto !important; left: 16px !important; }
-  }
-</style>
-
-<script>
-  /* Carga a Diana SOLO cuando la persona ya se registró (muro suave).
-     Así no responde sobre otros proyectos antes del registro. */
-  (function () {
-    function cargarDiana() {
-      if (document.getElementById('dapta-diana')) return;      // evita cargarlo dos veces
-      var s = document.createElement('script');
-      s.id = 'dapta-diana';
-      s.src = 'https://widget-v2.dapta.ai/agent.min.js?agentId=ec64492a-abe5-4f18-a04e-444163e0a2e9';
-      document.body.appendChild(s);
-    }
-    function registrado() {
-      try { return localStorage.getItem('ae_registro') === 'ok'; } catch (e) { return false; }
-    }
-    if (registrado()) { cargarDiana(); return; }                // visitante que ya se registró antes
-    var espera = setInterval(function () {                      // revisa cada segundo si acaba de registrarse
-      if (registrado()) { clearInterval(espera); cargarDiana(); }
-    }, 1000);
-  })();
 </script>
 
 </body>

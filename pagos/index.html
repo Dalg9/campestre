@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formas de pago | Alianza Empresarial</title>
+<meta name="description" content="Contado, financiación directa, permuta, cesantías y primas: encuentra la forma de pagar tu lote a tu manera. Alianza Empresarial · Tu Inmueble 360.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#1e5c40;--verde-2:#2f7d55;--verde-3:#43a06b;--tinta:#16281d;--tinta-2:#38493f;--crema:#f7f4ec;--crema-2:#ede7d7;--lima:#9ac262;--naranja:#e8792f;--linea:rgba(30,92,64,.14);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--crema);color:var(--tinta);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--lima),var(--verde-3));width:0;z-index:52;border-radius:0 3px 3px 0}
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;z-index:50;display:flex;align-items:center;gap:12px;padding:0 18px;background:rgba(247,244,236,.85);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--linea)}
+.topbar .back{background:rgba(255,255,255,.7);border:1px solid var(--linea);width:38px;height:38px;border-radius:50%;font-size:20px;color:var(--verde);display:flex;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;transition:transform .2s var(--spring)}
+.topbar .back:active{transform:scale(.88)}
+.topbar .tt{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--verde)}
+.topbar .tt small{display:block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+main{max-width:620px;margin:0 auto}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;margin-top:60px;color:#fff;padding:34px 22px 30px;background:radial-gradient(120% 90% at 10% 0%,#2a7650 0%,var(--verde) 55%,#16442f 100%)}
+.hero .b1,.hero .b2{position:absolute;border-radius:50%;filter:blur(34px);will-change:transform}
+.hero .b1{width:210px;height:210px;background:var(--lima);opacity:.28;top:-60px;right:-50px;animation:flota 9s ease-in-out infinite}
+.hero .b2{width:160px;height:160px;background:var(--naranja);opacity:.25;bottom:-50px;left:-30px;animation:flota 11s ease-in-out infinite reverse}
+@keyframes flota{50%{transform:translate(-18px,16px) scale(1.1)}}
+.hero .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:radial-gradient(circle at 70% 20%,#000,transparent 70%);mask-image:radial-gradient(circle at 70% 20%,#000,transparent 70%)}
+.hero .in{position:relative;z-index:1;max-width:620px;margin:0 auto}
+.eb{font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:#f6c99a;font-weight:800;opacity:0;animation:pop .6s var(--ease) .1s forwards}
+.hero h1{font-family:var(--serif);font-size:clamp(25px,7vw,34px);line-height:1.1;font-weight:600;margin-top:10px;letter-spacing:-.01em}
+.ln{display:block;overflow:hidden;padding-bottom:4px}.ln span{display:block;transform:translateY(120%);animation:up .9s var(--ease) .15s forwards}.ln:nth-child(2) span{animation-delay:.3s}
+.lime{color:var(--lima)}
+@keyframes up{to{transform:none}}
+@keyframes pop{to{opacity:1;transform:none}}
+.hero p{font-size:13.5px;color:#d7e8dc;max-width:36ch;margin-top:12px;opacity:0;animation:pop .7s var(--ease) .6s forwards}
+.pl{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.pl span{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);padding:5px 12px 5px 6px;border-radius:15px;opacity:0;transform:scale(.6);animation:pop .5s var(--spring) forwards,glow 6s ease-in-out infinite}
+.pl span i{width:20px;height:20px;display:block;--ic:#fff;--fl:rgba(255,255,255,.18);--ac:var(--lima)}
+.pl span:nth-child(1){animation-delay:.8s,1.7s}.pl span:nth-child(2){animation-delay:.9s,2.9s}.pl span:nth-child(3){animation-delay:1s,4.1s}.pl span:nth-child(4){animation-delay:1.1s,5.3s}.pl span:nth-child(5){animation-delay:1.2s,6.5s}
+@keyframes glow{0%,20%,100%{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.24)}8%{background:var(--lima);color:var(--tinta);border-color:var(--lima)}}
+
+/* SECCIONES */
+.sec{padding:30px 20px 8px}
+.sec h2{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15}
+.sec .sub{font-size:12.5px;color:var(--tinta-2);margin:5px 0 18px}
+.grupo{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--naranja);margin:6px 0 10px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* TARJETAS */
+.fp{background:#fff;border:1.5px solid var(--linea);border-radius:18px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:border-color .25s,box-shadow .3s,transform .3s var(--spring)}
+.fp:active{transform:scale(.99)}
+.fp.on{border-color:var(--verde);box-shadow:0 12px 28px rgba(30,92,64,.14)}
+.fp-h{display:flex;align-items:center;gap:13px;padding:13px 14px;width:100%;background:none;border:none;text-align:left;font-family:inherit;color:inherit;cursor:pointer}
+.fp-i{width:50px;height:50px;border-radius:16px;background:var(--crema-2);padding:10px;flex-shrink:0;position:relative;transition:background .3s}
+.fp.on .fp-i{background:#dcebd3}
+.fp-t{flex:1}.fp-t b{display:block;font-family:var(--serif);font-size:16px;line-height:1.2}.fp-t span{font-size:11.5px;color:var(--tinta-2)}
+.fp-c{color:var(--verde);font-size:17px;transition:transform .3s var(--ease)}.fp.on .fp-c{transform:rotate(180deg)}
+.fp-b{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.fp.on .fp-b{max-height:240px}
+.fp-b p{padding:0 16px 16px 77px;font-size:12.5px;color:var(--tinta-2);line-height:1.55}
+.fp-b em{display:block;margin-top:7px;font-style:normal;font-size:10.5px;font-weight:700;color:#8a5a1f}
+/* ===== ÍCONOS ===== */
+svg.ic{display:block;width:100%;height:100%;fill:none;stroke:var(--ic,var(--verde));stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.ic .fl{fill:var(--fl,#dcebd3)}.ic .ac{stroke:var(--ac,var(--naranja))}.ic .acf{fill:var(--ac,var(--naranja));stroke:none}
+.ic .fo{transform-box:fill-box;transform-origin:center}
+
+
+/* animación de cada ícono al abrir o pasar el cursor */
+.play .coin{animation:moneda 1.2s ease-in-out}.play .bill{animation:rebote .9s var(--ease)}
+@keyframes moneda{0%{transform:translateY(8px) rotateY(0);opacity:0}30%{opacity:1}100%{transform:translateY(0) rotateY(720deg)}}
+@keyframes rebote{0%,100%{transform:translateY(0)}35%{transform:translateY(-3px)}}
+.ic .check{stroke-dasharray:30;stroke-dashoffset:0}
+.ic .dt{opacity:1}
+.play .check{animation:draw .8s ease .2s backwards}.play .dt{animation:enc .3s ease backwards}
+.play .dt:nth-of-type(1){animation-delay:.05s}.play .dt:nth-of-type(2){animation-delay:.2s}.play .dt:nth-of-type(3){animation-delay:.35s}
+@keyframes draw{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}@keyframes enc{from{opacity:.15}to{opacity:1}}
+.play .rot{animation:giro 1.3s var(--ease)}@keyframes giro{to{transform:rotate(360deg)}}
+.play .lid{animation:lid .9s var(--ease)}@keyframes lid{40%{transform:translateY(-5px)}}
+.ic .plus,.ic .spk{opacity:0}
+.play .plus{animation:plus 1s .2s ease}
+@keyframes plus{0%{opacity:0;transform:translateY(8px) scale(.5)}40%{opacity:1;transform:translateY(-2px) scale(1.1)}100%{opacity:1;transform:none}}
+.play .bow{animation:wig .9s ease}@keyframes wig{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg) scale(1.1)}50%{transform:rotate(12deg) scale(1.1)}75%{transform:rotate(-6deg)}}
+.play .spk{animation:spk 1s .3s ease}@keyframes spk{0%{opacity:0;transform:scale(0) rotate(0)}50%{opacity:1;transform:scale(1.3) rotate(90deg)}100%{opacity:0;transform:scale(1) rotate(180deg)}}
+
+/* COMBINAR */
+.combo{margin:18px 0 6px}
+.mix{position:relative;height:190px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#faf8f1,var(--crema));border:1px solid var(--linea)}
+.mix .p{position:absolute;left:50%;top:50%;width:48px;height:48px;border-radius:15px;background:#fff;border:1px solid var(--linea);padding:9px;box-shadow:0 6px 14px rgba(22,40,29,.12);transform:translate(var(--x),var(--y));transition:transform 1.1s var(--ease),opacity .5s .9s}
+.mix .p:nth-child(1){--x:-165px;--y:-72px}.mix .p:nth-child(2){--x:-95px;--y:22px}.mix .p:nth-child(3){--x:-24px;--y:-84px}.mix .p:nth-child(4){--x:55px;--y:22px}.mix .p:nth-child(5){--x:115px;--y:-72px}
+.mix.go .p{transform:translate(-50%,-50%) scale(.2) rotate(120deg);opacity:0;transition-delay:.3s,1s}
+.mix .res{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:linear-gradient(135deg,var(--verde),var(--verde-3));color:#fff;font-family:var(--serif);font-weight:600;font-size:15px;padding:14px 22px;border-radius:18px;white-space:nowrap;box-shadow:0 12px 28px rgba(30,92,64,.35)}
+.mix .res:after{content:"";position:absolute;inset:-6px;border-radius:22px;border:2px solid var(--lima);opacity:0}
+.mix.go .res{animation:resp .7s var(--spring) 1.2s forwards}.mix.go .res:after{animation:anillo 1.4s ease-out 1.5s}
+@keyframes resp{to{transform:translate(-50%,-50%) scale(1)}}@keyframes anillo{0%{opacity:.9;transform:scale(.9)}100%{opacity:0;transform:scale(1.35)}}
+.combo-t{text-align:center;font-size:12.5px;color:var(--tinta-2);margin-top:12px}
+
+/* PASOS */
+.tl{position:relative;margin-top:6px}
+.tl:before{content:"";position:absolute;left:20px;top:22px;bottom:22px;width:3px;border-radius:3px;background:var(--linea)}
+.tl .fill{position:absolute;left:20px;top:22px;bottom:22px;width:3px;border-radius:3px;background:linear-gradient(var(--verde),var(--lima));transform:scaleY(0);transform-origin:top}
+.tl.go .fill{animation:fill 3s linear forwards}@keyframes fill{to{transform:scaleY(1)}}
+.st{position:relative;display:flex;gap:14px;margin-bottom:18px;opacity:.38;transition:opacity .5s,transform .5s var(--ease);transform:translateX(-6px)}
+.st .n{width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid var(--linea);padding:10px;z-index:1;transition:all .5s var(--spring);flex-shrink:0;--ic:var(--tinta-2);--fl:#eee}
+.st b{font-family:var(--serif);font-size:15px;display:block;line-height:1.2;margin-top:3px}.st span{font-size:12px;color:var(--tinta-2)}
+.st.on{opacity:1;transform:none}
+.st.on .n{background:var(--verde);border-color:var(--verde);transform:scale(1.1);--ic:#fff;--fl:rgba(255,255,255,.2);box-shadow:0 8px 18px rgba(30,92,64,.3)}
+.st.last.on .n{background:var(--naranja);border-color:var(--naranja);animation:pulso 1.6s infinite;box-shadow:none}
+@keyframes pulso{0%{box-shadow:0 0 0 0 rgba(232,121,47,.55)}100%{box-shadow:0 0 0 14px rgba(232,121,47,0)}}
+.cta{display:block;text-align:center;text-decoration:none;color:#fff;background:linear-gradient(135deg,#1fa855,#17894a);padding:16px;border-radius:15px;font-weight:800;font-size:13.5px;letter-spacing:.03em;margin-top:8px;position:relative;overflow:hidden;animation:ctap 2.2s infinite}
+.cta:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);animation:brillo 3s infinite}
+@keyframes brillo{0%{left:-60%}60%,100%{left:130%}}@keyframes ctap{0%,100%{box-shadow:0 6px 16px rgba(31,168,85,.25)}50%{box-shadow:0 8px 28px rgba(31,168,85,.6)}}
+.nota{font-size:11px;color:var(--tinta-2);text-align:center;margin:14px 0 50px;opacity:.85}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.ln span{transform:none}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="topbar"><a class="back" href="../index.html" title="Volver al inicio">‹</a><div class="tt">Formas de pago<small>Alianza Empresarial</small></div></div>
+
+<header class="hero">
+  <div class="b1"></div><div class="b2"></div><div class="grid"></div>
+  <div class="in">
+    <div class="eb">Invierte a tu manera</div>
+    <h1><span class="ln"><span>No se trata solo de comprar un lote.</span></span><span class="ln"><span class="lime">Se trata de encontrar la forma de hacerlo posible.</span></span></h1>
+    <p>Por eso creamos diferentes alternativas de pago para adaptarnos a tus posibilidades.</p>
+    <div class="pl">
+      <span><i data-ic="cash"></i>Contado</span><span><i data-ic="cal"></i>Financiación</span><span><i data-ic="swap"></i>Permuta</span><span><i data-ic="brief"></i>Cesantías</span><span><i data-ic="gift"></i>Primas</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="sec">
+    <h2 class="rv">Tu lote, tus posibilidades</h2>
+    <div class="sub rv">Toca cada opción para ver de qué se trata.</div>
+    <div id="lista"></div>
+    <div class="combo rv">
+      <div class="mix" id="mix">
+        <div class="p" data-ic="cash"></div><div class="p" data-ic="cal"></div><div class="p" data-ic="swap"></div><div class="p" data-ic="brief"></div><div class="p" data-ic="gift"></div>
+        <div class="res">Tu plan a tu medida</div>
+      </div>
+      <div class="combo-t">Puedes combinar varias opciones. Tú eliges cómo empezar; nosotros te acompañamos.</div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="rv">Así de simple</h2>
+    <div class="sub rv">Cuatro pasos hasta que empiezas a construir patrimonio.</div>
+    <div class="tl rv" id="tl"><div class="fill"></div>
+      <div class="st"><div class="n" data-ic="pin"></div><div><b>Elige tu proyecto</b><span>Conoce nuestros lotes y encuentra el que se adapta a tu propósito.</span></div></div>
+      <div class="st"><div class="n" data-ic="cash"></div><div><b>Elige tu forma de pago</b><span>Contado, financiación, permuta u otras alternativas disponibles.</span></div></div>
+      <div class="st"><div class="n" data-ic="bookmark"></div><div><b>Separa tu lote</b><span>Recibe asesoría sobre valores, requisitos y condiciones.</span></div></div>
+      <div class="st last"><div class="n" data-ic="house"></div><div><b>Empieza a construir patrimonio</b><span>Da el primer paso hacia tu lote en el Meta.</span></div></div>
+    </div>
+    <a class="cta rv" id="cta" href="#" target="_blank" rel="noopener">💬 QUIERO CONOCER MIS OPCIONES</a>
+    <div class="nota">Los valores y condiciones los confirma tu asesor según el proyecto.</div>
+  </section>
+</main>
+
+<script>
+const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp (el mismo de propiedades/, vehiculos/ y socios/)
+
+/* ====== DATOS: para cambiar un texto, edítalo aquí ====== */
+const GRUPOS = [
+  {titulo:"Cómo pagas tu lote", items:[
+    {ic:"cash",  t:"Pago de contado",       r:"Pago total de tu lote",                   d:"Obtén las condiciones disponibles para quienes desean realizar el pago total de su lote."},
+    {ic:"cal",   t:"Financiación directa",  r:"Sin necesidad de crédito bancario",       d:"Elige un plan de pago de acuerdo con las condiciones del proyecto y avanza hacia tu lote sin necesidad de recurrir a un crédito bancario."},
+    {ic:"swap",  t:"Permuta",               r:"Tu vehículo, inmueble u otro activo",     d:"¿Tienes un vehículo, inmueble u otro activo? Podemos estudiar la posibilidad de recibirlo como parte de pago.", n:"Sujeto a valoración y condiciones."}
+  ]},
+  {titulo:"Con qué recursos puedes avanzar", items:[
+    {ic:"brief", t:"Cesantías",             r:"Destina tus cesantías a tu lote",         d:"Puedes utilizar tus cesantías como una alternativa para destinar recursos a la adquisición de tu lote.", n:"De acuerdo con las condiciones y requisitos aplicables."},
+    {ic:"gift",  t:"Primas y otros ingresos", r:"Avanza más rápido con aportes extra",   d:"Aprovecha tus primas, bonificaciones o ingresos extraordinarios para realizar aportes a tu plan de pago y avanzar más rápido."}
+  ]}
+];
+/* ===== BIBLIOTECA DE ÍCONOS (SVG propios, viewBox 48) ===== */
+const IC={
+cash:`<svg class="ic" viewBox="0 0 48 48"><g class="bill fo"><rect class="fl" x="5" y="17" width="38" height="24" rx="5"/><circle cx="24" cy="29" r="6"/><path d="M11 23h2M35 35h2"/></g><g class="coin fo"><circle class="ac fl" style="fill:#fff" cx="24" cy="9" r="6"/><path class="ac" d="M24 6v6M22 7.5h3a1.5 1.5 0 010 3h-2.5"/></g></svg>`,
+cal:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="7" y="10" width="34" height="31" rx="5"/><path d="M7 19h34M16 6v8M32 6v8"/><circle class="dt acf" cx="15" cy="25" r="1.8"/><circle class="dt acf" cx="24" cy="25" r="1.8"/><circle class="dt acf" cx="33" cy="25" r="1.8"/><path class="check ac" d="M17 33l5 5 9-9"/></svg>`,
+swap:`<svg class="ic" viewBox="0 0 48 48"><g class="rot fo"><path d="M9 21a15 15 0 0127-6"/><path d="M37 7v8h-8"/><path class="ac" d="M39 27a15 15 0 01-27 6"/><path class="ac" d="M11 41v-8h8"/></g><path class="fl" d="M18 29v-6l6-5 6 5v6z"/></svg>`,
+brief:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="6" y="19" width="36" height="22" rx="5"/><path d="M17 19v-3a3 3 0 013-3h8a3 3 0 013 3v3"/><g class="lid fo"><path d="M6 29h36"/></g><rect class="ac" x="21" y="26" width="6" height="6" rx="1.5" style="fill:#fff"/><g class="plus ac fo"><path d="M24 2v6M21 5h6"/></g></svg>`,
+gift:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="8" y="23" width="32" height="18" rx="3"/><g class="lid fo"><rect class="fl" x="6" y="16" width="36" height="8" rx="3"/></g><path d="M24 16v25"/><g class="bow ac fo"><path d="M24 16c-3-9-12-6-9-2s7 2 9 2zM24 16c3-9 12-6 9-2s-7 2-9 2z"/></g><path class="spk ac fo" d="M41 6l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg>`,
+pin:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M24 43s13-12 13-23a13 13 0 10-26 0c0 11 13 23 13 23z"/><circle class="ac" cx="24" cy="20" r="5"/></svg>`,
+bookmark:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M12 6h24v36l-12-9-12 9z"/><path class="ac" d="M19 18l4 4 7-7"/></svg>`,
+house:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M12 22v20h24V22"/><path d="M5 25L24 8l19 17"/><path class="ac" d="M20 42V30h8v12"/></svg>`,
+search:`<svg class="ic" viewBox="0 0 48 48"><circle class="fl" cx="21" cy="21" r="12"/><path class="ac" d="M30 30l11 11"/></svg>`,
+doc:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="10" y="5" width="28" height="38" rx="4"/><path d="M17 15h14M17 22h14"/><path class="ac" d="M17 33c3-4 5 2 8-2s4 0 6-1"/></svg>`,
+plan:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M8 40V8l32 32z"/><path class="ac" d="M14 32h6M14 26h4M14 20h2"/></svg>`,
+perm:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M12 42V21l12-9 12 9v21"/><path d="M6 42h36M24 12V5"/><path class="ac" d="M20 42V31h8v11"/></svg>`,
+obra:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M10 34a14 14 0 0128 0z"/><path d="M6 34h36"/><path class="ac" d="M24 15v9M17 38h14"/></svg>`,
+mega:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M8 20v9h9l17 9V11L17 20z"/><path class="ac" d="M39 19a7 7 0 010 12"/></svg>`,
+pie:`<svg class="ic" viewBox="0 0 48 48"><circle class="fl" cx="24" cy="24" r="16"/><path class="ac" d="M24 8v16h16"/></svg>`
+};
+document.querySelectorAll('[data-ic]').forEach(el=>{el.innerHTML=IC[el.dataset.ic]});
+
+
+document.querySelectorAll('[data-ic]').forEach(el=>{el.innerHTML=IC[el.dataset.ic]});
+
+/* ====== tarjetas ====== */
+const lista=document.getElementById('lista');
+lista.innerHTML=GRUPOS.map(g=>`<div class="grupo rv">${g.titulo}</div>`+g.items.map(it=>`
+  <div class="fp rv">
+    <button class="fp-h" aria-expanded="false">
+      <div class="fp-i">${IC[it.ic]}</div>
+      <div class="fp-t"><b>${it.t}</b><span>${it.r}</span></div><div class="fp-c">⌄</div>
+    </button>
+    <div class="fp-b"><p>${it.d}${it.n?`<em>${it.n}</em>`:''}</p></div>
+  </div>`).join('')).join('');
+function jugar(card){ const i=card.querySelector('.fp-i'); i.classList.remove('play'); void i.offsetWidth; i.classList.add('play'); }
+document.querySelectorAll('.fp').forEach(card=>{
+  const h=card.querySelector('.fp-h');
+  h.addEventListener('click',()=>{const on=card.classList.toggle('on');h.setAttribute('aria-expanded',on);if(on)jugar(card)});
+  card.addEventListener('mouseenter',()=>jugar(card));
+});
+
+/* ====== aparición al hacer scroll + escenas ====== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return; const el=e.target; io.unobserve(el);
+  el.classList.add('in');
+  if(el.id==='mix'){ el.classList.add('go'); }
+  if(el.id==='tl'){ el.classList.add('go'); pasos(); }
+  if(el.classList.contains('fp')){ setTimeout(()=>jugar(el),250); }
+}),{threshold:.25});
+document.querySelectorAll('.rv, #mix').forEach(el=>io.observe(el));
+
+/* pasos: se encienden en orden */
+function pasos(){
+  document.querySelectorAll('#tl .st').forEach((s,i)=>setTimeout(()=>s.classList.add('on'),300+i*750));
+}
+
+/* ====== WhatsApp y barra de progreso ====== */
+document.getElementById('cta').href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent('Hola, quiero conocer mis opciones para pagar un lote. ¿Me pueden asesorar?');
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%'},{passive:true});
+</script>
+</body>
+</html>

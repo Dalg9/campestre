@@ -14,7 +14,7 @@
   --crema:#f7f4ec;--crema-2:#ede7d7;--lima:#9ac262;--naranja:#e8792f;
   --linea:rgba(30,92,64,.14);
   --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -175,8 +175,104 @@ a.cta{display:block}
 .rango-chip.on{background:var(--naranja);color:#fff;border-color:var(--naranja)}
 .calc-disclaimer{font-size:9.5px;color:var(--tinta-2);text-align:center;margin-top:8px;opacity:.8;line-height:1.4}
 
+/* ===== ÍCONOS ===== */
+svg.ic{display:block;width:100%;height:100%;fill:none;stroke:var(--ic,var(--verde));stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.ic .fl{fill:var(--fl,#dcebd3)}.ic .ac{stroke:var(--ac,var(--naranja))}.ic .acf{fill:var(--ac,var(--naranja));stroke:none}
+.ic .fo{transform-box:fill-box;transform-origin:center}
+
+/* ===== 5 VENDER VS ASOCIARSE ===== */
+.chart svg{width:100%;display:block;overflow:visible}
+.chart .ln1,.chart .ln2{fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:500;stroke-dashoffset:500}
+.chart .ln1{stroke:#c0623c}.chart .ln2{stroke:var(--verde)}
+.go .chart .ln1,.chart.go .ln1{animation:dash 1.3s ease-out forwards}
+.chart.go .ln2{animation:dash 2.8s ease-out .2s forwards}
+.chart .area{opacity:0}.chart.go .area{animation:pop 1.2s ease 1.6s forwards}
+.chart .lb{opacity:0;font-size:10px;font-weight:700}
+.chart.go .lb{animation:pop .5s ease 1.4s forwards}.chart.go .lb.s{animation-delay:2.5s}
+.chart .hs{transform-box:fill-box;transform-origin:bottom;transform:scale(0)}
+.chart.go .hs{animation:pop2 .5s var(--spring) forwards}
+.chart.go .hs:nth-of-type(1){animation-delay:2.1s}.chart.go .hs:nth-of-type(2){animation-delay:2.35s}.chart.go .hs:nth-of-type(3){animation-delay:2.6s}
+@keyframes dash{to{stroke-dashoffset:0}}@keyframes pop2{to{transform:scale(1)}}
+
+/* ===== 6 ALIANZA ===== */
+.fit svg{width:100%;display:block;overflow:visible}
+.fit .pa{transform:translateX(-70px);opacity:0}.fit .pb{transform:translateX(70px);opacity:0}
+.fit.go .pa,.fit.go .pb{animation:encaja 1s var(--ease) forwards}
+@keyframes encaja{to{transform:none;opacity:1}}
+.fit .flash{fill:none;stroke:var(--naranja);stroke-width:3;opacity:0;transform-box:fill-box;transform-origin:center}
+.fit.go .flash{animation:flash .9s ease-out 1s}
+@keyframes flash{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(2.6)}}
+.fit .gear{transform-box:fill-box;transform-origin:center}
+.fit.go .gear{animation:spin 6s linear 1s infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fit .eq,.fit .lot,.fit .rl{opacity:0;transform-box:fill-box;transform-origin:center}
+.fit.go .eq{animation:pop2o .4s var(--spring) 1.15s forwards}
+.fit.go .lot{animation:pop2o .45s var(--spring) forwards}
+.fit.go .rl{animation:pop .5s ease 2.1s forwards}
+.fit .lot:nth-of-type(1){animation-delay:1.35s!important}.fit .lot:nth-of-type(2){animation-delay:1.5s!important}.fit .lot:nth-of-type(3){animation-delay:1.65s!important}.fit .lot:nth-of-type(4){animation-delay:1.8s!important}.fit .lot:nth-of-type(5){animation-delay:1.95s!important}.fit .lot:nth-of-type(6){animation-delay:2.1s!important}
+@keyframes pop2o{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+
+/* ===== 8 RUTA ===== */
+.ruta{display:flex;justify-content:space-between;position:relative;margin:6px 2px 14px}
+.ruta:before{content:"";position:absolute;left:19px;right:19px;top:19px;height:3px;background:var(--linea);border-radius:3px}
+.ruta .rf{position:absolute;left:19px;top:19px;height:3px;width:0;background:linear-gradient(90deg,var(--verde),var(--lima));border-radius:3px;transition:width 1s var(--ease)}
+.nd{position:relative;z-index:1;width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--linea);padding:9px;transition:all .5s var(--spring);--ic:#a9b3ac;--fl:#f1f1f1}
+.nd.on{background:var(--verde);border-color:var(--verde);--ic:#fff;--fl:rgba(255,255,255,.2);transform:scale(1.14)}
+.nd.cur{box-shadow:0 0 0 6px rgba(154,194,98,.35);background:var(--naranja);border-color:var(--naranja)}
+.cap{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--linea);border-radius:14px;padding:11px;min-height:70px}
+.cap .bi{width:46px;height:46px;border-radius:14px;background:#eaf3ec;padding:10px;flex-shrink:0}
+.cap b{font-family:var(--serif);font-size:13.5px;display:block;line-height:1.2}.cap span{font-size:10.5px;color:var(--tinta-2)}
+.cap.sw{animation:sw .5s var(--ease)}
+@keyframes sw{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== 9 MINI ESCENAS ===== */
+.g4{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mini{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:8px 8px 10px;text-align:center}
+.mini svg{width:100%;display:block;overflow:visible}
+.mini small{display:block;font-size:10px;font-weight:700;margin-top:4px;line-height:1.25}
+.mini .lt{fill:#cfe0c6;transform-box:fill-box;transform-origin:center}
+.m1 .lt{transform:scale(0)}.go .m1 .lt{animation:pop2 .45s var(--spring) forwards}
+.go .m1 .lt:nth-of-type(2){animation-delay:.15s}.go .m1 .lt:nth-of-type(3){animation-delay:.3s}.go .m1 .lt:nth-of-type(4){animation-delay:.45s}.go .m1 .lt:nth-of-type(5){animation-delay:.6s}.go .m1 .lt:nth-of-type(6){animation-delay:.75s}.go .m1 .lt:nth-of-type(7){animation-delay:.9s}.go .m1 .lt:nth-of-type(8){animation-delay:1.05s}
+.go .m1 .lt.mine{animation:pop2 .45s var(--spring) forwards,mio .8s ease 1.4s forwards}
+@keyframes mio{to{fill:var(--verde)}}
+.go .m2 .lt{animation:vend .5s ease forwards}
+.go .m2 .lt:nth-of-type(2){animation-delay:.5s}.go .m2 .lt:nth-of-type(3){animation-delay:1s}.go .m2 .lt:nth-of-type(4){animation-delay:1.5s}
+@keyframes vend{to{fill:var(--naranja)}}
+.m2 .cn{opacity:0;transform-box:fill-box;transform-origin:center}
+.go .m2 .cn{animation:moneda2 1s ease forwards}
+.go .m2 .cn:nth-of-type(1){animation-delay:.3s}.go .m2 .cn:nth-of-type(2){animation-delay:.8s}.go .m2 .cn:nth-of-type(3){animation-delay:1.3s}.go .m2 .cn:nth-of-type(4){animation-delay:1.8s}
+@keyframes moneda2{0%{opacity:0;transform:translateY(4px) scale(.5)}40%{opacity:1}100%{opacity:0;transform:translateY(-16px) scale(1)}}
+.m3 .bar{fill:var(--lima);transform-box:fill-box;transform-origin:bottom;transform:scaleY(0)}
+.go .m3 .bar{animation:sy .6s var(--ease) forwards}
+.go .m3 .bar:nth-of-type(2){animation-delay:.25s}.go .m3 .bar:nth-of-type(3){animation-delay:.5s}.go .m3 .bar:nth-of-type(4){animation-delay:.75s}.go .m3 .bar:nth-of-type(5){animation-delay:1s}.go .m3 .bar:nth-of-type(6){animation-delay:1.25s}
+@keyframes sy{to{transform:scaleY(1)}}
+.m4 .o{transform-box:fill-box;transform-origin:center}
+.m4 .o1{transform:translate(-34px,-8px)}.m4 .o2{transform:translate(34px,-8px)}.m4 .o3{transform:translate(0,22px)}
+.go .m4 .o{transition:transform 1.1s var(--ease) .2s;transform:none}
+.m4 .rg{opacity:0;fill:none;stroke:var(--verde);stroke-width:3.5;transform-box:fill-box;transform-origin:center}
+.go .m4 .rg{animation:pop2o .6s var(--spring) 1.3s forwards}
+
+
+/* ===== ANIMACIONES v2 ===== */
+@keyframes pop{to{opacity:1;transform:none}}
+.stage{border-radius:15px;background:linear-gradient(180deg,#faf8f1,var(--crema));position:relative;overflow:hidden;padding:12px;border:1px solid var(--linea);margin:2px 0 12px}
+.ilus{font-size:9px;text-align:center;color:var(--tinta-2);opacity:.75;margin:-6px 0 12px}
+.donut-wrap{display:flex;align-items:center;gap:12px;margin:2px 0 12px}
+.donut{width:112px;height:112px;flex-shrink:0;position:relative}
+.donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+.donut circle{fill:none;stroke-width:13;transition:stroke-dasharray .9s var(--ease),stroke-dashoffset .9s var(--ease)}
+.donut .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.donut .c small{font-size:7px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2)}
+.donut .c b{font-family:var(--serif);font-size:13px;color:var(--verde);line-height:1.1}
+.dleg{display:flex;flex-direction:column;gap:5px;font-size:10px;color:var(--tinta-2);font-weight:600}
+.dleg span{display:flex;align-items:center;gap:6px}.dleg b{width:9px;height:9px;border-radius:3px;display:inline-block}
+.g4{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mini b.mt{display:block;font-family:var(--serif);font-size:12px;line-height:1.2;margin-top:4px;color:var(--tinta)}
+.mini span.md{display:block;font-size:10px;color:var(--tinta-2);margin-top:3px;line-height:1.35}
+.mini{text-align:center}
+.nd{cursor:pointer}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
-<script src="../asesores.js"></script>
 </head>
 <body>
 <div class="prog" id="prog"></div>
@@ -285,6 +381,24 @@ a.cta{display:block}
     <div class="sec">
       <span class="num">1</span><h2>¿Vender o asociarse?</h2>
       <div class="desc">El mayor valor de un terreno normalmente aparece después de su desarrollo.</div>
+      <div class="stage chart run" data-auto data-js="runChart">
+        <svg viewBox="0 0 320 180">
+          <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43a06b" stop-opacity=".35"/><stop offset="1" stop-color="#43a06b" stop-opacity="0"/></linearGradient></defs>
+          <line x1="14" y1="146" x2="306" y2="146" stroke="#d8d2c0" stroke-width="2"/>
+          <path class="area" d="M24 134 H90 V92 C150 92 170 80 210 60 S280 26 300 18 V146 H24 Z" fill="url(#ga)"/>
+          <path class="ln1" d="M24 134 H90 V92 H300"/>
+          <path id="rutaSoc" class="ln2" d="M24 134 H90 V92 C150 92 170 80 210 60 S280 26 300 18"/>
+          <path d="M12 140l12-7 12 7-12 7z" fill="#9ac262" stroke="#1e5c40" stroke-width="1.6" stroke-linejoin="round"/>
+          <text x="24" y="165" font-size="9.5" fill="#38493f" font-weight="700" text-anchor="middle">Tu terreno</text>
+          <circle r="6" fill="#e8792f"><animateMotion id="mov" dur="2.8s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .1 .3 1"><mpath href="#rutaSoc"/></animateMotion></circle>
+          <g class="hs"><path d="M222 56v-9l7-6 7 6v9z" fill="#dcebd3" stroke="#1e5c40" stroke-width="1.8" stroke-linejoin="round"/></g>
+          <g class="hs"><path d="M248 42v-9l7-6 7 6v9z" fill="#dcebd3" stroke="#1e5c40" stroke-width="1.8" stroke-linejoin="round"/></g>
+          <g class="hs"><path d="M274 28v-9l7-6 7 6v9z" fill="#dcebd3" stroke="#1e5c40" stroke-width="1.8" stroke-linejoin="round"/></g>
+          <text class="lb" x="232" y="112" font-size="10" fill="#c0623c" text-anchor="middle">Un solo pago</text>
+          <text class="lb s" x="26" y="52" font-size="10" fill="#1e5c40">Sigue creciendo contigo</text>
+        </svg>
+      </div>
+      <div class="ilus">Gráfica ilustrativa, sin cifras ni porcentajes prometidos.</div>
       <div class="comp-card trad">
         <h3>💰 Venta tradicional</h3>
         <div class="check-item si"><div class="ic">✓</div>Recibe un único pago</div>
@@ -307,6 +421,27 @@ a.cta{display:block}
     <div class="sec">
       <span class="num">2</span><h2>¿Cómo funciona la alianza?</h2>
       <div class="desc">Usted aporta la tierra. Nosotros desarrollamos el proyecto.</div>
+      <div class="stage fit run" data-auto>
+        <svg viewBox="0 0 340 160">
+          <g class="pa">
+            <path d="M20 40 H90 V62 A13 13 0 0 1 90 88 V110 H20 Z" fill="#dcebd3" stroke="#1e5c40" stroke-width="2.4" stroke-linejoin="round"/>
+            <circle cx="52" cy="68" r="10" fill="#9ac262" stroke="#1e5c40" stroke-width="2"/><path d="M52 78v14M36 96h32" stroke="#1e5c40" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+          <g class="pb">
+            <path d="M90 40 H160 V110 H90 V88 A13 13 0 0 0 90 62 Z" fill="#1e5c40" stroke="#16442f" stroke-width="2.4" stroke-linejoin="round"/>
+            <g class="gear"><circle cx="128" cy="75" r="12" fill="none" stroke="#9ac262" stroke-width="6" stroke-dasharray="4.7 4.7"/><circle cx="128" cy="75" r="8" fill="#1e5c40" stroke="#fff" stroke-width="2"/><circle cx="128" cy="75" r="2.5" fill="#fff"/></g>
+          </g>
+          <circle class="flash" cx="90" cy="75" r="14"/>
+          <text x="48" y="130" font-size="9.5" font-weight="700" fill="#1e5c40" text-anchor="middle">El socio</text><text x="48" y="141" font-size="9.5" fill="#38493f" text-anchor="middle">aporta el terreno</text>
+          <text x="132" y="130" font-size="9.5" font-weight="700" fill="#1e5c40" text-anchor="middle">La constructora</text><text x="132" y="141" font-size="9.5" fill="#38493f" text-anchor="middle">capital y obras</text>
+          <text class="eq" x="186" y="84" font-size="28" font-weight="800" fill="#e8792f" text-anchor="middle">=</text>
+          <g>
+            <rect class="lot" x="205" y="48" width="34" height="28" rx="5" fill="#9ac262"/><rect class="lot" x="245" y="48" width="34" height="28" rx="5" fill="#43a06b"/><rect class="lot" x="285" y="48" width="34" height="28" rx="5" fill="#9ac262"/>
+            <rect class="lot" x="205" y="82" width="34" height="28" rx="5" fill="#43a06b"/><rect class="lot" x="245" y="82" width="34" height="28" rx="5" fill="#e8792f"/><rect class="lot" x="285" y="82" width="34" height="28" rx="5" fill="#43a06b"/>
+          </g>
+          <text class="rl" x="262" y="130" font-size="10.5" font-weight="800" fill="#1e5c40" text-anchor="middle" style="font-family:Fraunces,serif">Proyecto de lotes</text>
+        </svg>
+      </div>
       <div class="comp-card trad">
         <h3>🧑‍💼 El socio aporta</h3>
         <div class="check-item si"><div class="ic">✓</div>El terreno — el activo principal del proyecto</div>
@@ -347,6 +482,7 @@ a.cta{display:block}
         <div class="rango-chips" id="rango-chips-part"></div>
         <div class="calc-hint">15% a 32,6% · empieza conservador, sube según la negociación</div>
       </div>
+      <div class="donut-wrap"><div class="donut"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="#ede7d7"/><circle id="da1" cx="50" cy="50" r="40" stroke="#cfe0c6" stroke-dasharray="0 252"/><circle id="da2" cx="50" cy="50" r="40" stroke="#1e5c40" stroke-dasharray="0 252"/><circle id="da3" cx="50" cy="50" r="40" stroke="#e8792f" stroke-dasharray="0 252"/></svg><div class="c"><small>Proyectado</small><b id="dm-total">$0</b></div></div><div class="dleg"><span><b style="background:#cfe0c6"></b>Valor del predio</span><span><b style="background:#1e5c40"></b>Valorización</span><span><b style="background:#e8792f"></b>Participación</span></div></div>
       <div id="rentab-contenido"></div>
       <div class="calc-disclaimer">Estimación ilustrativa, no es una garantía de rentabilidad. Ambos porcentajes son ajustables dentro de rangos reales — no valores fijos prometidos.</div>
     </div>
@@ -362,13 +498,7 @@ a.cta{display:block}
     <div class="sec">
       <span class="num">5</span><h2>El camino del proyecto</h2>
       <div class="desc">Etapas clave, desde la evaluación técnica hasta la entrega de beneficios.</div>
-      <div class="paso-item"><div class="pn ico">🔍</div><div class="pt"><b>Evaluación técnica</b><span>Análisis del predio y potencial urbanístico</span></div></div>
-      <div class="paso-item"><div class="pn ico">📜</div><div class="pt"><b>Contrato de asociación</b><span>Formalización jurídica</span></div></div>
-      <div class="paso-item"><div class="pn ico">📐</div><div class="pt"><b>Diseño urbanístico</b><span>Estructuración técnica</span></div></div>
-      <div class="paso-item"><div class="pn ico">🏛️</div><div class="pt"><b>Licencias y permisos</b><span>Aprobación municipal</span></div></div>
-      <div class="paso-item"><div class="pn ico">🚧</div><div class="pt"><b>Urbanismo y obras</b><span>Ejecución del proyecto</span></div></div>
-      <div class="paso-item"><div class="pn ico">📢</div><div class="pt"><b>Comercialización</b><span>Promoción y ventas</span></div></div>
-      <div class="paso-item"><div class="pn ico">🤝</div><div class="pt"><b>Liquidación de participación</b><span>Entrega de beneficios al socio</span></div></div>
+      <div class="stage" data-auto data-js="runRuta"><div class="ruta" id="ruta"><div class="rf" id="rf"></div></div><div class="cap" id="cap"></div></div>
     </div>
 
     <!-- Seguridad para el socio -->
@@ -401,6 +531,7 @@ a.cta{display:block}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+const WHATSAPP = "57XXXXXXXXXX"; // <-- PENDIENTE: número real de WhatsApp (mismo que en propiedades/ y vehiculos/)
 
 /* ============ DATOS REALES (de los 3 PDF) ============ */
 
@@ -543,10 +674,10 @@ function renderProtocolo(){
 }
 function toggleAcc(i){ document.getElementById('acc-'+i).classList.toggle('on'); }
 
+const MINIS = ['<svg viewBox="0 0 140 84"><rect x="6" y="6" width="128" height="72" rx="8" fill="none" stroke="#d8d2c0" stroke-width="2" stroke-dasharray="4 4"/>             <rect class="lt" x="14" y="14" width="26" height="26" rx="5"/><rect class="lt" x="44" y="14" width="26" height="26" rx="5"/><rect class="lt" x="74" y="14" width="26" height="26" rx="5"/><rect class="lt mine" x="104" y="14" width="26" height="26" rx="5"/>             <rect class="lt" x="14" y="44" width="26" height="26" rx="5"/><rect class="lt" x="44" y="44" width="26" height="26" rx="5"/><rect class="lt" x="74" y="44" width="26" height="26" rx="5"/><rect class="lt mine" x="104" y="44" width="26" height="26" rx="5"/></svg>', '<svg viewBox="0 0 140 84"><rect x="6" y="6" width="128" height="72" rx="8" fill="none" stroke="#d8d2c0" stroke-width="2" stroke-dasharray="4 4"/>             <rect class="lt" x="14" y="30" width="26" height="26" rx="5"/><rect class="lt" x="44" y="30" width="26" height="26" rx="5"/><rect class="lt" x="74" y="30" width="26" height="26" rx="5"/><rect class="lt" x="104" y="30" width="26" height="26" rx="5"/>             <g class="cn"><circle cx="27" cy="26" r="6" fill="#fff" stroke="#e8792f" stroke-width="2"/><text x="27" y="29.5" font-size="9" font-weight="800" fill="#e8792f" text-anchor="middle">$</text></g>             <g class="cn"><circle cx="57" cy="26" r="6" fill="#fff" stroke="#e8792f" stroke-width="2"/><text x="57" y="29.5" font-size="9" font-weight="800" fill="#e8792f" text-anchor="middle">$</text></g>             <g class="cn"><circle cx="87" cy="26" r="6" fill="#fff" stroke="#e8792f" stroke-width="2"/><text x="87" y="29.5" font-size="9" font-weight="800" fill="#e8792f" text-anchor="middle">$</text></g>             <g class="cn"><circle cx="117" cy="26" r="6" fill="#fff" stroke="#e8792f" stroke-width="2"/><text x="117" y="29.5" font-size="9" font-weight="800" fill="#e8792f" text-anchor="middle">$</text></g></svg>', '<svg viewBox="0 0 140 84"><line x1="10" y1="72" x2="130" y2="72" stroke="#d8d2c0" stroke-width="2"/>             <rect class="bar" x="16" y="52" width="14" height="20" rx="3"/><rect class="bar" x="36" y="44" width="14" height="28" rx="3"/><rect class="bar" x="56" y="34" width="14" height="38" rx="3"/><rect class="bar" x="76" y="40" width="14" height="32" rx="3"/><rect class="bar" x="96" y="26" width="14" height="46" rx="3"/><rect class="bar" x="116" y="18" width="14" height="54" rx="3" style="fill:#43a06b"/></svg>', '<svg viewBox="0 0 140 84"><circle class="rg" cx="70" cy="42" r="19"/><circle class="o o1" cx="70" cy="42" r="9" fill="#1e5c40"/><circle class="o o2" cx="70" cy="42" r="9" fill="#e8792f"/><circle class="o o3" cx="70" cy="42" r="9" fill="#9ac262"/></svg>'];
 function renderPagos(){
-  document.getElementById('acc-pagos').innerHTML = PAGOS.map((p,i)=>`
-    <div class="paso-item"><div class="pn ico">${p.ico}</div><div class="pt"><b>${p.t}</b><span>${p.d}</span></div></div>
-  `).join('');
+  document.getElementById('acc-pagos').innerHTML = '<div class="stage g4" data-auto>'+PAGOS.map((p,i)=>`
+    <div class="mini m${i+1}">${MINIS[i]}<b class="mt">${p.t}</b><span class="md">${p.d}</span></div>`).join('')+'</div>';
 }
 
 function renderFAQ(){
@@ -585,6 +716,7 @@ function renderRentab(){
   const participacion = valorActual * (participacionSel/100);
   const total = valorActual + valorizacion + participacion;
   const incremento = valorizacion + participacion;
+  pintaDonut(valorActual, valorizacion, participacion);
   document.getElementById('rentab-contenido').innerHTML = `
     <div class="fin-numeros">
       <div class="fin-box"><div class="k">Valor actual del predio</div><div class="v">${fmt(valorActual)}</div></div>
@@ -605,10 +737,76 @@ function irTab(t){
   animarPagina(t);
 }
 
+
+/* ===== ÍCONOS Y ESCENAS ANIMADAS ===== */
+/* ===== BIBLIOTECA DE ÍCONOS (SVG propios, viewBox 48) ===== */
+const IC={
+cash:`<svg class="ic" viewBox="0 0 48 48"><g class="bill fo"><rect class="fl" x="5" y="17" width="38" height="24" rx="5"/><circle cx="24" cy="29" r="6"/><path d="M11 23h2M35 35h2"/></g><g class="coin fo"><circle class="ac fl" style="fill:#fff" cx="24" cy="9" r="6"/><path class="ac" d="M24 6v6M22 7.5h3a1.5 1.5 0 010 3h-2.5"/></g></svg>`,
+cal:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="7" y="10" width="34" height="31" rx="5"/><path d="M7 19h34M16 6v8M32 6v8"/><circle class="dt acf" cx="15" cy="25" r="1.8"/><circle class="dt acf" cx="24" cy="25" r="1.8"/><circle class="dt acf" cx="33" cy="25" r="1.8"/><path class="check ac" d="M17 33l5 5 9-9"/></svg>`,
+swap:`<svg class="ic" viewBox="0 0 48 48"><g class="rot fo"><path d="M9 21a15 15 0 0127-6"/><path d="M37 7v8h-8"/><path class="ac" d="M39 27a15 15 0 01-27 6"/><path class="ac" d="M11 41v-8h8"/></g><path class="fl" d="M18 29v-6l6-5 6 5v6z"/></svg>`,
+brief:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="6" y="19" width="36" height="22" rx="5"/><path d="M17 19v-3a3 3 0 013-3h8a3 3 0 013 3v3"/><g class="lid fo"><path d="M6 29h36"/></g><rect class="ac" x="21" y="26" width="6" height="6" rx="1.5" style="fill:#fff"/><g class="plus ac fo"><path d="M24 2v6M21 5h6"/></g></svg>`,
+gift:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="8" y="23" width="32" height="18" rx="3"/><g class="lid fo"><rect class="fl" x="6" y="16" width="36" height="8" rx="3"/></g><path d="M24 16v25"/><g class="bow ac fo"><path d="M24 16c-3-9-12-6-9-2s7 2 9 2zM24 16c3-9 12-6 9-2s-7 2-9 2z"/></g><path class="spk ac fo" d="M41 6l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg>`,
+pin:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M24 43s13-12 13-23a13 13 0 10-26 0c0 11 13 23 13 23z"/><circle class="ac" cx="24" cy="20" r="5"/></svg>`,
+bookmark:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M12 6h24v36l-12-9-12 9z"/><path class="ac" d="M19 18l4 4 7-7"/></svg>`,
+house:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M12 22v20h24V22"/><path d="M5 25L24 8l19 17"/><path class="ac" d="M20 42V30h8v12"/></svg>`,
+search:`<svg class="ic" viewBox="0 0 48 48"><circle class="fl" cx="21" cy="21" r="12"/><path class="ac" d="M30 30l11 11"/></svg>`,
+doc:`<svg class="ic" viewBox="0 0 48 48"><rect class="fl" x="10" y="5" width="28" height="38" rx="4"/><path d="M17 15h14M17 22h14"/><path class="ac" d="M17 33c3-4 5 2 8-2s4 0 6-1"/></svg>`,
+plan:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M8 40V8l32 32z"/><path class="ac" d="M14 32h6M14 26h4M14 20h2"/></svg>`,
+perm:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M12 42V21l12-9 12 9v21"/><path d="M6 42h36M24 12V5"/><path class="ac" d="M20 42V31h8v11"/></svg>`,
+obra:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M10 34a14 14 0 0128 0z"/><path d="M6 34h36"/><path class="ac" d="M24 15v9M17 38h14"/></svg>`,
+mega:`<svg class="ic" viewBox="0 0 48 48"><path class="fl" d="M8 20v9h9l17 9V11L17 20z"/><path class="ac" d="M39 19a7 7 0 010 12"/></svg>`,
+pie:`<svg class="ic" viewBox="0 0 48 48"><circle class="fl" cx="24" cy="24" r="16"/><path class="ac" d="M24 8v16h16"/></svg>`
+};
+document.querySelectorAll('[data-ic]').forEach(el=>{el.innerHTML=IC[el.dataset.ic]});
+
+
+const ioE=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ replayE(e.target); ioE.unobserve(e.target); }
+}),{threshold:.35});
+function replayE(el){
+  el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
+  const f=el.dataset.js; if(f && window[f]) window[f](el);
+}
+function observarEscenas(){ document.querySelectorAll('.stage[data-auto]').forEach(s=>ioE.observe(s)); }
+
+function runChart(){ const m=document.getElementById('mov'); try{m.beginElement()}catch(e){} }
+
+/* donut de la calculadora */
+const CIRC=2*Math.PI*40;
+function pintaDonut(base,val,part){
+  const tot=base+val+part; if(!tot){return}
+  const ps=[base/tot,val/tot,part/tot]; let acc=0;
+  ps.forEach((p,i)=>{const len=Math.max(0,p*CIRC-2);const c=document.getElementById('da'+(i+1));
+    c.style.strokeDasharray=len+' '+(CIRC-len); c.style.strokeDashoffset=-acc*CIRC; acc+=p;});
+  document.getElementById('dm-total').textContent='$'+(tot/1e6).toLocaleString('es-CO',{maximumFractionDigits:0})+' M';
+}
+
+/* camino de 7 etapas */
+const ETAPAS=[['search','Evaluación técnica','Análisis del predio y potencial urbanístico'],['doc','Contrato de asociación','Formalización jurídica'],['plan','Diseño urbanístico','Estructuración técnica'],['perm','Licencias y permisos','Aprobación municipal'],['obra','Urbanismo y obras','Ejecución del proyecto'],['mega','Comercialización','Promoción y ventas'],['pie','Liquidación de participación','Entrega de beneficios al socio']];
+let tmR=[];
+function mostrarEtapa(i){
+  const nd=[...document.querySelectorAll('#ruta .nd')], cap=document.getElementById('cap'), rf=document.getElementById('rf'), ruta=document.getElementById('ruta');
+  nd.forEach((n,j)=>{n.classList.toggle('on',j<=i);n.classList.toggle('cur',j===i)});
+  rf.style.width=((ruta.clientWidth-38)*i/(ETAPAS.length-1))+'px';
+  cap.classList.remove('sw'); void cap.offsetWidth; cap.classList.add('sw');
+  const e=ETAPAS[i];
+  cap.innerHTML='<div class="bi">'+IC[e[0]]+'</div><div><b>'+(i+1)+'. '+e[1]+'</b><span>'+e[2]+'</span></div>';
+}
+function runRuta(){
+  tmR.forEach(clearTimeout); tmR=[];
+  const nd=[...document.querySelectorAll('#ruta .nd')]; nd.forEach(n=>n.classList.remove('on','cur'));
+  document.getElementById('rf').style.width='0'; document.getElementById('cap').innerHTML='';
+  ETAPAS.forEach((e,i)=>tmR.push(setTimeout(()=>mostrarEtapa(i),300+i*1200)));
+}
+function initRuta(){
+  const ruta=document.getElementById('ruta');
+  ETAPAS.forEach((e,i)=>{const d=document.createElement('div');d.className='nd';d.innerHTML=IC[e[0]];
+    d.setAttribute('role','button');d.setAttribute('aria-label',e[1]);
+    d.addEventListener('click',()=>{tmR.forEach(clearTimeout);tmR=[];mostrarEtapa(i)});ruta.appendChild(d)});
+}
+
 /* ============ WHATSAPP ============ */
-/* Cada vez que se arma un enlace, asesores.js sortea un asesor distinto.
-   Se conserva el mensaje de cada botón y se añade de dónde viene. */
-function wa(texto){ return AE.wa(texto+' Te escribo desde la sección Socios de la página de Alianza Empresarial.'); }
+function wa(texto){ return 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(texto); }
 function prepararCTAs(){
   const c=document.getElementById('cta-construir'), a=document.getElementById('cta-terreno');
   c.addEventListener('click',()=>{
@@ -644,6 +842,7 @@ window.addEventListener('scroll',()=>{
 
 renderLotes(); renderModelos(); renderFicha(); renderFinanciacion(); renderProtocolo(); renderPagos(); renderFAQ(); renderRangoChips(); renderRentab();
 prepararCTAs();
+initRuta(); observarEscenas();
 if(typeof gsap!=="undefined") gsap.registerPlugin(ScrollTrigger);
 animarPagina("construccion");
 </script>
