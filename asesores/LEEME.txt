@@ -1,0 +1,20 @@
+PÁGINAS DE LOS ASESORES · cómo está organizado
+================================================
+
+asesor.css  → el diseño (colores, letras, tamaños). Es UNO solo para las 5 páginas.
+asesor.js   → el comportamiento: toma el número de ../asesores.js, dibuja la tira
+              de proyectos y esconde/muestra la barra inferior.
+<nombre>.html → una página por asesor (el texto, el cargo, los correos y las redes
+              están escritos directo en el HTML, con comentarios que te guían).
+img/        → <nombre>.webp = foto del asesor · p-<proyecto>.webp = fotos pequeñas de la tira.
+              (Las fotos .jpg que ya tenías en asesores/img/ NO las borres: se usan
+              cuando alguien comparte el enlace por WhatsApp.)
+
+CÓMO CAMBIAR COSAS
+- Un número de WhatsApp: SOLO en ../asesores.js. La página lo toma sola.
+- Un correo, un cargo o el texto "Sobre mí": en el HTML de ese asesor.
+- Agregar una red nueva: copia una fila de "Redes" en el HTML del asesor y cambia el enlace y el @usuario.
+- Agregar o quitar un proyecto de la tira: en asesor.js, lista PROYECTOS.
+- Cambiar un color o una letra: en asesor.css (cambia en las 5 páginas).
+- Si la cara de alguien queda cortada: en su HTML, en el style="--pos:50% 18%" de la foto,
+  cambia el segundo número (más bajo = sube la foto, más alto = baja).
