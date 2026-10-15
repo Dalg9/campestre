@@ -1,0 +1,71 @@
+/* ==========================================================================
+   04-PASOS-EQUIPO.CSS · "Tu lote en 6 pasos" y "Conoce a tu asesor"
+   --------------------------------------------------------------------------
+   Asesores: al pasar el mouse (o tocar en el celular) la foto sube y aparece
+   el botón "Ver perfil". La lista de asesores está en js/02-datos.js.
+   ========================================================================== */
+
+/* ---------- Pasos ---------- */
+.pasos{background:var(--ink);padding-block:clamp(80px,11vw,150px)}
+.pasos-grid{display:grid;gap:40px}
+.pasos-cab{display:grid;gap:16px;align-content:start}
+.pasos-cab p{color:var(--suave-oscuro);max-width:24em}
+.pasos-lista{position:relative;padding-left:56px}
+.riel{position:absolute;left:19px;top:14px;bottom:14px;width:2px;background:var(--linea-o)}
+.riel-relleno{position:absolute;inset:0;background:var(--lima);transform-origin:50% 0}
+.paso{position:relative;padding-block:clamp(18px,3vw,30px);border-bottom:1px solid var(--linea-o)}
+.paso:last-child{border-bottom:0}
+.paso-n{
+  position:absolute;left:-56px;top:clamp(18px,3vw,30px);width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;background:var(--ink);border:2px solid var(--lima);color:var(--lima);
+  font-weight:700;font-size:.9rem;font-variant-numeric:tabular-nums;transition:background .4s,color .4s;
+}
+.paso.encendido .paso-n{background:var(--lima);color:var(--ink)}
+.paso h3{font-family:var(--f-titulo);font-weight:400;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.015em;line-height:1.1}
+.paso p{margin-top:8px;color:var(--suave-oscuro);max-width:30em}
+
+/* ---------- Asesores ---------- */
+.equipo{padding-block:clamp(72px,10vw,130px) clamp(80px,10vw,140px)}
+.equipo-cab{display:grid;gap:16px;max-width:40rem}
+.equipo-cab p{color:var(--suave-papel)}
+.equipo-lista{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:44px 14px;
+  margin-top:clamp(40px,6vw,72px);padding-top:16px;
+}
+.asesor{width:calc((100% - 14px)/2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+.asesor-caja{position:relative;width:100%;max-width:220px;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+.asesor-foto{
+  display:block;width:100%;aspect-ratio:1;padding:0;border:0;border-radius:50%;overflow:hidden;
+  background:var(--verde);cursor:pointer;
+  box-shadow:0 0 0 0 var(--lima),0 12px 24px -16px rgba(11,30,21,.55);transition:box-shadow .4s;
+}
+.asesor-foto img{width:100%;height:100%;object-fit:cover}
+.asesor-ver{
+  position:absolute;left:50%;bottom:-10px;display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:0 22px;border-radius:999px;background:var(--verde);color:var(--sobre-oscuro);
+  font-weight:700;font-size:.95rem;text-decoration:none;white-space:nowrap;
+  box-shadow:0 10px 22px -8px rgba(11,30,21,.6);
+  opacity:0;pointer-events:none;transform:translate(-50%,12px) scale(.9);
+  transition:opacity .25s,transform .45s cubic-bezier(.34,1.56,.64,1),background .2s;
+}
+.asesor-ver:hover{background:var(--ink)}
+.asesor-nombre{font-family:var(--f-titulo);font-size:1.1rem;line-height:1.2;color:var(--suave-papel)}
+.asesor-nombre b{display:block;font-weight:500;font-size:1.4rem;color:var(--sobre-papel);letter-spacing:-.01em}
+
+/* La foto "sube": por toque (.arriba), por teclado (:focus-within) o por mouse (:hover) */
+.asesor.arriba .asesor-caja,.asesor:focus-within .asesor-caja{transform:translateY(-16px) scale(1.07)}
+.asesor.arriba .asesor-foto,.asesor:focus-within .asesor-foto{box-shadow:0 0 0 4px var(--lima),0 28px 36px -18px rgba(11,30,21,.6)}
+.asesor.arriba .asesor-ver,.asesor:focus-within .asesor-ver{opacity:1;pointer-events:auto;transform:translate(-50%,0) scale(1)}
+@media (hover:hover){
+  .asesor:hover .asesor-caja{transform:translateY(-16px) scale(1.07)}
+  .asesor:hover .asesor-foto{box-shadow:0 0 0 4px var(--lima),0 28px 36px -18px rgba(11,30,21,.6)}
+  .asesor:hover .asesor-ver{opacity:1;pointer-events:auto;transform:translate(-50%,0) scale(1)}
+}
+
+@media (min-width:480px){.asesor{width:calc((100% - 28px)/3)}}
+@media (min-width:880px){
+  .pasos-grid{grid-template-columns:5fr 6fr;gap:72px}
+  .pasos-cab{position:sticky;top:96px}
+  .equipo-lista{gap:44px 24px}
+  .asesor{width:calc((100% - 96px)/5)}
+}

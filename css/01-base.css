@@ -1,0 +1,91 @@
+/* ==========================================================================
+   01-BASE.CSS · Colores, tipografía, botones y reglas generales
+   --------------------------------------------------------------------------
+   AQUÍ SE CAMBIA LA MARCA: todos los colores y tamaños viven en :root.
+   Si cambias un color aquí, cambia en toda la página principal.
+   Concepto: la gente llega desde un QR, en celular. Foto + promesa + acción.
+   El verde es la marca. El naranja se usa SOLO para botones de contacto.
+   ========================================================================== */
+
+:root{
+  --ink:#0b1e15;        /* verde selva casi negro (fondos oscuros) */
+  --forest:#12382a;     /* verde oscuro (tarjetas, banda) */
+  --verde:#1e5c40;      /* verde de marca */
+  --lima:#a9d06b;       /* acento sobre fondo oscuro */
+  --papel:#eef1e9;      /* fondo claro con tinte verde */
+  --papel-2:#dfe6d6;
+  --sobre-papel:#10241a;     /* texto sobre fondo claro */
+  --suave-papel:#4a5d51;     /* texto secundario sobre fondo claro */
+  --sobre-oscuro:#f1f4ec;    /* texto sobre fondo oscuro */
+  --suave-oscuro:#a8bcaf;    /* texto secundario sobre fondo oscuro */
+  --accion:#e8792f;     /* naranja: solo botones de contacto */
+  --sobre-accion:#1c0d03;
+  --linea-o:rgba(241,244,236,.16);   /* líneas finas sobre oscuro */
+  --linea-p:rgba(16,36,26,.18);      /* líneas finas sobre claro */
+  --error:#a3341b;
+  --radio:22px;         /* redondeo de fotos y celdas */
+  --f-titulo:'Fraunces',Georgia,'Times New Roman',serif;
+  --f-texto:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --suave:cubic-bezier(.22,1,.36,1);  /* curva de las animaciones */
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:12px}
+body{
+  margin:0;background:var(--ink);color:var(--sobre-oscuro);
+  font-family:var(--f-texto);font-size:1.0625rem;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ol,ul{margin:0}
+ol,ul{padding:0;list-style:none}
+
+/* Estas reglas solo aplican DENTRO de #sitio, para no tocar el widget de Diana */
+#sitio button,#sitio input,#sitio select{font:inherit;color:inherit}
+#sitio :focus-visible{outline:3px solid var(--lima);outline-offset:3px}
+#sitio .papel :focus-visible{outline-color:var(--verde)}
+
+/* Márgenes laterales (respeta el "notch" de los celulares) y ancho máximo */
+.margen{
+  padding-left:max(20px,env(safe-area-inset-left,0px));
+  padding-right:max(20px,env(safe-area-inset-right,0px));
+}
+.contenedor{max-width:1240px;margin-inline:auto}
+
+/* Lenis (scroll suave): recomendaciones oficiales de su documentación */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+html.lenis-stopped{overflow:hidden}
+
+/* ---------- Tipografía ---------- */
+.titulo-xl{
+  font-family:var(--f-titulo);font-weight:400;letter-spacing:-.025em;
+  line-height:1.02;text-wrap:balance;
+}
+h2.titulo-xl{font-size:clamp(2.3rem,6.2vw,4.6rem)}
+.bajada{font-size:clamp(1.05rem,2.1vw,1.28rem);line-height:1.55;max-width:34em;text-wrap:pretty}
+
+/* ---------- Botones ---------- */
+.boton{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:0 26px;border-radius:999px;border:0;
+  background:var(--accion);color:var(--sobre-accion);
+  font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;
+  transition:transform .35s var(--suave),filter .2s;
+}
+.boton:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.boton:active{transform:translateY(0)}
+.boton:disabled{opacity:.65;cursor:wait;transform:none}
+.enlace-sub{
+  display:inline-flex;align-items:center;min-height:52px;padding:0 6px;
+  font-weight:600;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px;
+}
+.enlace-sub:hover{text-decoration-thickness:2px}
+
+/* Texto solo para lectores de pantalla */
+.solo-lectores{
+  position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}

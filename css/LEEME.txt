@@ -1,0 +1,11 @@
+Estilos de la pagina principal (index.html), uno por bloque.
+Se cargan en este orden (el orden importa):
+01-base          colores (:root), tipografia, botones
+02-portada       foto de entrada + banda con nombres
+03-proyectos     tarjetas apiladas + cifras
+04-pasos-equipo  "Tu lote en 6 pasos" + asesores
+05-formulario    formulario de datos + pie de pagina
+06-dock          barra flotante de abajo (reemplaza la burbuja "Hay mas")
+07-acceso        muro suave + ventana de registro (puerta)
+08-diana-ajuste  un solo ajuste para que la barra no tape a Diana en celular
+Para cambiar colores de toda la pagina: solo 01-base.css (bloque :root).

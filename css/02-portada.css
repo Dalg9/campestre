@@ -1,0 +1,82 @@
+/* ==========================================================================
+   02-PORTADA.CSS · Foto grande de entrada + banda con los nombres
+   --------------------------------------------------------------------------
+   Para cambiar la foto: reemplaza img/inicio/hero.webp (mismo nombre).
+   El degradado oscuro (.portada::after) es lo que hace legible el texto
+   blanco sobre el cielo; si cambias la foto, revisa que se siga leyendo.
+   ========================================================================== */
+
+.portada{
+  position:relative;min-height:min(100svh,54rem);display:flex;
+  overflow:hidden;isolation:isolate;background:var(--ink);
+}
+/* Caja de la foto: más alta que la portada para poder moverla (parallax) */
+.portada-media{position:absolute;left:0;right:0;top:-14%;height:114%;z-index:-2}
+.portada-img{
+  width:100%;height:100%;object-fit:cover;object-position:35% 55%;
+  animation:asentar 3.4s cubic-bezier(.2,.7,.1,1) both;
+}
+/* Degradado oscuro encima de la foto (garantiza contraste del texto) */
+.portada::after{
+  content:"";position:absolute;inset:0;z-index:-1;background:
+    linear-gradient(to top,rgba(11,30,21,.94) 0%,rgba(11,30,21,.8) 30%,rgba(11,30,21,.62) 55%,rgba(11,30,21,.3) 78%,rgba(11,30,21,0) 100%),
+    linear-gradient(to bottom,rgba(11,30,21,.62) 0%,rgba(11,30,21,0) 30%);
+}
+.portada h1{text-shadow:0 1px 3px rgba(5,18,12,.45)}
+.portada .bajada,.portada .enlace-sub,.portada .marca,.portada .pie-foto{
+  text-shadow:0 1px 2px rgba(5,18,12,.5),0 4px 24px rgba(5,18,12,.55);
+}
+.portada-in{flex:1;display:flex}
+.portada-grid{
+  flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:48px;
+  padding-block:max(22px,env(safe-area-inset-top,0px)) 124px;
+}
+.portada-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.marca{font-family:var(--f-titulo);font-weight:600;font-size:1.3rem;letter-spacing:-.01em;text-decoration:none}
+.pie-foto{font-size:.82rem;color:rgba(241,244,236,.82);text-align:right}
+.portada h1{font-size:clamp(2.9rem,9.6vw,8.4rem);max-width:11.5em}
+
+/* Cada línea del título "sube" desde abajo */
+.linea{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.linea>span{display:block;animation:subir 1.1s cubic-bezier(.2,.7,.1,1) both}
+.linea:nth-child(1)>span{animation-delay:.15s}
+.linea:nth-child(2)>span{animation-delay:.34s;font-style:italic;font-weight:300}
+.portada .bajada{margin-top:26px;animation:aparecer .9s .75s ease both}
+.portada-cta{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:30px;
+  animation:aparecer .9s .9s ease both;
+}
+
+@keyframes asentar{from{transform:scale(1.16)}to{transform:scale(1)}}
+@keyframes subir{from{transform:translateY(105%)}to{transform:none}}
+@keyframes aparecer{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- Banda con los nombres de los proyectos ---------- */
+.banda{
+  background:var(--forest);border-block:1px solid var(--linea-o);
+  overflow:hidden;padding-block:clamp(18px,3vw,30px);
+}
+.banda-pista{display:flex;width:max-content;animation:deslizar 46s linear infinite}
+.banda:hover .banda-pista{animation-play-state:paused}
+.banda-grupo{display:flex;align-items:center;gap:clamp(22px,4vw,48px);padding-right:clamp(22px,4vw,48px)}
+.banda-grupo span{
+  font-family:var(--f-titulo);font-style:italic;font-weight:300;
+  font-size:clamp(1.9rem,5.4vw,3.8rem);letter-spacing:-.02em;white-space:nowrap;
+}
+.banda-grupo i{width:10px;height:10px;border-radius:50%;background:var(--lima);flex:none}
+@keyframes deslizar{to{transform:translateX(-50%)}}
+
+/* Pantallas anchas: se añade un degradado extra a la izquierda */
+@media (min-width:880px){
+  .portada::after{background:
+    linear-gradient(to right,rgba(11,30,21,.5) 0%,rgba(11,30,21,0) 62%),
+    linear-gradient(to top,rgba(11,30,21,.94) 0%,rgba(11,30,21,.8) 30%,rgba(11,30,21,.62) 55%,rgba(11,30,21,.3) 78%,rgba(11,30,21,0) 100%),
+    linear-gradient(to bottom,rgba(11,30,21,.62) 0%,rgba(11,30,21,0) 30%);}
+}
+
+/* Si la persona pidió "menos movimiento" en su celular, se apagan las animaciones */
+@media (prefers-reduced-motion:reduce){
+  .portada-img,.linea>span,.portada .bajada,.portada-cta{animation:none}
+  .banda-pista{animation:none;flex-wrap:wrap;width:auto}
+  .banda-grupo[aria-hidden="true"]{display:none}
+}

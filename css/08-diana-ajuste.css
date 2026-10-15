@@ -1,0 +1,17 @@
+/* ==========================================================================
+   08-DIANA-AJUSTE.CSS · Un solo ajuste para el asistente Diana (Dapta)
+   --------------------------------------------------------------------------
+   El bloque de Diana al final de index.html NO se toca: sigue moviéndola a la
+   IZQUIERDA (left:16px). Aquí solo se hace una cosa: en el celular, la barra
+   (dock) ocupa todo el ancho de abajo; para que no tape el botón de Diana,
+   este archivo la sube un poco. En pantallas anchas no se mueve.
+
+   Si algún día no quieres este ajuste: borra la línea <link> de este archivo
+   en index.html. No pasa nada más.
+   ========================================================================== */
+
+@media (max-width:639px){
+  .dapta-fab-container{
+    bottom:calc(88px + env(safe-area-inset-bottom,0px)) !important;
+  }
+}

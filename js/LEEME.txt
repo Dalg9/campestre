@@ -1,0 +1,13 @@
+Codigo de la pagina principal (index.html), uno por bloque.
+Todo cuelga de un objeto llamado "Inicio" (no "AE": ese lo usa asesores.js).
+Se cargan en este orden (el orden importa):
+acceso-temprano  (en el <head>) decide visitante / acceso-total sin parpadeo
+01-config        SCRIPT_URL del Sheet, proyecto visible, funcion de envio
+02-datos         LISTA DE PROYECTOS y ASESORES  <- aqui se edita el contenido
+03-acceso        muro suave + ventana de registro
+04-contenido     dibuja tarjetas, lista del formulario y asesores
+05-dock          barra de abajo y panel "Mas"
+06-animaciones   scroll suave (Lenis) + animaciones (GSAP)
+07-formulario    formulario -> Google Sheets, ping de visita, origen
+08-main          enlaces internos y boton "Me interesa"
+vendor/          librerias de terceros (gsap 3.12.5, ScrollTrigger, lenis 1.1.13). No editar.
