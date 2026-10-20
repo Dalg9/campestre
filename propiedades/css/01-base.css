@@ -1,0 +1,40 @@
+/* PROPIEDADES · 01-base.css
+   Colores (:root), letra, barra superior, portada y filtros. */
+
+/* Mismos colores y fuentes que la página principal (css/01-base.css). */
+:root{
+  --ink:#0b1e15; --forest:#12382a; --verde:#1e5c40; --lima:#a9d06b;
+  --papel:#eef1e9; --papel-2:#dfe6d6;
+  --sobre-papel:#10241a; --suave-papel:#4a5d51;
+  --sobre-oscuro:#f1f4ec; --suave-oscuro:#a8bcaf;
+  --accion:#e8792f; --sobre-accion:#1c0d03;
+  --linea-p:rgba(16,36,26,.16);
+  --f-titulo:'Fraunces',Georgia,'Times New Roman',serif;
+  --f-texto:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-texto);background:var(--papel);color:var(--sobre-papel);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+
+/* ---------- BARRA SUPERIOR ---------- */
+.prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:52;background:var(--verde);border-radius:0 3px 3px 0}
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;z-index:50;display:flex;align-items:center;gap:12px;padding:0 18px;transition:background .4s,box-shadow .4s}
+.topbar.solid{background:rgba(238,241,233,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--linea-p)}
+.topbar .back{width:40px;height:40px;border-radius:50%;border:1px solid var(--linea-p);background:rgba(238,241,233,.8);display:grid;place-items:center;color:var(--verde);text-decoration:none;flex-shrink:0}
+.topbar .tt{font-family:var(--f-titulo);font-size:17px;color:var(--verde);opacity:0;transition:opacity .35s}
+.topbar.solid .tt{opacity:1}
+.back:focus-visible,.chip:focus-visible,.tarjeta:focus-visible,.cta:focus-visible,.d-btn:focus-visible,.tour:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+
+/* ---------- PORTADA DE LA SECCIÓN ---------- */
+.sec-hero{max-width:1000px;margin:0 auto;padding:92px 22px 18px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--verde)}
+.sec-hero h1{font-family:var(--f-titulo);font-weight:400;font-size:clamp(36px,9vw,56px);line-height:1;letter-spacing:-.01em;margin:10px 0 12px;text-wrap:balance}
+.sec-hero h1 em{font-style:italic;color:var(--verde)}
+.sec-hero p{font-size:15px;color:var(--suave-papel);max-width:38ch}
+
+/* ---------- FILTROS ---------- */
+.filtros{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;max-width:1000px;margin:0 auto;padding:10px 22px 6px}
+.filtros::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;border:1px solid var(--linea-p);background:transparent;font-weight:600;font-size:13px;padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--sobre-papel)}
+.chip[aria-pressed="true"]{background:var(--sobre-papel);color:var(--papel);border-color:var(--sobre-papel)}

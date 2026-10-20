@@ -1,0 +1,24 @@
+PAGINA DE PROPIEDADES (propiedades/)
+Cada archivo es un bloque. Se cargan en este orden (el orden importa).
+
+index.html          solo la estructura (HTML). Casi nunca se toca.
+
+css/
+  01-base.css       colores (:root), letra, barra superior, portada, filtros
+  02-tarjetas.css   rejilla de tarjetas y boton general de WhatsApp
+  03-ficha.css      ficha a pantalla completa y vista de computador
+
+js/
+  01-datos.js       LAS PROPIEDADES. Aqui se agrega, edita o quita una.
+  02-utilidades.js  iconos y funciones pequenas
+  03-lista.js       contador, filtros y tarjetas
+  04-ficha.js       boton de WhatsApp (asesor fijo o rotacion) y la ficha
+  05-animaciones.js abrir/cerrar la ficha, modo foto, barra superior
+  06-arranque.js    arranca la pagina (siempre de ultimo)
+
+img/                fotos: <id>-1.jpg es la portada, luego -2, -3...
+
+PARA AGREGAR UNA PROPIEDAD: copia un bloque en js/01-datos.js, cambia los
+datos y sube sus fotos a img/ con el mismo id. No hay que tocar nada mas.
+PARA QUE SU WHATSAPP VAYA A UN SOLO ASESOR: escribe su nombre en "asesor",
+exactamente como aparece en ../asesores.js.
