@@ -1,0 +1,62 @@
+/* VEHÍCULOS · 03-ficha.css
+   Ficha a pantalla completa: fotos, hoja, cifras, botón fijo y vista de computador. */
+
+/* ---------- DETALLE (pantalla completa) ---------- */
+.detalle{position:fixed;inset:0;z-index:60;background:var(--ink);visibility:hidden}
+.detalle.on{visibility:visible}
+.d-foto{position:absolute;left:0;right:0;top:0;height:46%;overflow:hidden;background:var(--forest)}
+.d-gal{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.d-gal::-webkit-scrollbar{display:none}
+.d-gal img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center}
+.d-sombra{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,30,21,.5),transparent 28%,transparent 62%,rgba(11,30,21,.55))}
+.d-btn{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.3);background:rgba(11,30,21,.45);color:#fff;backdrop-filter:blur(10px);cursor:pointer;z-index:3}
+.d-btn:focus-visible{outline-color:var(--lima)}
+.d-cerrar{left:14px}
+.d-ampliar{right:14px}
+.d-cont{position:absolute;left:16px;bottom:56px;font-size:12px;font-weight:600;color:#fff;letter-spacing:.06em;font-variant-numeric:tabular-nums;z-index:2}
+.d-pista{position:absolute;right:16px;bottom:56px;font-size:12px;color:rgba(255,255,255,.85);z-index:2}
+
+.hoja{position:absolute;left:0;right:0;top:40%;bottom:0;background:var(--papel);border-radius:26px 26px 0 0;overflow-y:auto;scrollbar-width:none;z-index:4;box-shadow:0 -12px 30px rgba(0,0,0,.25);overscroll-behavior:contain}
+.hoja::-webkit-scrollbar{display:none}
+.h-asa{width:42px;height:4px;border-radius:4px;background:var(--linea-p);margin:10px auto 0}
+.h-in{max-width:620px;margin:0 auto;padding:18px 20px calc(120px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:24px}
+.h-eti{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--suave-papel)}
+.h-nombre{font-family:var(--f-titulo);font-weight:400;font-size:32px;line-height:1.02;margin:6px 0 4px;letter-spacing:-.01em;text-wrap:balance}
+.h-precio{display:flex;align-items:baseline;gap:10px;margin-top:12px;flex-wrap:wrap}
+.h-precio b{font-family:var(--f-titulo);font-weight:600;font-size:30px;color:var(--verde);font-variant-numeric:tabular-nums}
+.h-precio span{font-size:12px;color:var(--suave-papel)}
+
+.cifras{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--linea-p)}
+.cifra{padding:14px 4px 14px 0;border-bottom:1px solid var(--linea-p);display:flex;flex-direction:column;gap:2px;min-width:0}
+.cifra:nth-child(odd){border-right:1px solid var(--linea-p);padding-right:12px}
+.cifra:nth-child(even){padding-left:14px}
+.cifra .n{font-family:var(--f-titulo);font-size:30px;line-height:1.05;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.cifra .n small{font-size:15px;margin-left:3px;color:var(--suave-papel)}
+.cifra .k{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--suave-papel)}
+.cifra .k svg{width:15px;height:15px;color:var(--verde)}
+
+.bloque h3{font-family:var(--f-titulo);font-weight:400;font-size:22px;margin-bottom:10px}
+.ficha{display:flex;flex-direction:column}
+.ficha div{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dashed var(--linea-p);font-size:14px}
+.ficha dt{color:var(--suave-papel);flex-shrink:0}
+.ficha dd{margin:0 0 0 auto;text-align:right;font-weight:600;min-width:0}
+
+.aviso{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:var(--forest);color:var(--sobre-oscuro)}
+.aviso svg{width:28px;height:28px;color:var(--lima);flex-shrink:0}
+.aviso b{display:block;font-size:14px}
+.aviso span{font-size:12px;color:var(--suave-oscuro)}
+
+.barra{position:absolute;left:0;right:0;bottom:0;z-index:6;padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,transparent,var(--papel) 36%)}
+.barra .cta{max-width:620px;margin:0 auto}
+
+.volador{position:fixed;z-index:70;object-fit:cover;pointer-events:none}
+
+/* Pantallas anchas: foto a la izquierda, ficha a la derecha */
+@media(min-width:900px){
+  .d-foto{right:auto;width:56%;height:100%}
+  .hoja{left:auto;top:0;width:44%;border-radius:0;box-shadow:none}
+  .h-asa,.d-ampliar{display:none}
+  .barra{left:auto;width:44%}
+  .d-cont,.d-pista{bottom:24px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

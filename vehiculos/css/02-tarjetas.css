@@ -1,0 +1,24 @@
+/* VEHÍCULOS · 02-tarjetas.css
+   Rejilla de tarjetas y botón general de WhatsApp. */
+
+/* ---------- TARJETAS ---------- */
+.grid{max-width:1000px;margin:0 auto;padding:18px 22px 30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:30px 22px}
+.tarjeta{all:unset;display:block;cursor:pointer;-webkit-tap-highlight-color:transparent;min-width:0}
+.tarjeta:focus-visible{outline:2px solid var(--verde);outline-offset:4px;border-radius:22px}
+.t-foto{position:relative;aspect-ratio:4/3;max-width:100%;border-radius:22px;overflow:hidden;background:var(--papel-2)}
+.t-foto img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.tarjeta:hover .t-foto img{transform:scale(1.04)}
+.t-tipo{position:absolute;left:12px;top:12px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(11,30,21,.62);color:var(--sobre-oscuro);backdrop-filter:blur(8px)}
+.t-ver{position:absolute;right:12px;bottom:12px;font-size:12.5px;font-weight:600;padding:8px 13px;border-radius:999px;background:var(--papel);color:var(--sobre-papel)}
+.t-fila{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:12px}
+.t-nombre{font-family:var(--f-titulo);font-size:21px;line-height:1.1}
+.t-precio{font-family:var(--f-titulo);font-size:21px;color:var(--verde);white-space:nowrap;font-variant-numeric:tabular-nums}
+.t-meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:13px;color:var(--suave-papel)}
+.t-meta span{display:inline-flex;align-items:center;gap:5px}
+.t-meta svg{width:15px;height:15px;color:var(--verde);flex-shrink:0}
+
+.cta-seccion{max-width:1000px;margin:10px auto 70px;padding:0 22px}
+.cta-seccion p{font-size:15px;color:var(--suave-papel);margin-bottom:14px;max-width:46ch}
+.cta{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:none;border-radius:16px;padding:15px 18px;font:700 15px var(--f-texto);text-decoration:none;cursor:pointer;background:var(--accion);color:var(--sobre-accion)}
+.cta svg{width:20px;height:20px;flex-shrink:0}
+.cta-seccion .cta{max-width:420px}
