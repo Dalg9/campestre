@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/01-base.css">
 <link rel="stylesheet" href="css/02-tarjetas.css">
 <link rel="stylesheet" href="css/03-ficha.css">
+<link rel="stylesheet" href="css/04-tour360.css">
 <script src="../asesores.js"></script>
 </head>
 <body>
@@ -43,11 +44,30 @@
     <div class="d-sombra"></div>
     <button class="d-btn d-cerrar" id="bcerrar" aria-label="Volver a la lista"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
     <button class="d-btn d-ampliar" id="bampliar" aria-label="Ver solo las fotos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    <!-- Solo aparece si la propiedad tiene tour360 en js/01-datos.js -->
+    <button class="d-btn d-360" id="b360" hidden aria-label="Recorrer la propiedad en 360°"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>Tour 360°</button>
     <div class="d-cont" id="dcont"></div>
     <div class="d-pista" id="dpista">Desliza para más fotos</div>
   </div>
   <div class="hoja" id="hoja"><div class="h-asa"></div><div class="h-in" id="hin"></div></div>
   <div class="barra" id="barra"></div>
+</div>
+
+<!-- Visor de tour 360°: se llena al tocar "Tour 360°" en la ficha -->
+<div class="v360" id="v360" role="dialog" aria-modal="true" aria-label="Tour virtual 360°" aria-hidden="true">
+  <div class="v360-pano" id="v360pano"></div>
+  <div class="v360-sombra"></div>
+  <button class="d-btn v360-cerrar" id="v360cerrar" aria-label="Cerrar el tour"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="v360-tit"><span id="v360prop"></span><b id="v360esc"></b></div>
+  <div class="v360-mira" aria-hidden="true"></div>
+  <div class="v360-pista" id="v360pista" role="status"></div>
+  <div class="v360-editor" id="v360editor" hidden>
+    <div id="v360lectura">…</div>
+    <select id="v360sel" aria-label="Espacio al que lleva la flecha"></select>
+    <button type="button" id="v360copiar">Copiar flecha</button>
+    <div id="v360msg" role="status"></div>
+  </div>
+  <nav class="v360-escenas" id="v360escenas" aria-label="Espacios de la propiedad" hidden></nav>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -57,6 +77,7 @@
 <script src="js/03-lista.js"></script>
 <script src="js/04-ficha.js"></script>
 <script src="js/05-animaciones.js"></script>
-<script src="js/06-arranque.js"></script>
+<script src="js/06-tour360.js"></script>
+<script src="js/07-arranque.js"></script>
 </body>
 </html>

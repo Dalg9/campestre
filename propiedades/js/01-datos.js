@@ -15,7 +15,21 @@
                     Si no lo pones, rota entre todos como el resto del sitio.
      precioNota     texto bajo el precio (por defecto "precio de venta")
      cerca          lista de lugares cercanos
-     tour           enlace del tour 360° (Kuula)
+     tour           enlace externo de un tour 360° (Kuula). Abre en otra pestaña.
+     tour360        recorrido 360° PROPIO, dentro de la página (visor Pannellum).
+                    Cada espacio es una foto 360° en img/360/<id>-<espacio>.jpg
+                    (por ejemplo img/360/casa-caudal-sala.jpg). Ejemplo:
+                      tour360:{
+                        inicio:"sala",
+                        escenas:[
+                          {id:"sala",   titulo:"Sala",   flechas:[{a:"cocina", yaw:40,   pitch:-5}]},
+                          {id:"cocina", titulo:"Cocina", flechas:[{a:"sala",   yaw:-140, pitch:-5}]}
+                        ]
+                      }
+                    "a" es el id del espacio al que lleva la flecha. yaw y pitch
+                    dicen DÓNDE se dibuja: se sacan con el modo editor (ver LEEME.txt).
+                    Si un espacio no tiene flechas igual se puede abrir desde la
+                    lista de espacios que aparece abajo en el visor.
    ============================================================ */
 const PROPIEDADES = [
   {

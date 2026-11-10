@@ -29,7 +29,7 @@ function pintar(){
   const lista=PROPIEDADES.filter(p=>filtro==="Todas"||p.tipo===filtro);
   grid.innerHTML=lista.map(p=>`
     <button class="tarjeta" data-id="${p.id}" aria-label="Ver ficha de ${p.nombre}">
-      <div class="t-foto"><img src="img/${p.id}-1.jpg" alt="${p.nombre}" loading="lazy"><span class="t-tipo">${p.tipo}</span><span class="t-ver">Ver ficha →</span></div>
+      <div class="t-foto"><img src="img/${p.id}-1.jpg" alt="${p.nombre}" loading="lazy"><span class="t-tipo">${p.tipo}</span>${p.tour360?`<span class="t-360">${IC.cubo}360°</span>`:''}<span class="t-ver">Ver ficha →</span></div>
       <div class="t-fila"><span class="t-nombre">${p.nombre}</span><span class="t-precio">${p.precioCorto}</span></div>
       <div class="t-ubi">${p.ciudad}</div>
       <div class="t-meta">${meta(p)}</div>

@@ -67,7 +67,7 @@ document.getElementById('bcerrar').onclick=cerrar;
 document.getElementById('bampliar').onclick=alternarFoto;
 dfoto.addEventListener('click',e=>{if(e.target.tagName==='IMG')alternarFoto()});
 hoja.addEventListener('click',()=>{if(fotoModo)alternarFoto()});
-addEventListener('keydown',e=>{if(e.key==='Escape'&&origen)cerrar()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&origen&&!window.tourAbierto)cerrar()});
 
 /* ---------- Barra superior y progreso ---------- */
 const topbar=document.getElementById('topbar'), prog=document.getElementById('prog');

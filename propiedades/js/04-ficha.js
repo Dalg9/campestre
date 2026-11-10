@@ -63,6 +63,7 @@ function pintarFicha(p){
       <p class="h-ubi">${p.ubicacion}</p>
       <div class="h-precio"><b>${p.precio}</b><span>${p.precioNota||'precio de venta'}</span></div>
     </div>
+    ${p.tour360?`<button type="button" class="tour tour-360" data-tour360="${p.id}">${IC.cubo}Recorrer en 360°</button>`:''}
     ${cifras(p)}
     ${p.escritura?`<div class="sello">${IC.sello}<div><b>Escritura pública individual</b><span>El inmueble queda a tu nombre</span></div></div>`:''}
     ${escala(p)}
@@ -71,4 +72,7 @@ function pintarFicha(p){
     ${lista('Cerca de',p.cerca)}
     ${p.tour?`<a class="tour" href="${p.tour}" target="_blank" rel="noopener">${IC.cubo}Ver tour virtual 360°</a>`:''}`;
   barra.innerHTML=botonContacto(p);
+  /* Botón "Tour 360°" sobre las fotos: solo si la propiedad tiene tour360 */
+  const b360=document.getElementById('b360');
+  b360.hidden=!p.tour360; b360.dataset.id=p.id;
 }
