@@ -7,6 +7,7 @@ css/
   01-base.css       colores (:root), letra, barra superior, portada, filtros
   02-tarjetas.css   rejilla de tarjetas y boton general de WhatsApp
   03-ficha.css      ficha a pantalla completa y vista de computador
+  04-tour360.css    visor de tour 360, flechas y modo editor
 
 js/
   01-datos.js       LAS PROPIEDADES. Aqui se agrega, edita o quita una.
@@ -14,11 +15,50 @@ js/
   03-lista.js       contador, filtros y tarjetas
   04-ficha.js       boton de WhatsApp (asesor fijo o rotacion) y la ficha
   05-animaciones.js abrir/cerrar la ficha, modo foto, barra superior
-  06-arranque.js    arranca la pagina (siempre de ultimo)
+  06-tour360.js     el visor de tour 360 (abre, cambia de espacio, flechas)
+  07-arranque.js    arranca la pagina (siempre de ultimo)
+
+vendor/pannellum/   el visor Pannellum 2.5.6 (gratis, licencia MIT). No se toca.
 
 img/                fotos: <id>-1.jpg es la portada, luego -2, -3...
+img/360/            fotos 360 de los tours: <id>-<espacio>.jpg
 
 PARA AGREGAR UNA PROPIEDAD: copia un bloque en js/01-datos.js, cambia los
 datos y sube sus fotos a img/ con el mismo id. No hay que tocar nada mas.
 PARA QUE SU WHATSAPP VAYA A UN SOLO ASESOR: escribe su nombre en "asesor",
 exactamente como aparece en ../asesores.js.
+
+------------------------------------------------------------------
+TOUR 360 PROPIO (dentro de la pagina, sin Kuula)
+------------------------------------------------------------------
+Una propiedad con tour360 muestra la insignia "360" en su tarjeta, el boton
+"Tour 360" sobre las fotos y el boton "Recorrer en 360" en la ficha.
+
+PASO 1. Exporta cada espacio de la camara como JPG 360 (equirectangular,
+        proporcion 2:1, por ejemplo 4096 x 2048 px). Un espacio = una foto.
+PASO 2. Ponle a cada foto este nombre y subela a img/360/ :
+            <id de la propiedad>-<espacio>.jpg
+        Ejemplo: casa-caudal-sala.jpg, casa-caudal-cocina.jpg
+        (todo en minusculas, sin tildes ni espacios).
+PASO 3. En js/01-datos.js, dentro de esa propiedad, agrega el campo tour360
+        (hay un ejemplo completo en el comentario de arriba del archivo).
+        Al inicio puedes dejar flechas:[] vacio: el tour ya funciona con la
+        lista de espacios que sale abajo del visor.
+PASO 4. Pon las flechas con el MODO EDITOR:
+        - Abre la pagina con ?editar al final:
+              https://alianzaempresarial.co/propiedades/?editar
+        - Entra al tour. Aparece una cruz verde en el centro y un panel.
+        - Mueve la vista hasta que la cruz quede justo donde va la flecha
+          (la puerta, el pasillo...).
+        - En el panel elige a que espacio lleva y toca "Copiar flecha".
+        - Pega lo copiado dentro de flechas:[ ... ] de ese espacio.
+        - Repite para cada flecha. Las flechas de ida y vuelta son
+          independientes: hay que poner una en cada espacio.
+
+NOTAS
+ - Peso: procura que cada foto 360 pese menos de 1 MB (calidad JPG 75-80).
+   La pagina esta en GitHub Pages: muchas fotos pesadas la vuelven lenta.
+ - Las fotos de los espacios vecinos se cargan por adelantado para que el
+   paso entre espacios sea rapido.
+ - El visor solo se descarga cuando alguien abre un tour; no pesa en la lista.
+

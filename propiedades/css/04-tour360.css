@@ -1,0 +1,61 @@
+/* PROPIEDADES · 04-tour360.css
+   Tour 360°: insignia en la tarjeta, botón en la ficha, visor a pantalla completa,
+   flechas y modo editor. */
+
+/* ---------- Insignia en la tarjeta y botones de la ficha ---------- */
+.t-360{position:absolute;right:12px;top:12px;display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;letter-spacing:.12em;padding:5px 10px 5px 8px;border-radius:999px;background:var(--lima);color:var(--ink)}
+.t-360 svg{width:13px;height:13px}
+.d-360{display:inline-flex;align-items:center;gap:7px;left:66px;width:auto;padding:0 15px 0 12px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.04em}
+.d-360[hidden]{display:none}
+.d-360 svg{width:18px;height:18px;color:var(--lima)}
+button.tour{width:100%;background:transparent;cursor:pointer;font-family:inherit}
+.tour.tour-360{background:var(--verde);color:var(--sobre-oscuro);border-color:var(--verde)}
+.tour.tour-360 svg{color:var(--lima)}
+.tour-360:focus-visible,.d-360:focus-visible,.v-chip:focus-visible,.flecha:focus-visible{outline:2px solid var(--lima);outline-offset:3px}
+
+/* ---------- Visor a pantalla completa ---------- */
+.v360{position:fixed;inset:0;z-index:90;background:var(--ink);visibility:hidden;opacity:0;transition:opacity .35s,visibility 0s .35s}
+.v360.on{visibility:visible;opacity:1;transition:opacity .35s}
+.v360-pano{position:absolute;inset:0}
+.v360 .pnlm-container{background:var(--ink)}
+.v360-sombra{position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(11,30,21,.55),transparent 22%,transparent 72%,rgba(11,30,21,.6))}
+.v360-cerrar{left:14px;z-index:5}
+.v360-tit{position:absolute;left:66px;right:70px;top:calc(14px + env(safe-area-inset-top,0px));height:42px;display:flex;flex-direction:column;justify-content:center;pointer-events:none;z-index:3;color:#fff}
+.v360-tit span{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--suave-oscuro);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v360-tit b{font-family:var(--f-titulo);font-weight:400;font-size:21px;line-height:1.1}
+/* Botones de zoom de Pannellum: arriba a la derecha, junto al título, en oscuro para que combinen */
+.v360 .pnlm-controls-container{top:calc(14px + env(safe-area-inset-top,0px));left:auto;right:14px;transform:scale(1.2);transform-origin:top right;z-index:5}
+.v360 .pnlm-zoom-controls{filter:invert(1);opacity:.85}
+.v360-pista{position:absolute;left:14px;right:14px;width:fit-content;margin:0 auto;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateY(8px);z-index:3;padding:8px 16px;border-radius:999px;background:rgba(11,30,21,.7);color:#fff;font-size:12.5px;text-align:center;backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .4s,transform .4s}
+.v360-pista.on{opacity:1;transform:translateY(0)}
+.v360-escenas{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;gap:8px;padding:26px 14px calc(16px + env(safe-area-inset-bottom,0px));overflow-x:auto;scrollbar-width:none}
+.v360-escenas::-webkit-scrollbar{display:none}
+.v360-escenas[hidden]{display:none}
+.v-chip{flex:0 0 auto;border:1px solid rgba(255,255,255,.32);background:rgba(11,30,21,.55);color:#fff;backdrop-filter:blur(10px);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.v-chip[aria-pressed="true"]{background:var(--lima);color:var(--ink);border-color:var(--lima)}
+.v360-escenas:not([hidden])::before,.v360-escenas:not([hidden])::after{content:'';flex:0 0 1px}
+
+/* ---------- Flechas para pasar de un espacio a otro ----------
+   Pannellum mueve el contenedor .flecha con transform, así que la animación
+   va en el círculo de adentro (.f-btn) y no en el contenedor. */
+.flecha{width:48px;height:48px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.flecha .f-btn{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;background:rgba(11,30,21,.55);border:2px solid #fff;color:#fff;backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(0,0,0,.4);animation:latido 2.4s ease-in-out infinite;transition:background .2s,color .2s,border-color .2s}
+.flecha .f-btn svg{width:24px;height:24px}
+.flecha:hover .f-btn,.flecha:focus-visible .f-btn{background:var(--lima);color:var(--ink);border-color:var(--lima)}
+.flecha .f-txt{position:absolute;top:100%;left:50%;margin-top:7px;transform:translateX(-50%);white-space:nowrap;font:600 12px var(--f-texto);padding:4px 11px;border-radius:999px;background:rgba(11,30,21,.78);color:#fff;pointer-events:none}
+@keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+
+/* ---------- Modo editor (?editar) ---------- */
+.v360-mira{position:absolute;left:50%;top:50%;width:28px;height:28px;margin:-14px 0 0 -14px;z-index:4;pointer-events:none;display:none}
+.v360.editando .v360-mira{display:block}
+.v360-mira::before,.v360-mira::after{content:'';position:absolute;background:var(--lima);box-shadow:0 0 0 1px rgba(0,0,0,.45)}
+.v360-mira::before{left:13px;top:0;width:2px;height:28px}
+.v360-mira::after{top:13px;left:0;height:2px;width:28px}
+.v360-editor{position:absolute;left:14px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:6;width:min(380px,calc(100% - 28px));display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:14px;background:rgba(11,30,21,.86);color:#fff;font-size:12.5px;backdrop-filter:blur(10px)}
+.v360-editor[hidden]{display:none}
+.v360-editor select,.v360-editor button{font:600 13px var(--f-texto);padding:9px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff}
+.v360-editor select option{color:#000}
+.v360-editor button{background:var(--lima);color:var(--ink);border-color:var(--lima);cursor:pointer}
+.v360-editor #v360msg{color:var(--lima);word-break:break-all;min-height:1em}
+
+@media(prefers-reduced-motion:reduce){.flecha .f-btn{animation:none}}
