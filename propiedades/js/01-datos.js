@@ -75,6 +75,19 @@ const PROPIEDADES = [
     ubicacion:"Barrio Rosa Blanca Oriental · Villavicencio, Meta",
     negocio:"Venta", asesor:"Ana María Suache", escritura:true,
     fotos:6, hab:2, ban:3,
+    tour360:{inicio:"calle", escenas:[
+      {id:"calle", titulo:"Calle y fachada", yaw:-172, flechas:[{a:"garaje", yaw:-172, pitch:-16, mira:95}]},
+      {id:"garaje", titulo:"Garaje", flechas:[{a:"calle", yaw:-85, pitch:-8, mira:8}, {a:"entrada", yaw:115, pitch:-8, mira:-136}]},
+      {id:"entrada", titulo:"Entrada", flechas:[{a:"garaje", yaw:44, pitch:-6, mira:-65}, {a:"sala", yaw:-135, pitch:-6, mira:28}, {a:"escaleras", yaw:-26, pitch:-10, mira:112}]},
+      {id:"sala", titulo:"Sala y comedor", flechas:[{a:"entrada", yaw:-152, pitch:-8, mira:45}, {a:"cocina", yaw:167, pitch:-10, mira:72}]},
+      {id:"cocina", titulo:"Cocina", flechas:[{a:"sala", yaw:-108, pitch:-18, mira:-13}, {a:"entrada", yaw:144, pitch:-10}]},
+      {id:"escaleras", titulo:"Escaleras", flechas:[{a:"entrada", yaw:-68, pitch:-43, mira:154}, {a:"alcoba", yaw:-30, pitch:-6, mira:171}, {a:"cuarto-ropa", yaw:38, pitch:-6, mira:-27}]},
+      {id:"alcoba", titulo:"Alcoba principal", flechas:[{a:"escaleras", yaw:-9, pitch:-10, mira:150}, {a:"balcon", yaw:-162, pitch:-6, mira:140}, {a:"vestier", yaw:120, pitch:-8, mira:-20}]},
+      {id:"balcon", titulo:"Balcón", flechas:[{a:"alcoba", yaw:-40, pitch:-11, mira:18}]},
+      {id:"vestier", titulo:"Vestier", flechas:[{a:"alcoba", yaw:-144, pitch:-6}]},
+      {id:"cuarto-ropa", titulo:"Cuarto de ropa", flechas:[{a:"bano", yaw:-169, pitch:-10, mira:-166}, {a:"escaleras", yaw:153, pitch:-6}]},
+      {id:"bano", titulo:"Baño", flechas:[{a:"cuarto-ropa", yaw:14, pitch:-6, mira:11}]}
+    ]},
     ficha:[["Tipo","Casa, 2 pisos"],["Estado","Usada, remodelada"],["Habitaciones","2, con baño privado"],["Baños","3 (incluye medio baño)"],["Parqueadero","1"],["Estrato","3"]],
     caracts:["Cocina moderna","Balcón","Terraza","Baño en habitación principal","Espacio para vestier","Clósets","Zona de lavado independiente","Gas domiciliario","Acceso pavimentado"],
     cerca:["Centro Comercial Viva Villavicencio, a 10 min caminando","Parque del barrio, a 1 min","Colegios"]
