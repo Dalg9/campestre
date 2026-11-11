@@ -129,6 +129,18 @@ const PROPIEDADES = [
     ubicacion:"Barrio Ciudad Jardín · Villavicencio, Meta",
     negocio:"Venta", asesor:"Ana María Suache", escritura:true,
     fotos:3, hab:3, ban:1,
+    tour360:{inicio:"fachada", escenas:[
+      {id:"fachada", titulo:"Fachada y jardín", yaw:70, flechas:[{a:"zaguan", yaw:-178, pitch:-10, mira:-80}, {a:"sala", yaw:56, pitch:-2, mira:34}]},
+      {id:"zaguan", titulo:"Escaleras y pasillo", flechas:[{a:"sala-2", yaw:-160, pitch:-8, mira:-162}, {a:"fachada", yaw:100, pitch:-10, mira:2}]},
+      {id:"sala-2", titulo:"Sala, hacia los cuartos", flechas:[{a:"zaguan", yaw:18, pitch:-8, mira:20}, {a:"sala", yaw:-62, pitch:-10, mira:-82}, {a:"habitacion-1", yaw:-170, pitch:4, mira:76}, {a:"habitacion-2", yaw:170, pitch:4, mira:-142}, {a:"habitacion-3", yaw:180, pitch:-18, mira:18}]},
+      {id:"sala", titulo:"Sala y comedor", flechas:[{a:"fachada", yaw:-146, pitch:-8, mira:-124}, {a:"cocina", yaw:-100, pitch:-8, mira:165}, {a:"sala-2", yaw:98, pitch:-8, mira:118}]},
+      {id:"cocina", titulo:"Cocina", flechas:[{a:"sala", yaw:-15, pitch:-6, mira:80}]},
+      {id:"habitacion-1", titulo:"Habitación 1", flechas:[{a:"sala-2", yaw:-104, pitch:-8, mira:10}]},
+      {id:"habitacion-2", titulo:"Habitación 2", flechas:[{a:"sala-2", yaw:38, pitch:-8, mira:-10}]},
+      {id:"habitacion-3", titulo:"Habitación 3 con balcón", flechas:[{a:"sala-2", yaw:-162, pitch:-14, mira:0}, {a:"bano", yaw:-176, pitch:0, mira:-50}, {a:"balcon", yaw:-90, pitch:-6, mira:30}]},
+      {id:"bano", titulo:"Baño", flechas:[{a:"habitacion-3", yaw:130, pitch:-6, mira:4}]},
+      {id:"balcon", titulo:"Balcón", flechas:[{a:"habitacion-3", yaw:-150, pitch:-6, mira:90}]}
+    ]},
     ficha:[["Tipo","Apartamento, primer piso"],["Estado","Usado"],["Habitaciones","3, una con balcón propio"],["Baños","1"],["Piso","1, sin escaleras"]],
     caracts:["Primer piso, sin escaleras","Sala con salida a balcón","Habitación con balcón propio","Zona residencial consolidada"],
     cerca:["Tiendas Ara y D1, a menos de 1 minuto","Megacolegio Luis Carlos Galán, a 5 minutos","Centro Comercial Viva Villavicencio, a 5 km"]
