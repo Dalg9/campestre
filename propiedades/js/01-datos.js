@@ -144,5 +144,29 @@ const PROPIEDADES = [
     ficha:[["Tipo","Apartamento, primer piso"],["Estado","Usado"],["Habitaciones","3, una con balcón propio"],["Baños","1"],["Piso","1, sin escaleras"]],
     caracts:["Primer piso, sin escaleras","Sala con salida a balcón","Habitación con balcón propio","Zona residencial consolidada"],
     cerca:["Tiendas Ara y D1, a menos de 1 minuto","Megacolegio Luis Carlos Galán, a 5 minutos","Centro Comercial Viva Villavicencio, a 5 km"]
+  },
+  {
+    id:"casa-quinta-llanerita", tipo:"Casa", ciudad:"Villavicencio",
+    nombre:"Casa Quinta La Llanerita", precioCorto:"$600M", precio:"$600.000.000",
+    ubicacion:"Vereda La Llanerita · Villavicencio, Meta",
+    negocio:"Venta",
+    fotos:16, hab:3, ban:2,
+    tour360:{inicio:"patio", escenas:[
+      {id:"patio", titulo:"Patio frontal", yaw:-40, flechas:[{a:"patio-2", yaw:-20, pitch:-22, mira:-48}, {a:"huerto", yaw:85, pitch:-8, mira:-80}, {a:"porche", yaw:-5, pitch:-3, mira:-85}, {a:"corredor", yaw:-80, pitch:-6, mira:160}]},
+      {id:"patio-2", titulo:"Patio y piscina", flechas:[{a:"patio", yaw:132, pitch:-14, mira:160}, {a:"piscina", yaw:-48, pitch:-12, mira:170}, {a:"zona-social", yaw:-112, pitch:-6, mira:-60}]},
+      {id:"piscina", titulo:"Piscina", flechas:[{a:"patio-2", yaw:-10, pitch:-12, mira:132}]},
+      {id:"huerto", titulo:"Huerto de frutales", flechas:[{a:"patio", yaw:100, pitch:-8, mira:-95}]},
+      {id:"porche", titulo:"Porche", flechas:[{a:"patio", yaw:95, pitch:-10, mira:175}, {a:"alcoba-principal", yaw:-178, pitch:-3, mira:-43}]},
+      {id:"alcoba-principal", titulo:"Alcoba principal", flechas:[{a:"porche", yaw:137, pitch:-3, mira:2}, {a:"bano-principal", yaw:172, pitch:-8, mira:167}]},
+      {id:"bano-principal", titulo:"Baño de la alcoba principal", flechas:[{a:"alcoba-principal", yaw:-13, pitch:-10, mira:-8}]},
+      {id:"corredor", titulo:"Corredor", flechas:[{a:"patio", yaw:-20, pitch:-14, mira:100}, {a:"habitacion-azul", yaw:166, pitch:-3, mira:-30}, {a:"habitacion-camas", yaw:-172, pitch:-12, mira:42}]},
+      {id:"habitacion-azul", titulo:"Habitación azul", flechas:[{a:"corredor", yaw:150, pitch:-3, mira:-14}, {a:"bano", yaw:75, pitch:-8, mira:72}]},
+      {id:"bano", titulo:"Baño", flechas:[{a:"habitacion-azul", yaw:-108, pitch:-8, mira:-105}]},
+      {id:"habitacion-camas", titulo:"Habitación de dos camas", flechas:[{a:"corredor", yaw:-138, pitch:-8, mira:8}]},
+      {id:"zona-social", titulo:"Zona social", flechas:[{a:"patio-2", yaw:120, pitch:-10, mira:68}, {a:"cocina", yaw:165, pitch:-15, mira:30}]},
+      {id:"cocina", titulo:"Cocina", flechas:[{a:"zona-social", yaw:-150, pitch:-12, mira:-15}]}
+    ]},
+    ficha:[["Tipo","Casa quinta"],["Habitaciones","3"],["Baños","2"],["Cocina","Sí"],["Sala comedor","Sí"]],
+    caracts:["Cocina","Sala comedor","3 habitaciones","2 baños"]
   }
 ];
