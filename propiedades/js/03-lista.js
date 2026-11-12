@@ -26,9 +26,9 @@ function meta(p){
 }
 const grid=document.getElementById('grid');
 function pintar(){
-  // Las que tienen tour 360° van primero; entre ellas se mantiene el orden de 01-datos.js
+  /* Primero las que tienen tour 360°; dentro de cada grupo se conserva el orden de 01-datos.js */
   const lista=PROPIEDADES.filter(p=>filtro==="Todas"||p.tipo===filtro)
-    .sort((x,y)=>(y.tour360?1:0)-(x.tour360?1:0));
+    .sort((a,b)=>(b.tour360?1:0)-(a.tour360?1:0));
   grid.innerHTML=lista.map(p=>`
     <button class="tarjeta" data-id="${p.id}" aria-label="Ver ficha de ${p.nombre}">
       <div class="t-foto"><img src="img/${p.id}-1.jpg" alt="${p.nombre}" loading="lazy"><span class="t-tipo">${p.tipo}</span>${p.tour360?`<span class="t-360">${IC.cubo}360°</span>`:''}<span class="t-ver">Ver ficha →</span></div>
