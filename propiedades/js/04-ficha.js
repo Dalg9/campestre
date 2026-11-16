@@ -7,11 +7,12 @@ function asesorFijo(p){
   return AE.asesores.find(a=>a.nombre===p.asesor)||null;
 }
 function textoWA(p){
+  if(p.estado) return "Hola, vi la "+p.nombre+" (ya no disponible) en la página de Alianza Empresarial y busco algo parecido. ¿Qué tienen disponible?";
   return "Hola, estoy interesado en "+p.nombre+" ("+p.precio+") desde la página de Alianza Empresarial.";
 }
 function botonContacto(p){
   const fijo=asesorFijo(p);
-  const etiqueta=p.tipo==='Casa'?'Preguntar por esta casa':p.tipo==='Lote'?'Preguntar por este lote':'Preguntar por este apartamento';
+  const etiqueta=p.estado?'Busco algo parecido':p.tipo==='Casa'?'Preguntar por esta casa':p.tipo==='Lote'?'Preguntar por este lote':'Preguntar por este apartamento';
   if(fijo){
     /* Sin data-ae: asesores.js no lo toca, va siempre a este asesor. */
     const href="https://wa.me/"+fijo.numero+"?text="+encodeURIComponent(textoWA(p));
@@ -61,7 +62,7 @@ function pintarFicha(p){
       <div class="h-eti">${p.tipo} · ${p.ciudad} · ${p.negocio||'Venta'}</div>
       <h2 class="h-nombre">${p.nombre}</h2>
       <p class="h-ubi">${p.ubicacion}</p>
-      <div class="h-precio"><b>${p.precio}</b><span>${p.precioNota||'precio de venta'}</span></div>
+      ${p.estado?`<div class="h-estado"><b>Ya no está disponible</b><span>${p.estadoNota||'Mira el recorrido 360° y cuéntanos qué buscas: te mostramos algo parecido.'}</span></div>`:`<div class="h-precio"><b>${p.precio}</b><span>${p.precioNota||'precio de venta'}</span></div>`}
     </div>
     ${p.tour360?`<button type="button" class="tour tour-360" data-tour360="${p.id}">${IC.cubo}Recorrer en 360°</button>`:''}
     ${cifras(p)}
@@ -72,6 +73,7 @@ function pintarFicha(p){
     ${lista('Cerca de',p.cerca)}
     ${p.tour?`<a class="tour" href="${p.tour}" target="_blank" rel="noopener">${IC.cubo}Ver tour virtual 360°</a>`:''}`;
   barra.innerHTML=botonContacto(p);
+  document.getElementById('detalle').classList.toggle('no-disp',!!p.estado);
   /* Botón "Tour 360°" sobre las fotos: solo si la propiedad tiene tour360 */
   const b360=document.getElementById('b360');
   b360.hidden=!p.tour360; b360.dataset.id=p.id;

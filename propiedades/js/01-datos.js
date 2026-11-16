@@ -15,6 +15,10 @@
                     Si no lo pones, rota entre todos como el resto del sitio.
      precioNota     texto bajo el precio (por defecto "precio de venta")
      cerca          lista de lugares cercanos
+     estado         "no-disponible" → la propiedad sale en gris, sin precio, con el
+                    botón "Busco algo parecido". Sirve para las vendidas o retiradas
+                    (que sigan mostrando tu trabajo). Si no se pone, está disponible.
+                    estadoNota: texto opcional bajo "Ya no está disponible".
      tour           enlace externo de un tour 360° (Kuula). Abre en otra pestaña.
      tour360        recorrido 360° PROPIO, dentro de la página (visor Pannellum).
                     Cada espacio es una foto 360° en img/360/<id>-<espacio>.jpg
@@ -168,5 +172,33 @@ const PROPIEDADES = [
     ]},
     ficha:[["Tipo","Casa quinta"],["Habitaciones","3"],["Baños","3"],["Cocina","Sí"],["Sala comedor","Sí"]],
     caracts:["Cocina","Sala comedor","3 habitaciones","3 baños"]
+  },
+  {
+    id:"casa-7-de-agosto", tipo:"Casa", ciudad:"Villavicencio",
+    nombre:"Casa 7 de Agosto", estado:"no-disponible",
+    ubicacion:"Villavicencio, Meta",
+    negocio:"Venta",
+    fotos:7,
+    tour360:{inicio:"01", escenas:[
+      {id:"01", titulo:"Espacio 1"},
+      {id:"02", titulo:"Espacio 2"},
+      {id:"03", titulo:"Espacio 3"},
+      {id:"04", titulo:"Espacio 4"},
+      {id:"05", titulo:"Espacio 5"},
+      {id:"06", titulo:"Espacio 6"},
+      {id:"07", titulo:"Cocina"},
+      {id:"08", titulo:"Espacio 8"},
+      {id:"09", titulo:"Espacio 9"},
+      {id:"10", titulo:"Espacio 10"},
+      {id:"11", titulo:"Espacio 11"},
+      {id:"12", titulo:"Zona de ropas"},
+      {id:"13", titulo:"Zona de ropas (otra vista)"},
+      {id:"14", titulo:"Espacio 14"},
+      {id:"15", titulo:"Espacio 15"},
+      {id:"16", titulo:"Escaleras"},
+      {id:"17", titulo:"Baño"}
+    ]},
+    ficha:[["Tipo","Casa"],["Estado","Ya no está disponible"]],
+    caracts:[]
   }
 ];
