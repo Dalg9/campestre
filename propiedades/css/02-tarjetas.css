@@ -23,3 +23,9 @@
 .cta{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:none;border-radius:16px;padding:15px 18px;font:700 15px var(--f-texto);text-decoration:none;cursor:pointer;background:var(--accion);color:var(--sobre-accion)}
 .cta svg{width:20px;height:20px;flex-shrink:0}
 .cta-seccion .cta{max-width:420px}
+
+/* ---------- NO DISPONIBLE (vendida o retirada): foto en gris, sin precio ---------- */
+.no-disp .t-foto img{filter:grayscale(1) contrast(.95) brightness(.95)}
+.no-disp .t-nombre{color:var(--suave-papel)}
+.no-disp .t-precio{font-family:var(--f-texto);font-size:13px;font-weight:600;color:var(--suave-papel)}
+.t-estado{position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:rgba(40,40,40,.82);color:#fff;backdrop-filter:blur(8px)}

@@ -2,7 +2,7 @@
    Contador, filtros y tarjetas de la lista */
 
 /* ---------- Encabezado: cuántas hay ---------- */
-document.getElementById('cuenta').textContent=PROPIEDADES.length+' disponibles';
+document.getElementById('cuenta').textContent=PROPIEDADES.filter(p=>!p.estado).length+' disponibles';
 
 /* ---------- Filtros por tipo ---------- */
 const TIPOS=[["Todas","Todas"],["Casa","Casas"],["Lote","Lotes"],["Apto","Apartamentos"]];
@@ -26,13 +26,13 @@ function meta(p){
 }
 const grid=document.getElementById('grid');
 function pintar(){
-  /* Primero las que tienen tour 360°; dentro de cada grupo se conserva el orden de 01-datos.js */
+  /* Primero las disponibles; luego las que tienen tour 360°; dentro de cada grupo se conserva el orden de 01-datos.js */
   const lista=PROPIEDADES.filter(p=>filtro==="Todas"||p.tipo===filtro)
-    .sort((a,b)=>(b.tour360?1:0)-(a.tour360?1:0));
+    .sort((a,b)=>(a.estado?1:0)-(b.estado?1:0)||(b.tour360?1:0)-(a.tour360?1:0));
   grid.innerHTML=lista.map(p=>`
-    <button class="tarjeta" data-id="${p.id}" aria-label="Ver ficha de ${p.nombre}">
-      <div class="t-foto"><img src="img/${p.id}-1.jpg" alt="${p.nombre}" loading="lazy"><span class="t-tipo">${p.tipo}</span>${p.tour360?`<span class="t-360">${IC.cubo}360°</span>`:''}<span class="t-ver">Ver ficha →</span></div>
-      <div class="t-fila"><span class="t-nombre">${p.nombre}</span><span class="t-precio">${p.precioCorto}</span></div>
+    <button class="tarjeta${p.estado?' no-disp':''}" data-id="${p.id}" aria-label="Ver ficha de ${p.nombre}${p.estado?' (no disponible)':''}">
+      <div class="t-foto"><img src="img/${p.id}-1.jpg" alt="${p.nombre}" loading="lazy"><span class="t-tipo">${p.tipo}</span>${p.estado?'<span class="t-estado">No disponible</span>':''}${p.tour360?`<span class="t-360">${IC.cubo}360°</span>`:''}<span class="t-ver">Ver ficha →</span></div>
+      <div class="t-fila"><span class="t-nombre">${p.nombre}</span><span class="t-precio">${p.estado?'No disponible':p.precioCorto}</span></div>
       <div class="t-ubi">${p.ciudad}</div>
       <div class="t-meta">${meta(p)}</div>
     </button>`).join('');
